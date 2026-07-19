@@ -4,3 +4,6 @@ node_modules
 .DS_Store
 photos-originals/
 .playwright-mcp/
+
+.hero-src/
+home-desktop-fold.png

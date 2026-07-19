@@ -33,7 +33,7 @@
 
 /* ===== form fields (paper letter styling) ===== */
 .fld{width:100%;box-sizing:border-box;background:rgba(243,234,217,.05);border:1px solid rgba(243,234,217,.2);border-radius:9px;padding:12px 14px;color:#f3ead9;font:400 14px 'Space Grotesk',sans-serif;outline:none;transition:border-color .25s,box-shadow .25s}
-.fld::placeholder{color:rgba(243,234,217,.52)}
+.fld::placeholder{color:rgba(243,234,217,.4)}
 .fld:focus{border-color:#efa85c;box-shadow:0 0 0 3px rgba(239,168,92,.16)}
 .fld-ta{resize:vertical;min-height:92px;font-family:'Space Grotesk',sans-serif}
 .fld-select{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6' fill='none' stroke='%23f3ead9' stroke-opacity='.55' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:11px;padding-right:34px}
@@ -89,6 +89,11 @@
     <a href="/connect" aria-current="page">CONNECT</a>
   </div>
   <div class="gb-nav-right">
+    <div class="gb-status">
+      <span class="pdot" aria-hidden="true"></span>
+      <span>NASHVILLE —</span>
+      <span id="ticker-word" aria-hidden="true">BUILDING</span>
+    </div>
     <button type="button" class="nav-burger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -124,7 +129,7 @@
 
       <div style="margin-bottom:24px">
         <h2 style="margin:0 0 6px;font:400 30px 'Instrument Serif',serif;color:#f3ead9">Write me a note.</h2>
-        <p style="margin:0;font:400 14px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.66)">A few lines is plenty. It comes straight to me.</p>
+        <p style="margin:0;font:300 14px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.66)">A few lines is plenty. It comes straight to me.</p>
       </div>
 
       <div id="form-panel">
@@ -132,16 +137,16 @@
           <div style="display:flex;flex-direction:column;gap:16px">
             <div class="r-fields" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
               <label style="display:flex;flex-direction:column;gap:7px">
-                <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.62)">NAME</span>
-                <input id="msg-name" name="name" autocomplete="name" placeholder="Your name" class="fld" required aria-required="true">
+                <span style="font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.55)">NAME</span>
+                <input id="msg-name" name="name" autocomplete="name" placeholder="Your name" class="fld">
               </label>
               <label style="display:flex;flex-direction:column;gap:7px">
-                <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.62)">EMAIL</span>
-                <input id="msg-email" name="email" type="email" autocomplete="email" placeholder="you@domain.com" class="fld" required aria-required="true">
+                <span style="font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.55)">EMAIL</span>
+                <input id="msg-email" name="email" type="email" autocomplete="email" placeholder="you@domain.com" class="fld">
               </label>
             </div>
             <label style="display:flex;flex-direction:column;gap:7px">
-              <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.62)">WHAT’S THIS ABOUT</span>
+              <span style="font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.55)">WHAT’S THIS ABOUT</span>
               <select id="msg-topic" name="topic" class="fld fld-select">
                 <option>An opportunity</option>
                 <option>A project or collaboration</option>
@@ -150,8 +155,8 @@
               </select>
             </label>
             <label style="display:flex;flex-direction:column;gap:7px">
-              <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.62)">MESSAGE</span>
-              <textarea id="msg-message" name="message" placeholder="A few lines on what you have in mind…" rows="4" class="fld fld-ta" required aria-required="true"></textarea>
+              <span style="font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.55)">MESSAGE</span>
+              <textarea id="msg-message" name="message" placeholder="A few lines on what you have in mind…" rows="4" class="fld fld-ta"></textarea>
             </label>
 
             <div class="hp-field" aria-hidden="true">
@@ -163,7 +168,7 @@
 
             <div style="display:flex;align-items:center;gap:16px;margin-top:2px">
               <button type="submit" class="hv-cta" style="display:inline-flex;align-items:center;gap:9px;background:#efa85c;color:#171009;font:500 14px 'Space Grotesk',sans-serif;padding:13px 26px;border-radius:999px;transition:background .3s"><span aria-hidden="true">◆</span>Send it</button>
-              <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">NO EMAIL POSTED PUBLICLY</span>
+              <span style="font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.5)">NO EMAIL POSTED PUBLICLY</span>
             </div>
           </div>
         </form>
@@ -172,7 +177,7 @@
       <div id="sent-panel" hidden style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;padding:14px 0 6px">
         <div style="width:40px;height:40px;border-radius:50%;background:#efa85c;color:#171009;display:grid;place-items:center;font:600 20px 'Space Grotesk',sans-serif">✓</div>
         <div id="sent-title" tabindex="-1" style="font:400 26px 'Instrument Serif',serif;color:#f3ead9;outline:none">Signal received, <span id="sent-name">friend</span>.</div>
-        <p style="margin:0;font:400 14px/1.65 'Space Grotesk',sans-serif;color:rgba(243,234,217,.7)">I read everything that comes in and I’ll get back to you personally. No inbox is posted publicly, so this note is the front door.</p>
+        <p style="margin:0;font:300 14px/1.65 'Space Grotesk',sans-serif;color:rgba(243,234,217,.7)">I read everything that comes in and I’ll get back to you personally. No inbox is posted publicly, so this note is the front door.</p>
         <button type="button" id="send-another" style="margin-top:6px;font:500 12.5px 'Space Grotesk',sans-serif;color:#efa85c;border-bottom:1px solid rgba(239,168,92,.5);padding-bottom:2px">Send another ↩</button>
       </div>
     </div>
@@ -185,8 +190,8 @@
       <span aria-hidden="true" style="position:absolute;bottom:11px;right:11px;width:5px;height:5px;border-radius:50%;background:rgba(243,234,217,.2)"></span>
 
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-        <h2 style="margin:0;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:rgba(243,234,217,.62)">◎ PATCH BAY</h2>
-        <div style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">FLIP TO CONNECT ↗</div>
+        <h2 style="margin:0;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:rgba(243,234,217,.55)">◎ PATCH BAY</h2>
+        <div style="font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">FLIP TO CONNECT ↗</div>
       </div>
 
       <div style="display:flex;flex-direction:column">
@@ -197,21 +202,21 @@
               <span style="font:500 16px 'Space Grotesk',sans-serif;color:#f3ead9">LinkedIn</span>
               <span class="patch-tag">WORK</span>
             </div>
-            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62);margin-top:3px">in/george-brothers</div>
+            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.5);margin-top:3px">in/george-brothers</div>
           </div>
           <span class="patch-led" aria-hidden="true"></span>
           <span class="patch-track" aria-hidden="true"><span class="patch-knob"></span></span>
           <span class="patch-jack" aria-hidden="true"><span class="patch-jack-dot"></span></span>
         </a>
 
-        <a class="patch-row" href="https://github.com/George-Brothers" target="_blank" rel="noopener noreferrer" style="--acc:#efa85c;--acc-rgb:239,168,92">
+        <a class="patch-row" href="https://github.com/Pristine99" target="_blank" rel="noopener noreferrer" style="--acc:#efa85c;--acc-rgb:239,168,92">
           <span class="patch-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58l-.02-2.06c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.39 1.24-3.23-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.23 0 4.63-2.81 5.65-5.49 5.95.43.37.81 1.1.81 2.22l-.01 3.29c0 .32.22.7.83.58C20.56 22.29 24 17.8 24 12.5 24 5.87 18.63.5 12 .5z" fill="#efa85c"/></svg></span>
           <div style="flex:1;min-width:0">
             <div style="display:flex;align-items:center;gap:9px">
               <span style="font:500 16px 'Space Grotesk',sans-serif;color:#f3ead9">GitHub</span>
               <span class="patch-tag">WORK</span>
             </div>
-            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62);margin-top:3px">github.com/George-Brothers</div>
+            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.5);margin-top:3px">github.com/Pristine99</div>
           </div>
           <span class="patch-led" aria-hidden="true"></span>
           <span class="patch-track" aria-hidden="true"><span class="patch-knob"></span></span>
@@ -225,7 +230,7 @@
               <span style="font:500 16px 'Space Grotesk',sans-serif;color:#f3ead9">Instagram</span>
               <span class="patch-tag">LIFE</span>
             </div>
-            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62);margin-top:3px">@mrgeorgebrothers</div>
+            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.5);margin-top:3px">@mrgeorgebrothers</div>
           </div>
           <span class="patch-led" aria-hidden="true"></span>
           <span class="patch-track" aria-hidden="true"><span class="patch-knob"></span></span>
@@ -239,7 +244,7 @@
               <span style="font:500 16px 'Space Grotesk',sans-serif;color:#f3ead9">Chess.com</span>
               <span class="patch-tag">LIFE</span>
             </div>
-            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62);margin-top:3px">@Pristine99</div>
+            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.5);margin-top:3px">@Pristine99</div>
           </div>
           <span class="patch-led" aria-hidden="true"></span>
           <span class="patch-track" aria-hidden="true"><span class="patch-knob"></span></span>
@@ -253,7 +258,7 @@
               <span style="font:500 16px 'Space Grotesk',sans-serif;color:#f3ead9">Slopes</span>
               <span class="patch-tag">LIFE</span>
             </div>
-            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62);margin-top:3px">add me on Slopes</div>
+            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.5);margin-top:3px">add me on Slopes</div>
           </div>
           <span class="patch-led" aria-hidden="true"></span>
           <span class="patch-track" aria-hidden="true"><span class="patch-knob"></span></span>
@@ -267,7 +272,7 @@
               <span style="font:500 16px 'Space Grotesk',sans-serif;color:#f3ead9">Carv</span>
               <span class="patch-tag">LIFE</span>
             </div>
-            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62);margin-top:3px">George Brothers</div>
+            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.5);margin-top:3px">George Brothers</div>
           </div>
           <span class="patch-led" aria-hidden="true"></span>
           <span class="patch-track" aria-hidden="true"><span class="patch-knob"></span></span>
@@ -276,8 +281,8 @@
       </div>
 
       <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(243,234,217,.12);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap">
-        <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.6)">06 CHANNELS · WORK <span style="color:#efa85c">●</span> LIFE <span style="color:#b48fd9">●</span></span>
-        
+        <span style="font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.6)">06 CHANNELS · WORK <span style="color:#efa85c">●</span> LIFE <span style="color:#b48fd9">●</span></span>
+        <a href="/assets/george-brothers-resume.pdf" download class="hv-pill" style="display:inline-flex;align-items:center;gap:8px;font:500 12.5px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.8);border:1px solid rgba(243,234,217,.3);border-radius:999px;padding:9px 16px">↓ Résumé</a>
       </div>
     </div>
   </div>
@@ -288,7 +293,7 @@
   <span class="gb-copyright">© 2026 GEORGE BROTHERS — NASHVILLE, TN</span>
   <div class="gb-footer-links">
     <a href="/work#ideas" class="hv-pill hv-pill-glow">Got an idea? ↗</a>
-    
+    <a href="/assets/george-brothers-resume.pdf" download class="hv-pill">Résumé ↓</a>
   </div>
 </footer>
 

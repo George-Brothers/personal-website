@@ -2,11 +2,10 @@
    George Brothers — scenes.js
    Six "living diorama" card illustrations, shared by the home
    page and /work. Each scene is a layered SVG injected into a
-   [data-scene] host element. Idle = ambient motion. Scrolling a
-   card into view adds .play for one narrative loop, then settles;
-   re-entering the viewport replays it. Hover-capable devices also
-   play on hover/focus and loop until the pointer/focus leaves.
-   Reduced motion skips auto-play (global clamp neutralizes loops).
+   [data-scene] host element. Idle = ambient motion; hovering
+   (or focusing) the card adds .play, which runs the narrative
+   loop; leaving lets the current loop finish before stopping.
+   Touch / no-hover devices play the loop ambiently.
    All timing lives in /css/scenes.css. Plain ES2017.
    ============================================================ */
 (function () {
@@ -462,10 +461,7 @@
     + '</svg>';
 
   /* ---- injection + play/pause wiring ---------------------- */
-  // Hover-capable devices additionally get the pointer/focus play; every
-  // device gets the scroll-in play below.
-  var hoverCapable = !(window.matchMedia && window.matchMedia('(hover: none)').matches);
-  var reduced = !!(window.gbReducedMotion && window.gbReducedMotion());
+  var hoverless = !!(window.matchMedia && window.matchMedia('(hover: none)').matches);
 
   var hosts = document.querySelectorAll('[data-scene]');
   hosts.forEach(function (host) {
@@ -474,53 +470,37 @@
     host.innerHTML = markup;
     host.classList.add('scn-host');
 
+    if (hoverless) {
+      host.classList.add('play');
+      return;
+    }
+
     var card = host.closest('.wcard') || host;
-    var hovering = false;   // pointer/focus is currently holding the loop open
-    var loopsLeft = 0;      // bounded narrative loops still owed from a scroll-in
+    var leaving = false;
 
-    function refresh() {
-      if (hovering || loopsLeft > 0) host.classList.add('play');
-      else host.classList.remove('play');
+    function start() {
+      leaving = false;
+      host.classList.add('play');
+    }
+    function maybeStop() {
+      // Keep playing if the card is still hovered or focused; otherwise
+      // let the current loop finish (see animationiteration below).
+      if (card.matches(':hover') || card.contains(document.activeElement)) return;
+      leaving = true;
     }
 
-    // A scene plays its narrative whenever it scrolls into view — on every
-    // entry, on every device — then settles back to the ambient rest pose.
-    // Re-entering the viewport re-arms and replays it ("per scroll"). Reduced
-    // motion opts out of auto-play; the global clamp neutralizes any residual
-    // loop anyway.
-    if (!reduced && window.gbObserve) {
-      window.gbObserve(host, function () {
-        loopsLeft = 1;      // one full narrative loop on entry, then settle
-        refresh();
-      }, function () {
-        // Left the viewport: drop any owed loops and re-arm for next entry.
-        loopsLeft = 0;
-        refresh();
-      });
-    }
-
-    // End a bounded loop only at a clean clock boundary, and only if hover
-    // isn't still holding it open (hover loops until the pointer/focus leaves).
-    host.addEventListener('animationiteration', function (e) {
-      if (e.animationName !== 'scn-clock') return;
-      if (loopsLeft > 0) loopsLeft--;
-      refresh();
+    card.addEventListener('pointerenter', start);
+    card.addEventListener('pointerleave', maybeStop);
+    card.addEventListener('focusin', start);
+    card.addEventListener('focusout', function () {
+      // activeElement updates after focusout; check on the next tick.
+      setTimeout(maybeStop, 0);
     });
-
-    // Hover / focus keeps the narrative looping on hover-capable devices, in
-    // addition to the scroll-in play above.
-    if (hoverCapable) {
-      card.addEventListener('pointerenter', function () { hovering = true; refresh(); });
-      card.addEventListener('focusin', function () { hovering = true; refresh(); });
-      card.addEventListener('pointerleave', function () {
-        hovering = false;   // let the current loop finish at the next boundary
-      });
-      card.addEventListener('focusout', function () {
-        // activeElement updates after focusout; check on the next tick.
-        setTimeout(function () {
-          if (!card.contains(document.activeElement) && !card.matches(':hover')) hovering = false;
-        }, 0);
-      });
-    }
+    host.addEventListener('animationiteration', function (e) {
+      if (leaving && e.animationName === 'scn-clock') {
+        leaving = false;
+        host.classList.remove('play');
+      }
+    });
   });
 })();

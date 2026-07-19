@@ -6,4 +6,8 @@ node_modules
 .DS_Store
 photos-originals/
 .playwright-mcp/
-docs/
+.claude/
+CLAUDE.md
+
+.hero-src/
+home-desktop-fold.png

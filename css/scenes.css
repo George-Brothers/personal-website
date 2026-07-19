@@ -42,8 +42,8 @@
 @keyframes gd-cloud{from{transform:translateX(0)}to{transform:translateX(18px)}}
 .gd-fly{animation:gd-fly 11s ease-in-out infinite}
 @keyframes gd-fly{0%,100%{transform:translate(0,0)}25%{transform:translate(-13px,-9px)}50%{transform:translate(-22px,1px)}75%{transform:translate(-9px,7px)}}
-.gd-wingL{animation:gd-flap .9s ease-in-out infinite alternate;transform-origin:right center}
-.gd-wingR{animation:gd-flap .9s ease-in-out infinite alternate;transform-origin:left center}
+.gd-wingL{animation:gd-flap .46s ease-in-out infinite alternate;transform-origin:right center}
+.gd-wingR{animation:gd-flap .46s ease-in-out infinite alternate;transform-origin:left center}
 @keyframes gd-flap{from{transform:scaleX(1)}to{transform:scaleX(.3)}}
 .gd-sw1{animation:gd-sway 3.6s ease-in-out infinite alternate;transform-origin:center bottom}
 .gd-sw2{animation:gd-sway 4.3s ease-in-out infinite alternate;transform-origin:center bottom}

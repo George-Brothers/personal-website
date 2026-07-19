@@ -19,7 +19,7 @@
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/instrument-serif-400.v1.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/space-grotesk-var.v1.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ibm-plex-mono-400.v1.woff2" crossorigin>
-<link rel="preload" as="image" href="/assets/hero-desk.v2.webp" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/hero-center.v1.webp" fetchpriority="high">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="stylesheet" href="/css/scenes.css">
 <style>
@@ -32,6 +32,43 @@
 /* ===== scene pausing (offscreen) ===== */
 .r-scene.gb-paused,.r-scene.gb-paused *{animation-play-state:paused}
 
+/* ===== hero (desktop base) ===== */
+/* The portrait is centred and deliberately taller than the frame: the subject sits
+   dead-centre, the copy reads over the orange side of the backdrop. Everything in
+   .hero-stage is sized off the stage height, so the composition holds at any width. */
+.r-hero{position:relative;height:780px;overflow:hidden;margin-top:-72px;background:#120a1d}
+/* Backdrop = a 40px-wide copy of the portrait, upscaled. Reads as the design's
+   blur(70px) wash without asking the compositor to blur a full-bleed image. */
+.hero-backdrop{position:absolute;inset:-8%;width:116%;height:116%;opacity:.95;background:url("data:image/webp;base64,UklGRmoBAABXRUJQVlA4IF4BAADwCACdASooADIAPpFAmkqlo6IpqBVaqTASCWQAx2RDBdCgCIwIO/1dEAv2rY9cjyHdvG9P4vkRFciT+/aP2PNIxay5jb0iL+J8nVpDZJGjgAD+/eJKL56tR82oR2GkpiW4j6j6MmZwFtaF9cPy4SAAZhDHoWtIeBXw8MJ7Wr/QijV0HfDLqAhNADHJIqYb1OvTa3JYEa1MIJdCh2BQXz5we1EWQsPJ1oYGO6Im7nWyRytEktqn11wW31q5rJg1N7isrFAwaSlJNi4Mn6wB1HYBpCR+IPNVXcP4DaYyfA34ryBT2J3c5tVFjzYjIdX5QSF6YJwyVWRFQyKswMa3//UL615Mhj6VqdcKaZ8EwrIzOfsuOAY1l81ZLEl5dKu4aSm7dILnTD/BqX4CvxM6q1zo+ILFV3gtYLfOEY8BzYI93bKwEK5hDBkrZ2ZBjswwdLu/6fN4nObu1dS9iCAAAA==") center/cover no-repeat}
+.hero-stage{position:absolute;z-index:0;left:50%;top:-21.67%;height:169%;aspect-ratio:1122/1402;transform:translateX(-50%);container-type:size}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 12%,#000 88%,transparent 100%)}
+.hero-fade-x{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(18,10,29,.82) 0%,rgba(18,10,29,.6) 20%,rgba(18,10,29,.18) 36%,rgba(18,10,29,0) 48%)}
+.hero-fade-b{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(18,10,29,.55) 0%,rgba(18,10,29,0) 16%),linear-gradient(0deg,#171009 0%,rgba(23,16,9,.6) 8%,rgba(23,16,9,0) 22%)}
+.hero-copy{position:relative;z-index:2;max-width:640px;padding:202px 0 68px 64px;display:flex;flex-direction:column;gap:22px}
+.hero-eyebrow{margin:0;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:rgba(243,234,217,.6)}
+.hero-h1{margin:0;font:400 clamp(34px,4.72vw,68px)/1.04 'Instrument Serif',serif;letter-spacing:-.015em;text-wrap:pretty}
+.hero-amber{font-style:italic;color:#ffa05c}
+.hero-sub{margin:0;max-width:440px;font:300 17px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.85)}
+
+/* ===== hero monitor (composited onto the screen in the photo) =====
+   Positioned as a % of .hero-stage and typeset in cqh (1cqh = 1% of stage height),
+   so it stays welded to the screen at every viewport size. Content from home.js. */
+.hero-monitor{position:absolute;left:28.94%;top:38.61%;width:21.27%;height:13.82%;transform:perspective(30.1cqh) rotateY(24deg) skew(4.6deg,-14.15deg);transform-origin:left center;background:#0c0916;border-radius:.15cqh;overflow:hidden;box-shadow:0 0 1.67cqh rgba(150,110,255,.28);opacity:.94;display:flex;flex-direction:column}
+.hm-term{flex:1.4;padding:.455cqh .531cqh;overflow:hidden;border-bottom:1px solid rgba(150,110,255,.18)}
+.hm-brand{margin:0 0 .228cqh;font:500 .493cqh 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#b79aff}
+.hm-line{font:400 .493cqh/1.7 'IBM Plex Mono',monospace;white-space:nowrap}
+.hm-caret{display:inline-block;width:.303cqh;height:.531cqh;background:#ffa05c;animation:hmcaret 1.2s steps(2) infinite}
+@keyframes hmcaret{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
+/* Kept narrow: across the full panel the skew throws a row's value so far above its
+   key that the pair stops reading as one row. */
+.hm-ledger{flex:1;width:62%;padding:.379cqh .531cqh}
+.hm-title{margin:0 0 .228cqh;font:500 .455cqh 'IBM Plex Mono',monospace;letter-spacing:.1em;color:rgba(243,234,217,.5)}
+.hm-row{display:flex;justify-content:space-between;font:400 .493cqh/1.75 'IBM Plex Mono',monospace;padding:0 .152cqh}
+.hero-actions{display:flex;align-items:center;gap:16px;margin-top:8px;flex-wrap:wrap}
+.hero-primary{background:#f3ead9;color:#171009;font:500 14px 'Space Grotesk',sans-serif;padding:15px 28px;border-radius:999px;cursor:pointer;transition:background .3s}
+.hero-ghost{border:1px solid rgba(243,234,217,.4);font:500 14px 'Space Grotesk',sans-serif;padding:14px 24px;border-radius:999px;cursor:pointer;transition:border-color .3s,color .3s}
+.hero-connect{font:500 14px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.8);border:1px solid transparent;padding:14px 22px;border-radius:999px;cursor:pointer;background-image:linear-gradient(rgba(243,234,217,.4),rgba(243,234,217,.4));background-repeat:no-repeat;background-size:calc(100% - 44px) 1px;background-position:22px calc(100% - 9px);transition:border-color .55s ease,color .55s ease,background-size .55s ease}
+
 /* ===== responsive ===== */
 /* scenes run a touch larger inside their cards for legibility */
 .r-scene{transform:scale(1.13);transform-origin:center 45%}
@@ -42,13 +79,29 @@
 @media (max-width:1024px){
   .r-cards{grid-template-columns:1fr 1fr !important}
 }
+/* The stage is a fixed 1055px wide, so below ~1200 the subject creeps toward the
+   copy. Tighten the headline and deepen the left scrim rather than move the photo. */
+@media (min-width:901px) and (max-width:1200px){
+  .hero-h1{font-size:clamp(34px,5.2vw,58px)}
+  .hero-copy{max-width:520px;padding:190px 0 60px clamp(24px,4vw,64px)}
+  .hero-fade-x{background:linear-gradient(90deg,rgba(18,10,29,.9) 0%,rgba(18,10,29,.78) 22%,rgba(18,10,29,.42) 42%,rgba(18,10,29,.1) 60%,rgba(18,10,29,0) 72%)}
+}
+/* Below 900 the hero stacks: portrait band on top, copy underneath. --ph drives the
+   band height; the stage is 1.34x that and pulled up 17% so the crop lands on the
+   subject and the desk rather than the full body. */
 @media (max-width:900px){
   .gb-positioning,.gb-work,.gb-cta{padding-left:clamp(18px,4.5vw,64px) !important;padding-right:clamp(18px,4.5vw,64px) !important}
-  .r-hero{height:auto !important;margin-top:-72px !important}
-  .r-hero img{position:absolute !important;left:0 !important;right:auto !important;top:0 !important;width:100% !important;height:clamp(400px,60vw,540px) !important;object-fit:cover;object-position:68% 22% !important}
-  .r-hero>div:nth-child(2){background:linear-gradient(180deg,rgba(23,16,9,.82) 0%,rgba(23,16,9,.3) 16%,rgba(23,16,9,0) 30%) !important;top:0 !important;left:0 !important;right:0 !important;bottom:auto !important;height:clamp(420px,62vw,560px) !important}
-  .r-hero>div:nth-child(3){top:0 !important;left:0 !important;right:0 !important;bottom:auto !important;height:clamp(420px,62vw,560px) !important;background:linear-gradient(0deg,#171009 32%,rgba(23,16,9,.55) 58%,rgba(23,16,9,.1) 78%,rgba(23,16,9,0) 92%) !important}
-  .r-hero>div:nth-child(4){max-width:none !important;padding:clamp(280px,45vw,400px) 24px 8px !important}
+  .r-hero{height:auto;--ph:clamp(400px,84vw,560px)}
+  .hero-backdrop{inset:auto;top:0;left:-8%;width:116%;height:var(--ph)}
+  /* 124.95vw keeps the stage at least viewport-wide (aspect 1122/1402), so the
+     photo's feathered side edges never surface as a seam on tablet widths. */
+  .hero-stage{top:calc(var(--ph) * -.17);height:max(calc(var(--ph) * 1.34),124.95vw)}
+  .hero-fade-x{top:0;bottom:auto;height:var(--ph);background:linear-gradient(180deg,rgba(18,10,29,.72) 0%,rgba(18,10,29,.14) 15%,rgba(18,10,29,0) 30%)}
+  /* Spans the whole hero, not just the band: the stage can now run taller than --ph,
+     so this has to go fully opaque at the band edge and stay that way underneath. */
+  .hero-fade-b{top:0;bottom:0;height:auto;background:linear-gradient(180deg,rgba(23,16,9,0) calc(var(--ph) - 190px),rgba(23,16,9,.62) calc(var(--ph) - 80px),#171009 var(--ph))}
+  .hero-copy{max-width:none;padding:calc(var(--ph) - 44px) clamp(20px,5vw,40px) 8px}
+  .hero-sub{max-width:520px}
 }
 @media (max-width:560px){
   .r-cards{grid-template-columns:minmax(0,1fr) !important}
@@ -60,13 +113,16 @@
 .posw:hover,.posw:focus-visible{border-color:#efa85c;background:#efa85c;color:#171009}
 .posw-pop{position:absolute;bottom:calc(100% + 12px);left:50%;width:244px;transform:translateX(-50%) translateY(8px) scale(.94);opacity:0;pointer-events:none;background:#211711;border:1px solid rgba(239,168,92,.5);border-radius:12px;padding:14px 16px;box-shadow:0 16px 40px rgba(0,0,0,.55);transform-origin:bottom center;z-index:6;transition:opacity .3s ease,transform .3s cubic-bezier(.34,1.4,.6,1)}
 .posw:hover .posw-pop,.posw:focus-visible .posw-pop{transform:translateX(-50%) translateY(0) scale(1);opacity:1}
-.posw-ipa{display:block;font:400 11px 'IBM Plex Mono',monospace;font-style:normal;letter-spacing:.08em;color:rgba(239,168,92,.9);margin-bottom:5px}
+.posw-ipa{display:block;font:400 10px 'IBM Plex Mono',monospace;font-style:normal;letter-spacing:.08em;color:rgba(239,168,92,.9);margin-bottom:5px}
 .posw-def{display:block;font:400 13.5px/1.5 'Space Grotesk',sans-serif;font-style:normal;color:#f3ead9}
 
 /* ===== work card hover (saturate filter dropped — scenes brighten via their own .warm layer) ===== */
 .wcard{transition:transform .35s,box-shadow .35s,border-color .35s}
 .wcard:hover{transform:translateY(-6px) !important;box-shadow:0 18px 40px rgba(0,0,0,.5) !important}
-.card-lang:hover,.card-shelf:hover,.card-site:hover,.card-lab:hover{border-color:rgba(243,234,217,.28) !important}
+.card-lang:hover{border-color:rgba(147,181,115,.65) !important}
+.card-shelf:hover{border-color:rgba(239,168,92,.6) !important}
+.card-site:hover{border-color:rgba(125,140,160,.7) !important}
+.card-lab:hover{border-color:rgba(120,190,180,.65) !important}
 
 /* ===== CTA envelope hover ===== */
 .cta{display:inline-flex;align-items:center;border:1.5px solid #efa85c;color:#efa85c;font:500 17px 'Space Grotesk',sans-serif;padding:20px 58px;border-radius:999px;cursor:pointer;transition:background .35s,color .35s,border-color .35s}
@@ -108,6 +164,11 @@
     <a href="/connect" class="hv-nav">CONNECT</a>
   </div>
   <div class="gb-nav-right">
+    <div class="gb-status">
+      <span class="pdot" aria-hidden="true"></span>
+      <span>NASHVILLE —</span>
+      <span id="ticker-word" aria-hidden="true">BUILDING</span>
+    </div>
     <button type="button" class="nav-burger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -117,23 +178,39 @@
 <main id="main">
 
 <!-- ============ HERO ============ -->
-<div class="r-hero" style="position:relative;height:640px;overflow:hidden;margin-top:-72px">
-  <img src="/assets/hero-desk.v2.webp" width="1672" height="941" fetchpriority="high" alt="George working at a multi-monitor desk" style="position:absolute;right:0;top:0;width:74%;height:100%;object-fit:cover;object-position:62% center">
-  <div style="position:absolute;inset:0;background:linear-gradient(90deg,#171009 26%,rgba(23,16,9,.82) 48%,rgba(23,16,9,.2) 73%,rgba(23,16,9,0) 100%)"></div>
-  <div style="position:absolute;inset:0;background:linear-gradient(0deg,#171009 2%,rgba(23,16,9,0) 30%)"></div>
-  <div style="position:relative;z-index:2;max-width:640px;padding:150px 0 0 clamp(64px,9vw,120px);display:flex;flex-direction:column;gap:26px">
-    <h1 style="margin:0;font:400 clamp(32px,7.5vw,74px)/1.04 'Instrument Serif',serif;letter-spacing:-.01em">An accounting brain <span style="font-style:italic;color:#efa85c">that ships the software.</span></h1>
-    <p style="margin:0;max-width:470px;font:300 17px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.82)">Accounting + Entrepreneurship senior at Belmont. I’ve run rental operations, an Airbnb, and a self-funded vending venture. Now I’m building practical AI around how real work gets done.</p>
-    <div style="display:flex;align-items:center;gap:16px;margin-top:6px;flex-wrap:wrap">
-      <a href="/work" class="hv-cta" style="background:#f3ead9;color:#171009;font:500 14px 'Space Grotesk',sans-serif;padding:14px 26px;border-radius:999px;cursor:pointer;transition:background .3s">View selected work</a>
-      <a href="/connect" class="hv-connect-line" style="font:500 14px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.8);border:1px solid transparent;padding:13px 22px;border-radius:999px;cursor:pointer;background-image:linear-gradient(rgba(243,234,217,.4),rgba(243,234,217,.4));background-repeat:no-repeat;background-size:calc(100% - 44px) 1px;background-position:22px calc(100% - 9px);transition:border-color .55s ease,color .55s ease,background-size .55s ease">Connect ↗</a>
+<div class="r-hero">
+  <div class="hero-backdrop" aria-hidden="true"></div>
+  <div class="hero-stage">
+    <img class="hero-photo" src="/assets/hero-center.v1.webp" width="1122" height="1402" fetchpriority="high" alt="George Brothers leaning on his desk, arms crossed, lit by a warm purple and orange glow">
+    <div class="hero-monitor" aria-hidden="true">
+      <div class="hm-term">
+        <p class="hm-brand">✻ CLAUDE CODE</p>
+        <div class="hm-lines"></div>
+        <span class="hm-caret"></span>
+      </div>
+      <div class="hm-ledger">
+        <p class="hm-title">LEDGER.XLSX</p>
+        <div class="hm-rows"></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-fade-x" aria-hidden="true"></div>
+  <div class="hero-fade-b" aria-hidden="true"></div>
+  <div class="hero-copy">
+    <p class="hero-eyebrow">ACCOUNTING + ENTREPRENEURSHIP · BELMONT UNIVERSITY · NASHVILLE</p>
+    <h1 class="hero-h1">I build systems for analysis, automation, <span class="hero-amber">&amp; better decisions.</span></h1>
+    <p class="hero-sub">Accounting + Entrepreneurship senior at Belmont. I’ve run rental operations, an Airbnb, and a self-funded vending venture. Now I’m building practical AI around how real work gets done.</p>
+    <div class="hero-actions">
+      <a href="/work" class="hv-cta hero-primary">View selected work</a>
+      <a href="/assets/george-brothers-resume.pdf" download class="hv-pill hero-ghost">Download resume</a>
+      <a href="/connect" class="hv-connect-line hero-connect">Connect ↗</a>
     </div>
   </div>
 </div>
 
 <!-- ============ POSITIONING ============ -->
 <div class="gb-positioning" style="padding:88px 64px 72px;max-width:830px">
-  <p style="margin:0;font:400 clamp(22px,3vw,30px)/1.45 'Instrument Serif',serif;color:rgba(243,234,217,.92)">I’m drawn to the space between technical possibility and practical use: learning the systems behind it, then making them <span style="font-style:italic;color:#efa85c"><span class="posw" tabindex="0">understandable<span class="posw-pop r-tip"><span class="posw-ipa">/ˌʌndərˈstandəb(ə)l/</span><span class="posw-def">You can see how it works, not just that it works.</span></span></span>, <span class="posw" tabindex="0">useful<span class="posw-pop r-tip"><span class="posw-ipa">/ˈjuːsfʊl/</span><span class="posw-def">It earns its place by making real work easier.</span></span></span>, and <span class="posw" tabindex="0">trustworthy<span class="posw-pop r-tip"><span class="posw-ipa">/ˈtrʌs(t)ˌwərðē/</span><span class="posw-def">It behaves the same way when no one is watching.</span></span></span></span> for the people who will actually rely on them.</p>
+  <p style="margin:0;font:400 clamp(22px,3vw,30px)/1.45 'Instrument Serif',serif;color:rgba(243,234,217,.92)">AI is moving fast. I’m drawn to the space between technical possibility and practical use: learning the systems behind it, then making them <span style="font-style:italic;color:#efa85c"><span class="posw" tabindex="0">understandable<span class="posw-pop r-tip"><span class="posw-ipa">/ˌʌndərˈstandəb(ə)l/</span><span class="posw-def">You can see how it works, not just that it works.</span></span></span>, <span class="posw" tabindex="0">useful<span class="posw-pop r-tip"><span class="posw-ipa">/ˈjuːsfʊl/</span><span class="posw-def">It earns its place by making real work easier.</span></span></span>, and <span class="posw" tabindex="0">trustworthy<span class="posw-pop r-tip"><span class="posw-ipa">/ˈtrʌs(t)ˌwərðē/</span><span class="posw-def">It behaves the same way when no one is watching.</span></span></span></span> for the people who will actually rely on them.</p>
   <div style="margin-top:36px;padding-top:22px;border-top:1px solid rgba(243,234,217,.14);display:flex;flex-wrap:wrap;align-items:baseline;column-gap:22px;row-gap:10px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">
     <span style="color:#efa85c">THE RECORD SO FAR</span>
     <span>5-UNIT RENTAL OPS</span>
@@ -141,8 +218,6 @@
     <span>NHL PARTNERSHIPS INTERN</span>
     <span>MIT DS&amp;ML CERTIFICATE</span>
     <span>GPA 3.9</span>
-    <span>98TH %ILE · ETS BUSINESS</span>
-    <span>OUTSTANDING ACHIEVEMENT IN ENTREPRENEURSHIP</span>
     <a href="/about" class="record-ring" aria-label="Full work history">
       <span class="record-ring-label">FULL WORK HISTORY →</span>
     </a>
@@ -159,43 +234,43 @@
   <div class="r-cards" style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px">
 
     <!-- card 1: language garden -->
-    <a href="/work#case-0" aria-label="Open case study: Chief of Learning" class="wcard card-lang" style="aspect-ratio:1;border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
+    <a href="/work#case-0" aria-label="Open case study: Chief of Learning" class="wcard card-lang" style="aspect-ratio:1;border-radius:22px;background:#1a2112;border:1px solid rgba(147,181,115,.28);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
       <div class="r-scene scn" data-scene="garden" data-variant="mini" aria-hidden="true" style="position:relative;width:164px;height:150px;margin-top:28px"></div>
       <div style="position:absolute;left:18px;right:18px;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:8px">
         <span style="font:400 15px 'Instrument Serif',serif">Chief of Learning</span>
-        <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#b48fd9;border-radius:99px;padding:3px 8px">BUILDING</span>
+        <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#efa85c;border-radius:99px;padding:3px 8px">BUILDING</span>
       </div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">语言花园</span>
+      <span style="position:absolute;top:14px;left:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">语言花园</span>
     </a>
 
     <!-- card 2: the thinking shelf -->
-    <a href="/work#case-5" aria-label="Open case study: Context Engine" class="wcard card-shelf" style="aspect-ratio:1;border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
+    <a href="/work#case-5" aria-label="Open case study: Context Engine" class="wcard card-shelf" style="aspect-ratio:1;border-radius:22px;background:#221609;border:1px solid rgba(239,168,92,.25);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
       <div class="r-scene scn" data-scene="library" data-variant="mini" aria-hidden="true" style="position:relative;width:164px;height:150px;margin-top:28px"></div>
       <div style="position:absolute;left:18px;right:18px;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:8px">
         <span style="font:400 15px 'Instrument Serif',serif">Context Engine</span>
-        <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#b48fd9;border-radius:99px;padding:3px 8px">PROTOTYPE</span>
+        <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#8fc4d9;border-radius:99px;padding:3px 8px">PROTOTYPE</span>
       </div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">THE SHELF</span>
+      <span style="position:absolute;top:14px;left:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">THE SHELF</span>
     </a>
 
     <!-- card 3: this website -->
-    <a href="/work#case-2" aria-label="Open case study: This site" class="wcard card-site" style="aspect-ratio:1;border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
+    <a href="/work#case-2" aria-label="Open case study: This site" class="wcard card-site" style="aspect-ratio:1;border-radius:22px;background:#141824;border:1px solid rgba(125,140,160,.32);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
       <div class="r-scene scn" data-scene="website" data-variant="mini" aria-hidden="true" style="position:relative;width:164px;height:150px;margin-top:28px"></div>
       <div style="position:absolute;left:18px;right:18px;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:8px">
         <span style="font:400 15px 'Instrument Serif',serif">This site</span>
-        <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#efa85c;border-radius:99px;padding:3px 8px">SHIPPED</span>
+        <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#8fbf7f;border-radius:99px;padding:3px 8px">SHIPPED</span>
       </div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">GEB.COM</span>
+      <span style="position:absolute;top:14px;left:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">GEB.COM</span>
     </a>
 
     <!-- card 4: the lab -->
-    <a href="/work#case-3" aria-label="Open case study: The next one" class="wcard card-lab" style="aspect-ratio:1;border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
+    <a href="/work#case-3" aria-label="Open case study: The next one" class="wcard card-lab" style="aspect-ratio:1;border-radius:22px;background:#101d1c;border:1px solid rgba(120,190,180,.28);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
       <div class="r-scene scn" data-scene="lab" data-variant="mini" aria-hidden="true" style="position:relative;width:164px;height:150px;margin-top:28px"></div>
       <div style="position:absolute;left:18px;right:18px;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:8px">
         <span style="font:400 15px 'Instrument Serif',serif">The next one</span>
-        <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#f3ead9;background:transparent;border:1px solid rgba(243,234,217,.35);border-radius:99px;padding:3px 8px">OPEN SLOT</span>
+        <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#78beb4;border-radius:99px;padding:3px 8px">OPEN SLOT</span>
       </div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">SOON™</span>
+      <span style="position:absolute;top:14px;left:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">SOON™</span>
     </a>
 
   </div>
@@ -217,6 +292,7 @@
   <span class="gb-copyright">© 2026 GEORGE BROTHERS — NASHVILLE, TN</span>
   <div class="gb-footer-links">
     <a href="/work#ideas" class="hv-pill hv-pill-glow">Got an idea? ↗</a>
+    <a href="/assets/george-brothers-resume.pdf" download class="hv-pill">Résumé ↓</a>
   </div>
 </footer>
 

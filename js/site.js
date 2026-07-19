@@ -1,7 +1,7 @@
 /* ============================================================
    George Brothers — site.js
-   Shared chrome behavior: burger menu, and two small helpers
-   (gbObserve / gbReducedMotion) used by page JS.
+   Shared chrome behavior: status ticker, burger menu, and two
+   small helpers (gbObserve / gbReducedMotion) used by page JS.
    Plain ES2017, no modules. Loaded with <script defer>.
    ============================================================ */
 (function () {
@@ -32,6 +32,37 @@
     return io;
   }
   window.gbObserve = gbObserve;
+
+  // ---- status ticker ----
+  var TICKER_WORDS = [
+    'BUILDING',
+    'SHIPPING',
+    'PLAYING CHESS',
+    'STUDYING',
+    '学中文',
+    'IN THE WOODS',
+    'PROTOTYPING WITH AI',
+    'AUTOMATING THE BORING PARTS'
+  ];
+
+  function initTicker() {
+    var el = document.getElementById('ticker-word');
+    if (!el) return;
+
+    if (gbReducedMotion()) {
+      el.textContent = TICKER_WORDS[0];
+      return;
+    }
+
+    var i = 0;
+    el.textContent = TICKER_WORDS[i];
+    // Word swaps while the span is mid-fade (opacity 0), driven by the
+    // tickfade keyframe's own iteration boundary — no separate timer to drift.
+    el.addEventListener('animationiteration', function () {
+      i = (i + 1) % TICKER_WORDS.length;
+      el.textContent = TICKER_WORDS[i];
+    });
+  }
 
   // ---- burger / mobile menu ----
   function initBurger() {
@@ -80,5 +111,6 @@
   }
 
   // Script is loaded with `defer`, so the DOM is already parsed here.
+  initTicker();
   initBurger();
 })();

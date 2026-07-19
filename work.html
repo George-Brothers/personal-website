@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Selected Work — George Brothers</title>
-<meta name="description" content="The AI systems George Brothers is building, from a Mandarin study coach to a learning platform to a context broker for AI tools. Each opens into a short case study: the problem, how it works, and the engineering decisions behind it.">
+<meta name="description" content="The AI systems George Brothers is building now, from a Mandarin learning coach to a context engine. Every project opens into a short case study: why it exists, who it is for, and how to run it.">
 <link rel="canonical" href="https://georgeellisbrothers.com/work">
 <meta property="og:title" content="Selected Work — George Brothers">
-<meta property="og:description" content="The AI systems George Brothers is building, from a Mandarin study coach to a learning platform to a context broker for AI tools. Each opens into a short case study: the problem, how it works, and the engineering decisions behind it.">
+<meta property="og:description" content="The AI systems George Brothers is building now, from a Mandarin learning coach to a context engine. Every project opens into a short case study: why it exists, who it is for, and how to run it.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://georgeellisbrothers.com/work">
 <meta property="og:image" content="https://georgeellisbrothers.com/assets/og-card.v1.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Selected Work — George Brothers">
-<meta name="twitter:description" content="The AI systems George Brothers is building, from a Mandarin study coach to a learning platform to a context broker for AI tools. Each opens into a short case study: the problem, how it works, and the engineering decisions behind it.">
+<meta name="twitter:description" content="The AI systems George Brothers is building now, from a Mandarin learning coach to a context engine. Every project opens into a short case study: why it exists, who it is for, and how to run it.">
 <meta name="twitter:image" content="https://georgeellisbrothers.com/assets/og-card.v1.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23171009'/%3E%3Ctext x='16' y='23' font-size='17' text-anchor='middle' fill='%23efa85c'%3E%E2%97%86%3C/text%3E%3C/svg%3E">
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/instrument-serif-400.v1.woff2" crossorigin>
@@ -46,11 +46,11 @@
 .wc-s .scn-host svg{transform:scale(1.16);transform-origin:center 44%}
 
 /* per-card hover payloads (filter:saturate dropped — perf fix) */
-.hv-wcard-green:hover,.hv-wcard-green:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5);border-color:rgba(243,234,217,.28)}
-.hv-wcard-amber:hover,.hv-wcard-amber:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5);border-color:rgba(243,234,217,.28)}
-.hv-wcard-purple:hover,.hv-wcard-purple:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5);border-color:rgba(243,234,217,.28)}
-.hv-wcard-blue:hover,.hv-wcard-blue:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5);border-color:rgba(243,234,217,.28)}
-.hv-wcard-teal:hover,.hv-wcard-teal:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5);border-color:rgba(243,234,217,.28)}
+.hv-wcard-green:hover,.hv-wcard-green:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5);border-color:rgba(147,181,115,.65)}
+.hv-wcard-amber:hover,.hv-wcard-amber:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5);border-color:rgba(239,168,92,.6)}
+.hv-wcard-purple:hover,.hv-wcard-purple:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5);border-color:rgba(180,143,217,.65)}
+.hv-wcard-blue:hover,.hv-wcard-blue:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5);border-color:rgba(125,140,160,.7)}
+.hv-wcard-teal:hover,.hv-wcard-teal:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5);border-color:rgba(120,190,180,.65)}
 .hv-pitch:hover,.hv-pitch:focus-visible{border-color:#efa85c !important;background:rgba(239,168,92,.05) !important}
 
 @media (max-width:900px){
@@ -75,32 +75,28 @@
 dialog#case-dialog{position:fixed;inset:0;margin:0;width:100%;height:100%;max-width:none;max-height:none;border:none;padding:24px;box-sizing:border-box;background:transparent;display:none;align-items:center;justify-content:center}
 dialog#case-dialog[open]{display:flex}
 dialog#case-dialog::backdrop{background:rgba(10,7,14,.62)}
-.m-close{position:absolute;top:6px;right:10px;z-index:5;padding:10px;font:400 22px 'Space Grotesk',sans-serif;line-height:1;color:rgba(243,234,217,.5);cursor:pointer;transition:color .3s}
+.m-close{position:absolute;top:16px;right:20px;z-index:5;font:400 22px 'Space Grotesk',sans-serif;line-height:1;color:rgba(243,234,217,.5);cursor:pointer;transition:color .3s}
 .hv-modal-close:hover,.hv-modal-close:focus-visible{color:#f3ead9 !important}
 .m-card{position:relative;width:min(700px,92vw);max-height:86vh;overflow-y:auto;box-sizing:border-box;background:#171009;border:1px solid rgba(243,234,217,.3);border-radius:22px;box-shadow:0 0 0 rgba(0,0,0,0);opacity:0;transition:transform .55s cubic-bezier(.3,1.25,.5,1),opacity .32s ease,box-shadow .5s ease}
 .m-card.on{opacity:1;box-shadow:0 40px 100px rgba(0,0,0,.65)}
 .m-inner{opacity:0;transform:translateY(14px);transition:opacity .35s ease .18s,transform .4s ease .15s}
 .m-card.on .m-inner{opacity:1;transform:none}
 .m-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:22px 30px 0;flex-wrap:wrap}
-.m-num{font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:rgba(243,234,217,.6)}
-.m-meta{font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)}
+.m-num{font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:rgba(243,234,217,.6)}
+.m-meta{font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.55)}
 .m-body{padding:10px 30px 26px}
 .m-title-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .m-title{margin:0;font:400 clamp(26px,4vw,38px) 'Instrument Serif',serif;color:#f3ead9}
-.m-status{font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;border-radius:99px;padding:4px 10px}
-.m-blurb{margin:12px 0 0;font:400 15.5px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.82);max-width:520px}
+.m-status{font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;border-radius:99px;padding:4px 10px}
+.m-blurb{margin:12px 0 0;font:300 15.5px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.82);max-width:520px}
 .m-sections{display:flex;flex-direction:column;gap:26px;margin-top:30px}
-.m-section-label{font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.18em;color:#efa85c;margin-bottom:9px}
+.m-section-label{font:400 10.5px 'IBM Plex Mono',monospace;letter-spacing:.18em;color:#efa85c;margin-bottom:9px}
 .m-section-label.m-mb12{margin-bottom:12px}
-.m-text{margin:0;font:400 14.5px/1.7 'Space Grotesk',sans-serif;color:rgba(243,234,217,.78)}
+.m-text{margin:0;font:300 14.5px/1.7 'Space Grotesk',sans-serif;color:rgba(243,234,217,.78)}
 .m-steps{display:flex;flex-direction:column;gap:10px}
 .m-step{display:flex;gap:12px;align-items:baseline}
 .m-step-n{flex:none;font:500 11px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.6);width:18px}
-.m-step-t{font:400 14px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.78)}
-.m-points{display:flex;flex-direction:column;gap:16px}
-.m-point{display:flex;flex-direction:column;gap:5px}
-.m-point-k{font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.03em;color:#f3ead9}
-.m-point-t{margin:0;font:400 14px/1.65 'Space Grotesk',sans-serif;color:rgba(243,234,217,.76)}
+.m-step-t{font:300 14px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.78)}
 .m-stack{display:flex;gap:8px;flex-wrap:wrap}
 .m-tok{font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.7);border:1px solid rgba(243,234,217,.22);border-radius:99px;padding:5px 12px}
 .m-footer{margin-top:32px;padding-top:22px;border-top:1px solid rgba(243,234,217,.14);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -115,7 +111,7 @@ dialog#case-dialog::backdrop{background:rgba(10,7,14,.62)}
 .idea-form{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
 .fld{background:rgba(243,234,217,.05);border:1px solid rgba(243,234,217,.2);border-radius:999px;color:#f3ead9;font:400 14px 'Space Grotesk',sans-serif;padding:12px 20px;box-sizing:border-box;transition:border-color .3s}
 .fld:focus{outline:none;border-color:#efa85c}
-.fld::placeholder{color:rgba(243,234,217,.52)}
+.fld::placeholder{color:rgba(243,234,217,.4)}
 .fld-idea{flex:1 1 320px;min-width:0}
 .fld-email{flex:1 1 200px;min-width:0}
 .idea-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
@@ -147,6 +143,11 @@ dialog#case-dialog::backdrop{background:rgba(10,7,14,.62)}
     <a href="/connect" class="hv-nav">CONNECT</a>
   </div>
   <div class="gb-nav-right">
+    <div class="gb-status">
+      <span class="pdot" aria-hidden="true"></span>
+      <span>NASHVILLE —</span>
+      <span id="ticker-word" aria-hidden="true">BUILDING</span>
+    </div>
     <button type="button" class="nav-burger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -171,99 +172,98 @@ dialog#case-dialog::backdrop{background:rgba(10,7,14,.62)}
     <h1 style="margin:0;font:400 clamp(34px,5.4vw,58px)/1.06 'Instrument Serif',serif;letter-spacing:-.01em">Things I’m building<span style="font-style:italic;color:#efa85c">.</span></h1>
     <span style="font:400 18px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.6);letter-spacing:.1em"><span style="animation:dotp 1.5s ease-in-out infinite">.</span><span style="animation:dotp 1.5s ease-in-out infinite;animation-delay:.25s">.</span><span style="animation:dotp 1.5s ease-in-out infinite;animation-delay:.5s">.</span></span>
   </div>
-  <p style="margin:20px 0 0;max-width:600px;font:300 16.5px/1.65 'Space Grotesk',sans-serif;color:rgba(243,234,217,.78)">Every square opens into a short case study: the problem, how it works, and the engineering decisions worth talking about. Repos stay private while things are in flight, so ask and I’ll walk you through any of them. For my background, see the <a href="/about" style="color:#f3ead9;text-decoration:underline;text-decoration-color:#efa85c;text-underline-offset:3px">work history</a>.</p>
+  <p style="margin:20px 0 0;max-width:600px;font:300 16.5px/1.65 'Space Grotesk',sans-serif;color:rgba(243,234,217,.78)">Every square opens into a short case study: why it exists, who it is for, and how to run it yourself. Repos stay private while things are in flight, so ask and I’ll walk you through any of them. For the operating background, rentals, a vending venture, the Predators internship, see the <a href="/about" style="color:#f3ead9;text-decoration:underline;text-decoration-color:#efa85c;text-underline-offset:3px">work history</a>.</p>
 </div>
 
 <!-- ============ GRID ============ -->
-<section class="w-gridwrap" aria-labelledby="w-grid-heading">
-  <h2 id="w-grid-heading" class="sr-only">Projects</h2>
+<div class="w-gridwrap">
   <div class="w-grid" id="w-grid">
 
     <!-- 01 Chief of Learning -->
-    <button type="button" class="wcard wc-f hv-wcard-green" data-idx="0" aria-label="Open case study: Chief of Learning" style="border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:flex;align-items:stretch;overflow:hidden;cursor:pointer">
+    <button type="button" class="wcard wc-f hv-wcard-green" data-idx="0" aria-label="Open case study: Chief of Learning" style="border-radius:22px;background:#1a2112;border:1px solid rgba(147,181,115,.28);position:relative;display:flex;align-items:stretch;overflow:hidden;cursor:pointer">
       <div style="flex:1 1 52%;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:24px 8px 26px 26px;position:relative;z-index:2;min-width:0">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
           <h3 style="margin:0;font:400 clamp(22px,2.2vw,30px) 'Instrument Serif',serif">Chief of Learning</h3>
-          <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#b48fd9;border-radius:99px;padding:3px 9px">BUILDING</span>
+          <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#efa85c;border-radius:99px;padding:3px 9px">BUILDING</span>
         </div>
-        <p style="margin:0;font:400 13.5px/1.55 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);max-width:300px">An AI chief of staff for learning Mandarin. It plans, drills, and keeps score so I just show up.</p>
+        <p style="margin:0;font:300 13.5px/1.55 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);max-width:300px">An AI chief of staff for learning Mandarin. It plans, drills, and keeps score so I just show up.</p>
         <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#93b573">OPEN CASE STUDY →</span>
       </div>
       <div class="wf-art scn" data-scene="garden" data-variant="full" aria-hidden="true" style="flex:0 0 220px;display:grid;place-items:center"></div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">01 · 语言花园</span>
-      <span style="position:absolute;top:14px;right:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">UPD MAY 26</span>
+      <span style="position:absolute;top:14px;left:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">01 · 语言花园</span>
+      <span style="position:absolute;top:14px;right:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">UPD MAY 26</span>
     </button>
 
     <!-- 02 Context Engine -->
-    <button type="button" class="wcard wc-f hv-wcard-amber" data-idx="5" aria-label="Open case study: Context Engine" style="border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:flex;align-items:stretch;overflow:hidden;cursor:pointer">
+    <button type="button" class="wcard wc-f hv-wcard-amber" data-idx="5" aria-label="Open case study: Context Engine" style="border-radius:22px;background:#221609;border:1px solid rgba(239,168,92,.25);position:relative;display:flex;align-items:stretch;overflow:hidden;cursor:pointer">
       <div style="flex:1 1 52%;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:24px 8px 26px 26px;position:relative;z-index:2;min-width:0">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
           <h3 style="margin:0;font:400 clamp(22px,2.2vw,30px) 'Instrument Serif',serif">Context Engine</h3>
-          <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#b48fd9;border-radius:99px;padding:3px 9px">PROTOTYPE</span>
+          <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#8fc4d9;border-radius:99px;padding:3px 9px">PROTOTYPE</span>
         </div>
-        <p style="margin:0;font:400 13.5px/1.55 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);max-width:300px">Hands an AI tool the right few pages from your notes, and only those. Ranked, kept to a budget, private pages held back.</p>
+        <p style="margin:0;font:300 13.5px/1.55 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);max-width:300px">A private librarian for everything you have ever saved. Ask a real question, get the right notes back, receipts included.</p>
         <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#efa85c">OPEN CASE STUDY →</span>
       </div>
       <div class="wf-art scn" data-scene="library" data-variant="full" aria-hidden="true" style="flex:0 0 220px;display:grid;place-items:center"></div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">02 · CONTEXT ENGINE</span>
-      <span style="position:absolute;top:14px;right:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">UPD JUN 26</span>
+      <span style="position:absolute;top:14px;left:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">02 · CONTEXT ENGINE</span>
+      <span style="position:absolute;top:14px;right:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">UPD JUN 26</span>
     </button>
 
-    <!-- 03 atlas -->
-    <button type="button" class="wcard wc-f hv-wcard-amber" data-idx="1" aria-label="Open case study: atlas" style="border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:flex;align-items:stretch;overflow:hidden;cursor:pointer">
+    <!-- 03 Dashboard Pro Max -->
+    <button type="button" class="wcard wc-f hv-wcard-amber" data-idx="1" aria-label="Open case study: Dashboard Pro Max" style="border-radius:22px;background:#26190b;border:1px solid rgba(239,168,92,.25);position:relative;display:flex;align-items:stretch;overflow:hidden;cursor:pointer">
       <div style="flex:1 1 52%;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:24px 8px 26px 26px;position:relative;z-index:2;min-width:0">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-          <h3 style="margin:0;font:400 clamp(22px,2.2vw,30px) 'Instrument Serif',serif">atlas</h3>
-          <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#b48fd9;border-radius:99px;padding:3px 9px">BUILD-READY</span>
+          <h3 style="margin:0;font:400 clamp(22px,2.2vw,30px) 'Instrument Serif',serif">Dashboard Pro Max</h3>
+          <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#7d8ca0;border-radius:99px;padding:3px 9px">DRAFT</span>
         </div>
-        <p style="margin:0;font:400 13.5px/1.55 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);max-width:300px">A learning platform that will not pass you until you have earned it. Strict grading, mastery gates, and a tutor that only teaches what it knows.</p>
+        <p style="margin:0;font:300 13.5px/1.55 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);max-width:300px">A dashboard with opinions. AI watches what your week actually looks like and rearranges itself to match.</p>
         <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#efa85c">OPEN CASE STUDY →</span>
       </div>
       <div class="wf-art scn" data-scene="dashboard" data-variant="full" aria-hidden="true" style="flex:0 0 220px;display:grid;place-items:center"></div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">03 · ATLAS</span>
-      <span style="position:absolute;top:14px;right:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">UPD JUL 26</span>
+      <span style="position:absolute;top:14px;left:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">03 · LIVING DASHBOARD</span>
+      <span style="position:absolute;top:14px;right:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">UPD JUN 26</span>
     </button>
 
     <!-- 03 AI for Beginners -->
-    <button type="button" class="wcard wc-f hv-wcard-purple" data-idx="4" aria-label="Open case study: AI for Beginners" style="border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:flex;align-items:stretch;overflow:hidden;cursor:pointer">
+    <button type="button" class="wcard wc-f hv-wcard-purple" data-idx="4" aria-label="Open case study: AI for Beginners" style="border-radius:22px;background:#241a22;border:1px solid rgba(180,143,217,.3);position:relative;display:flex;align-items:stretch;overflow:hidden;cursor:pointer">
       <div style="flex:1 1 52%;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:24px 8px 26px 26px;position:relative;z-index:2;min-width:0">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
           <h3 style="margin:0;font:400 clamp(22px,2.2vw,30px) 'Instrument Serif',serif">AI for Beginners</h3>
           <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#b48fd9;border-radius:99px;padding:3px 9px">WRITING</span>
         </div>
-        <p style="margin:0;font:400 13.5px/1.55 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);max-width:300px">A guidebook for people who keep hearing about AI and quietly have no idea where to start. Written in plain English.</p>
+        <p style="margin:0;font:300 13.5px/1.55 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);max-width:300px">A guidebook for people who keep hearing about AI and quietly have no idea where to start. Written in plain English.</p>
         <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#b48fd9">OPEN CASE STUDY →</span>
       </div>
       <div class="wf-art scn" data-scene="guidebook" data-variant="full" aria-hidden="true" style="flex:0 0 220px;display:grid;place-items:center"></div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">04 · THE GUIDEBOOK</span>
-      <span style="position:absolute;top:14px;right:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">UPD JUL 26</span>
+      <span style="position:absolute;top:14px;left:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">04 · THE GUIDEBOOK</span>
+      <span style="position:absolute;top:14px;right:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">UPD JUL 26</span>
     </button>
 
     <!-- 04 This site -->
-    <button type="button" class="wcard wc-s hv-wcard-blue" data-idx="2" aria-label="Open case study: This site" style="border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
+    <button type="button" class="wcard wc-s hv-wcard-blue" data-idx="2" aria-label="Open case study: This site" style="border-radius:22px;background:#141824;border:1px solid rgba(125,140,160,.32);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
       <div class="scn" data-scene="website" data-variant="mini" aria-hidden="true" style="position:relative;width:154px;height:118px;margin-top:-10px"></div>
       <div style="position:absolute;left:18px;right:18px;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:8px">
         <h3 style="margin:0;font:400 15px 'Instrument Serif',serif">This site</h3>
-        <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#efa85c;border-radius:99px;padding:3px 8px">SHIPPED</span>
+        <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#8fbf7f;border-radius:99px;padding:3px 8px">SHIPPED</span>
       </div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">05 · THIS SITE</span>
-      <span style="position:absolute;top:14px;right:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">UPD APR 26</span>
+      <span style="position:absolute;top:14px;left:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">05 · THIS SITE</span>
+      <span style="position:absolute;top:14px;right:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">UPD APR 26</span>
     </button>
 
     <!-- 05 The next one -->
-    <button type="button" class="wcard wc-s hv-wcard-teal" data-idx="3" aria-label="Open case study: The next one" style="border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
+    <button type="button" class="wcard wc-s hv-wcard-teal" data-idx="3" aria-label="Open case study: The next one" style="border-radius:22px;background:#101d1c;border:1px solid rgba(120,190,180,.28);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
       <div class="scn" data-scene="lab" data-variant="mini" aria-hidden="true" style="position:relative;width:154px;height:118px;margin-top:-10px"></div>
       <div style="position:absolute;left:18px;right:18px;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:8px">
         <h3 style="margin:0;font:400 15px 'Instrument Serif',serif">The next one</h3>
-        <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#f3ead9;background:transparent;border:1px solid rgba(243,234,217,.35);border-radius:99px;padding:3px 8px">OPEN SLOT</span>
+        <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#78beb4;border-radius:99px;padding:3px 8px">OPEN SLOT</span>
       </div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">06 · SOON™</span>
+      <span style="position:absolute;top:14px;left:18px;font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">06 · SOON™</span>
     </button>
 
     <!-- PITCH STRIP -->
     <a class="wc-p hv-pitch" href="/connect" style="border-radius:22px;border:1px dashed rgba(243,234,217,.3);display:flex;align-items:center;justify-content:space-between;gap:18px;padding:26px 30px;box-sizing:border-box;cursor:pointer;flex-wrap:wrap;transition:border-color .35s,background .35s">
       <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
-        <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">07 · YOUR MOVE</span>
+        <span style="font:400 10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">07 · YOUR MOVE</span>
         <span style="font:400 clamp(19px,1.8vw,24px) 'Instrument Serif',serif">Got a problem worth building for? <span style="font-style:italic;color:#efa85c">Pitch it.</span></span>
       </div>
       <span style="flex:none;position:relative;border:1.5px solid #efa85c;color:#efa85c;font:500 13.5px 'Space Grotesk',sans-serif;padding:12px 24px;border-radius:999px">
@@ -274,13 +274,13 @@ dialog#case-dialog::backdrop{background:rgba(10,7,14,.62)}
     </a>
 
   </div>
-</section>
+</div>
 
 <!-- ============ IDEA WALL ============ -->
 <div class="w-gridwrap" id="ideas" style="padding-bottom:84px">
   <div class="idea-tile">
     <h2 style="margin:0;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:#efa85c">✦ SEND ME AN IDEA</h2>
-    <p style="margin:14px 0 0;max-width:560px;font:400 15.5px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.78)">Got a problem worth building for, or a thing that should exist and doesn’t? Send it over. It lands straight in my inbox, and the good ones end up in the grid above.</p>
+    <p style="margin:14px 0 0;max-width:560px;font:300 15.5px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.78)">Got a problem worth building for, or a thing that should exist and doesn’t? Send it over. It lands straight in my inbox, and the good ones end up in the grid above.</p>
     <form id="idea-form" class="idea-form" novalidate>
       <input type="text" id="idea-input" name="idea" class="fld fld-idea" placeholder="One line is plenty…" aria-label="Your idea" autocomplete="off">
       <input type="email" id="idea-email" name="email" class="fld fld-email" placeholder="Email if you want a reply" aria-label="Your email, optional" autocomplete="email">
@@ -300,7 +300,7 @@ dialog#case-dialog::backdrop{background:rgba(10,7,14,.62)}
   <span class="gb-copyright">© 2026 GEORGE BROTHERS — NASHVILLE, TN</span>
   <div class="gb-footer-links">
     <a href="/work#ideas" class="hv-pill hv-pill-glow">Got an idea? ↗</a>
-    
+    <a href="/assets/george-brothers-resume.pdf" download class="hv-pill">Résumé ↓</a>
   </div>
 </footer>
 
@@ -319,7 +319,24 @@ dialog#case-dialog::backdrop{background:rgba(10,7,14,.62)}
           <span class="m-status" id="m-status"></span>
         </div>
         <p class="m-blurb" id="m-blurb"></p>
-        <div class="m-sections" id="m-sections"></div>
+        <div class="m-sections">
+          <div>
+            <div class="m-section-label">01 · WHY IT EXISTS</div>
+            <p class="m-text" id="m-story"></p>
+          </div>
+          <div>
+            <div class="m-section-label">02 · WHO IT’S FOR</div>
+            <p class="m-text" id="m-who"></p>
+          </div>
+          <div>
+            <div class="m-section-label m-mb12">03 · RUN IT YOURSELF</div>
+            <div class="m-steps" id="m-steps"></div>
+          </div>
+          <div>
+            <div class="m-section-label m-mb12">04 · STACK</div>
+            <div class="m-stack" id="m-stack"></div>
+          </div>
+        </div>
         <div class="m-footer">
           <a class="m-repo-btn hv-cta" id="m-github" target="_blank" rel="noopener noreferrer" hidden><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>View the repo</a>
           <a class="m-cta hv-modal-cta" id="m-cta" href="/connect"></a>

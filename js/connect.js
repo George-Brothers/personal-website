@@ -32,17 +32,11 @@
   var sendAnotherBtn = document.getElementById('send-another');
 
   var submitBtn = form.querySelector('button[type="submit"]');
-  // Keep the full markup (incl. the aria-hidden ◆) so restoring it doesn't
-  // read the decorative diamond out as text.
-  var submitLabel = submitBtn ? submitBtn.innerHTML : '';
+  var submitLabel = submitBtn ? submitBtn.textContent : '';
   var sending = false;
 
-  // LinkedIn is the guaranteed fallback channel; the URL already lives in the
-  // patch bay, so wire it into the error copy as a real link, not plain text.
-  var LINKEDIN_LINK = '<a href="https://www.linkedin.com/in/george-brothers/" target="_blank" rel="noopener noreferrer" style="color:#efa85c;text-decoration:underline">LinkedIn</a>';
-
   function showError(msg, field) {
-    errEl.innerHTML = msg;
+    errEl.textContent = msg;
     errEl.hidden = false;
     if (field) {
       field.setAttribute('aria-invalid', 'true');
@@ -68,7 +62,7 @@
     if (!submitBtn) return;
     submitBtn.disabled = on;
     submitBtn.style.opacity = on ? '.6' : '';
-    submitBtn.innerHTML = on ? 'Sending…' : submitLabel;
+    submitBtn.textContent = on ? 'Sending…' : submitLabel;
   }
 
   function markSent(name) {
@@ -113,7 +107,7 @@
 
     var action = form.getAttribute('action') || '';
     if (action.indexOf('__FORMSPREE_ID__') !== -1) {
-      showError('Form isn’t wired up yet. Reach me on ' + LINKEDIN_LINK + '.');
+      showError('Form isn’t wired up yet. Reach me on LinkedIn.');
       return;
     }
 
@@ -127,11 +121,11 @@
       if (res.ok) {
         markSent(name);
       } else {
-        showError('Something went wrong. Try again, or reach me on ' + LINKEDIN_LINK + '.');
+        showError('Something went wrong. Try again, or reach me on LinkedIn.');
       }
     }).catch(function () {
       setSending(false);
-      showError('Something went wrong. Try again, or reach me on ' + LINKEDIN_LINK + '.');
+      showError('Something went wrong. Try again, or reach me on LinkedIn.');
     });
   });
 

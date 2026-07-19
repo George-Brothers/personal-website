@@ -36,12 +36,13 @@ button{font:inherit;color:inherit;background:none;border:none;padding:0;text-ali
 
 /* ===== shared keyframes ===== */
 @keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
+@keyframes tickfade{0%{opacity:0;transform:translateY(6px)}14%{opacity:1;transform:translateY(0)}86%{opacity:1}100%{opacity:0;transform:translateY(-6px)}}
 @keyframes fadeup{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:translateY(0)}}
 
 /* ============================================================
    Canonical nav (.gb-nav) — donor: Work.dc.html
    ============================================================ */
-.gb-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:22px 64px;position:relative;z-index:3}
+.gb-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:22px 40px;position:relative;z-index:3}
 
 .gb-wordmark{font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.18em;border:1px solid rgba(243,234,217,.45);padding:5px 10px;border-radius:3px;cursor:pointer}
 
@@ -51,13 +52,23 @@ button{font:inherit;color:inherit;background:none;border:none;padding:0;text-ali
 
 .gb-nav-right{display:flex;align-items:center;gap:14px}
 
-.nav-burger{display:none;place-items:center;gap:4px;width:44px;height:44px;border:1px solid rgba(243,234,217,.4);border-radius:10px;cursor:pointer;grid-template-rows:repeat(3,2px);align-content:center}
+.gb-status{display:flex;align-items:center;gap:8px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.65);white-space:nowrap}
+.gb-status .pdot{width:7px;height:7px;border-radius:50%;background:#e8913f;animation:pdot 2.4s ease-in-out infinite}
+#ticker-word{display:inline-block;color:#efa85c;animation:tickfade 2.8s ease-in-out infinite}
+#nash-time{display:inline-block;color:#efa85c}
+
+.nav-burger{display:none;place-items:center;gap:4px;width:40px;height:40px;border:1px solid rgba(243,234,217,.4);border-radius:10px;cursor:pointer;grid-template-rows:repeat(3,2px);align-content:center}
 .nav-burger span{width:16px;height:2px;background:#f3ead9;border-radius:2px;display:block}
 
 @media (max-width:900px){
   .nav-links{display:none}
   .nav-burger{display:grid}
   .gb-nav,.gb-footer{padding-left:clamp(18px,4.5vw,64px);padding-right:clamp(18px,4.5vw,64px)}
+}
+/* The nowrap ticker ("NASHVILLE — AUTOMATING THE BORING PARTS") can exceed
+   a phone's width and force horizontal overflow — hide it on small screens */
+@media (max-width:640px){
+  .gb-status{display:none}
 }
 
 /* ============================================================
@@ -69,7 +80,7 @@ button{font:inherit;color:inherit;background:none;border:none;padding:0;text-ali
 #mobile-menu[hidden]{display:none}
 #mobile-menu:not([hidden]){display:flex}
 #mobile-menu.open{opacity:1;pointer-events:auto}
-.mobile-menu-close{position:absolute;top:16px;right:16px;padding:10px;line-height:1;font:400 26px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.7);cursor:pointer;transition:color .3s}
+.mobile-menu-close{position:absolute;top:26px;right:26px;font:400 26px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.7);cursor:pointer;transition:color .3s}
 .mobile-menu-close:hover,.mobile-menu-close:focus-visible{color:#f3ead9}
 #mobile-menu a{font:400 34px 'Instrument Serif',serif;color:#f3ead9}
 #mobile-menu a[aria-current="page"]{color:#efa85c}
@@ -78,7 +89,7 @@ button{font:inherit;color:inherit;background:none;border:none;padding:0;text-ali
    Canonical footer (.gb-footer) — donor: Connect/Now shape
    ============================================================ */
 .gb-footer{border-top:1px solid rgba(243,234,217,.14);padding:34px 64px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
-.gb-copyright{font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)}
+.gb-copyright{font:400 10.5px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)}
 .gb-footer-links{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .gb-footer-links a{font:500 13px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);border:1px solid rgba(243,234,217,.3);border-radius:999px;padding:10px 20px;cursor:pointer;transition:border-color .3s,color .3s,box-shadow .3s}
 
