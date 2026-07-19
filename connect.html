@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect — George Brothers</title>
+<meta name="description" content="Have a problem, opportunity, or idea? Leave George Brothers a message, or connect directly via LinkedIn, GitHub, Instagram, Chess.com, Slopes, or Carv.">
+<link rel="canonical" href="https://georgeellisbrothers.com/connect">
+<meta property="og:title" content="Connect — George Brothers">
+<meta property="og:description" content="Have a problem, opportunity, or idea? Leave George Brothers a message, or connect directly via LinkedIn, GitHub, Instagram, Chess.com, Slopes, or Carv.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://georgeellisbrothers.com/connect">
+<meta property="og:image" content="https://georgeellisbrothers.com/assets/og-card.v1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Connect — George Brothers">
+<meta name="twitter:description" content="Have a problem, opportunity, or idea? Leave George Brothers a message, or connect directly via LinkedIn, GitHub, Instagram, Chess.com, Slopes, or Carv.">
+<meta name="twitter:image" content="https://georgeellisbrothers.com/assets/og-card.v1.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23171009'/%3E%3Ctext x='16' y='23' font-size='17' text-anchor='middle' fill='%23efa85c'%3E%E2%97%86%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/instrument-serif-400.v1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/space-grotesk-var.v1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ibm-plex-mono-400.v1.woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<style>
+/* ===== layout ===== */
+.r-header,.r-console{max-width:1180px;margin-left:auto;margin-right:auto}
+@media (max-width:900px){
+  .r-header,.r-console{padding-left:clamp(18px,4.5vw,64px) !important;padding-right:clamp(18px,4.5vw,64px) !important}
+  .r-console{grid-template-columns:minmax(0,1fr) !important}
+}
+@media (max-width:480px){
+  .r-fields{grid-template-columns:minmax(0,1fr) !important}
+}
+
+/* ===== form fields (paper letter styling) ===== */
+.fld{width:100%;box-sizing:border-box;background:rgba(243,234,217,.05);border:1px solid rgba(243,234,217,.2);border-radius:9px;padding:12px 14px;color:#f3ead9;font:400 14px 'Space Grotesk',sans-serif;outline:none;transition:border-color .25s,box-shadow .25s}
+.fld::placeholder{color:rgba(243,234,217,.52)}
+.fld:focus{border-color:#efa85c;box-shadow:0 0 0 3px rgba(239,168,92,.16)}
+.fld-ta{resize:vertical;min-height:92px;font-family:'Space Grotesk',sans-serif}
+.fld-select{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6' fill='none' stroke='%23f3ead9' stroke-opacity='.55' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:11px;padding-right:34px}
+.fld-select option{background:#1d160e;color:#f3ead9}
+
+.form-err{font:400 12px 'IBM Plex Mono',monospace;color:#e0705a}
+
+/* send button hover (inline bg needs !important to override) */
+#msg-form button[type="submit"]:hover{background:#e8913f !important}
+#send-another:hover{color:#f3ead9 !important}
+
+/* visually-hidden honeypot */
+.hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* ===== patch bay rows =====
+   Hover state driven entirely by CSS using --acc / --acc-rgb custom
+   properties set per row (orange for WORK, purple for LIFE). Zero JS. */
+.patch-row{display:flex;align-items:center;gap:14px;padding:15px 12px;border-radius:10px;cursor:pointer;border-bottom:1px solid rgba(243,234,217,.08);background:transparent;box-shadow:inset 0 0 0 rgba(0,0,0,0);transform:translateX(0);transition:background .3s,box-shadow .3s,transform .3s}
+.patch-row:hover,.patch-row:focus-visible{background:rgba(var(--acc-rgb),.07);box-shadow:inset 2px 0 0 var(--acc);transform:translateX(3px)}
+
+.patch-icon{width:34px;height:34px;border-radius:9px;flex:none;display:grid;place-items:center;background:rgba(243,234,217,.05);border:1px solid rgba(243,234,217,.1);transition:background .3s,border-color .3s}
+.patch-row:hover .patch-icon,.patch-row:focus-visible .patch-icon{background:rgba(var(--acc-rgb),.15);border-color:rgba(var(--acc-rgb),.5)}
+
+.patch-tag{font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:var(--acc);border:1px solid rgba(var(--acc-rgb),.5);border-radius:3px;padding:2px 5px}
+
+.patch-led{width:8px;height:8px;border-radius:50%;flex:none;background:rgba(243,234,217,.18);box-shadow:0 0 0 rgba(0,0,0,0);transition:background .3s,box-shadow .3s}
+.patch-row:hover .patch-led,.patch-row:focus-visible .patch-led{background:var(--acc);box-shadow:0 0 9px 1px rgba(var(--acc-rgb),.8)}
+
+.patch-track{position:relative;width:40px;height:20px;flex:none;border-radius:99px;background:rgba(243,234,217,.14);border:1px solid rgba(243,234,217,.2);transition:background .3s,border-color .3s;display:inline-block}
+.patch-row:hover .patch-track,.patch-row:focus-visible .patch-track{background:rgba(var(--acc-rgb),.85);border-color:rgba(var(--acc-rgb),.9)}
+
+.patch-knob{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#8a7f70;transform:translateX(0);transition:transform .3s cubic-bezier(.5,0,.2,1),background .3s;box-shadow:0 1px 2px rgba(0,0,0,.4)}
+.patch-row:hover .patch-knob,.patch-row:focus-visible .patch-knob{background:#fff;transform:translateX(20px)}
+
+.patch-jack{width:15px;height:9px;border-radius:2px;flex:none;border:1.5px solid rgba(243,234,217,.28);display:grid;place-items:center;transition:border-color .3s}
+.patch-row:hover .patch-jack,.patch-row:focus-visible .patch-jack{border-color:var(--acc)}
+.patch-jack-dot{width:4px;height:4px;border-radius:50%;background:rgba(243,234,217,.28);transition:background .3s}
+.patch-row:hover .patch-jack-dot,.patch-row:focus-visible .patch-jack-dot{background:var(--acc)}
+</style>
+<script src="/js/site.js" defer></script>
+<script src="/js/connect.js" defer></script>
+</head>
+<body class="r-root" style="min-height:100vh">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ NAV ============ -->
+<nav class="gb-nav" aria-label="Primary">
+  <a href="/" class="gb-wordmark">GEORGE&nbsp;BROTHERS</a>
+  <div class="nav-links">
+    <a href="/work" class="hv-nav">WORK</a>
+    <a href="/about" class="hv-nav">ABOUT</a>
+    <a href="/now" class="hv-nav">NOW</a>
+    <a href="/connect" aria-current="page">CONNECT</a>
+  </div>
+  <div class="gb-nav-right">
+    <button type="button" class="nav-burger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="mobile-menu" hidden>
+  <button type="button" class="mobile-menu-close" aria-label="Close menu">&times;</button>
+  <a href="/">Home</a>
+  <a href="/work">Work</a>
+  <a href="/about">About</a>
+  <a href="/now">Now</a>
+  <a href="/connect" aria-current="page">Connect</a>
+</div>
+
+<main id="main">
+  <!-- ============ HEADER ============ -->
+  <div class="r-header" style="padding:64px 64px 0">
+    <div style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:#efa85c;margin-bottom:16px">◉ SIGNAL IN / SIGNAL OUT</div>
+    <h1 style="margin:0;font:400 clamp(34px,7vw,64px)/1 'Instrument Serif',serif">Let’s connect<span style="color:#efa85c">.</span></h1>
+    <p style="margin:20px 0 0;max-width:560px;font:300 18px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.78)">Have a problem, opportunity, or idea? Leave a note, or patch straight into any channel. Open to interesting problems, collaborations, and internships.</p>
+  </div>
+
+  <!-- ============ CONSOLE ============ -->
+  <div class="r-console" style="padding:44px 64px 90px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;animation:fadeup .5s ease">
+
+    <!-- ===== LEFT: LETTER DESK ===== -->
+    <div style="position:relative;border:1px solid rgba(243,234,217,.14);border-radius:16px;background:linear-gradient(180deg,#20160b,#181009);padding:30px 30px 32px;box-shadow:0 24px 60px rgba(0,0,0,.35)">
+      <span aria-hidden="true" style="position:absolute;top:11px;left:11px;width:5px;height:5px;border-radius:50%;background:rgba(243,234,217,.2)"></span>
+      <span aria-hidden="true" style="position:absolute;top:11px;right:11px;width:5px;height:5px;border-radius:50%;background:rgba(243,234,217,.2)"></span>
+      <span aria-hidden="true" style="position:absolute;bottom:11px;left:11px;width:5px;height:5px;border-radius:50%;background:rgba(243,234,217,.2)"></span>
+      <span aria-hidden="true" style="position:absolute;bottom:11px;right:11px;width:5px;height:5px;border-radius:50%;background:rgba(243,234,217,.2)"></span>
+
+      <div style="margin-bottom:24px">
+        <h2 style="margin:0 0 6px;font:400 30px 'Instrument Serif',serif;color:#f3ead9">Write me a note.</h2>
+        <p style="margin:0;font:400 14px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.66)">A few lines is plenty. It comes straight to me.</p>
+      </div>
+
+      <div id="form-panel">
+        <form id="msg-form" method="POST" action="https://formspree.io/f/mqerzlen" novalidate>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div class="r-fields" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <label style="display:flex;flex-direction:column;gap:7px">
+                <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.62)">NAME</span>
+                <input id="msg-name" name="name" autocomplete="name" placeholder="Your name" class="fld" required aria-required="true">
+              </label>
+              <label style="display:flex;flex-direction:column;gap:7px">
+                <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.62)">EMAIL</span>
+                <input id="msg-email" name="email" type="email" autocomplete="email" placeholder="you@domain.com" class="fld" required aria-required="true">
+              </label>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:7px">
+              <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.62)">WHAT’S THIS ABOUT</span>
+              <select id="msg-topic" name="topic" class="fld fld-select">
+                <option>An opportunity</option>
+                <option>A project or collaboration</option>
+                <option>A question</option>
+                <option>Just saying hi</option>
+              </select>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px">
+              <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.62)">MESSAGE</span>
+              <textarea id="msg-message" name="message" placeholder="A few lines on what you have in mind…" rows="4" class="fld fld-ta" required aria-required="true"></textarea>
+            </label>
+
+            <div class="hp-field" aria-hidden="true">
+              <label for="msg-gotcha">Leave this field empty</label>
+              <input type="text" id="msg-gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div id="form-err" class="form-err" role="alert" hidden></div>
+
+            <div style="display:flex;align-items:center;gap:16px;margin-top:2px">
+              <button type="submit" class="hv-cta" style="display:inline-flex;align-items:center;gap:9px;background:#efa85c;color:#171009;font:500 14px 'Space Grotesk',sans-serif;padding:13px 26px;border-radius:999px;transition:background .3s"><span aria-hidden="true">◆</span>Send it</button>
+              <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">NO EMAIL POSTED PUBLICLY</span>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div id="sent-panel" hidden style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;padding:14px 0 6px">
+        <div style="width:40px;height:40px;border-radius:50%;background:#efa85c;color:#171009;display:grid;place-items:center;font:600 20px 'Space Grotesk',sans-serif">✓</div>
+        <div id="sent-title" tabindex="-1" style="font:400 26px 'Instrument Serif',serif;color:#f3ead9;outline:none">Signal received, <span id="sent-name">friend</span>.</div>
+        <p style="margin:0;font:400 14px/1.65 'Space Grotesk',sans-serif;color:rgba(243,234,217,.7)">I read everything that comes in and I’ll get back to you personally. No inbox is posted publicly, so this note is the front door.</p>
+        <button type="button" id="send-another" style="margin-top:6px;font:500 12.5px 'Space Grotesk',sans-serif;color:#efa85c;border-bottom:1px solid rgba(239,168,92,.5);padding-bottom:2px">Send another ↩</button>
+      </div>
+    </div>
+
+    <!-- ===== RIGHT: PATCH BAY ===== -->
+    <div style="position:relative;border:1px solid rgba(243,234,217,.16);border-radius:16px;background:linear-gradient(180deg,#1b1422,#141019);padding:30px 26px 26px">
+      <span aria-hidden="true" style="position:absolute;top:11px;left:11px;width:5px;height:5px;border-radius:50%;background:rgba(243,234,217,.2)"></span>
+      <span aria-hidden="true" style="position:absolute;top:11px;right:11px;width:5px;height:5px;border-radius:50%;background:rgba(243,234,217,.2)"></span>
+      <span aria-hidden="true" style="position:absolute;bottom:11px;left:11px;width:5px;height:5px;border-radius:50%;background:rgba(243,234,217,.2)"></span>
+      <span aria-hidden="true" style="position:absolute;bottom:11px;right:11px;width:5px;height:5px;border-radius:50%;background:rgba(243,234,217,.2)"></span>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+        <h2 style="margin:0;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:rgba(243,234,217,.62)">◎ PATCH BAY</h2>
+        <div style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">FLIP TO CONNECT ↗</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column">
+        <a class="patch-row" href="https://www.linkedin.com/in/george-brothers/" target="_blank" rel="noopener noreferrer" style="--acc:#efa85c;--acc-rgb:239,168,92">
+          <span class="patch-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6V24H.2V8zm7.4 0h4.4v2.2h.06c.6-1.1 2.05-2.26 4.22-2.26 4.5 0 5.34 2.96 5.34 6.82V24h-4.6v-5.7c0-1.36-.03-3.1-1.9-3.1-1.9 0-2.19 1.48-2.19 3v5.8H7.6V8z" fill="#efa85c"/></svg></span>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <span style="font:500 16px 'Space Grotesk',sans-serif;color:#f3ead9">LinkedIn</span>
+              <span class="patch-tag">WORK</span>
+            </div>
+            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62);margin-top:3px">in/george-brothers</div>
+          </div>
+          <span class="patch-led" aria-hidden="true"></span>
+          <span class="patch-track" aria-hidden="true"><span class="patch-knob"></span></span>
+          <span class="patch-jack" aria-hidden="true"><span class="patch-jack-dot"></span></span>
+        </a>
+
+        <a class="patch-row" href="https://github.com/Pristine99" target="_blank" rel="noopener noreferrer" style="--acc:#efa85c;--acc-rgb:239,168,92">
+          <span class="patch-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58l-.02-2.06c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.39 1.24-3.23-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.23 0 4.63-2.81 5.65-5.49 5.95.43.37.81 1.1.81 2.22l-.01 3.29c0 .32.22.7.83.58C20.56 22.29 24 17.8 24 12.5 24 5.87 18.63.5 12 .5z" fill="#efa85c"/></svg></span>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <span style="font:500 16px 'Space Grotesk',sans-serif;color:#f3ead9">GitHub</span>
+              <span class="patch-tag">WORK</span>
+            </div>
+            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62);margin-top:3px">github.com/Pristine99</div>
+          </div>
+          <span class="patch-led" aria-hidden="true"></span>
+          <span class="patch-track" aria-hidden="true"><span class="patch-knob"></span></span>
+          <span class="patch-jack" aria-hidden="true"><span class="patch-jack-dot"></span></span>
+        </a>
+
+        <a class="patch-row" href="https://www.instagram.com/mrgeorgebrothers/" target="_blank" rel="noopener noreferrer" style="--acc:#b48fd9;--acc-rgb:180,143,217">
+          <span class="patch-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="#b48fd9" stroke-width="2"/><circle cx="12" cy="12" r="4.6" stroke="#b48fd9" stroke-width="2"/><circle cx="17.6" cy="6.4" r="1.5" fill="#b48fd9"/></svg></span>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <span style="font:500 16px 'Space Grotesk',sans-serif;color:#f3ead9">Instagram</span>
+              <span class="patch-tag">LIFE</span>
+            </div>
+            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62);margin-top:3px">@mrgeorgebrothers</div>
+          </div>
+          <span class="patch-led" aria-hidden="true"></span>
+          <span class="patch-track" aria-hidden="true"><span class="patch-knob"></span></span>
+          <span class="patch-jack" aria-hidden="true"><span class="patch-jack-dot"></span></span>
+        </a>
+
+        <a class="patch-row" href="https://www.chess.com/member/Pristine99" target="_blank" rel="noopener noreferrer" style="--acc:#b48fd9;--acc-rgb:180,143,217">
+          <span class="patch-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6.6" r="3" fill="#b48fd9"/><path d="M9 9.3 h6 l1.7 7.2 h-9.4 Z" fill="#b48fd9"/><rect x="5.8" y="16.4" width="12.4" height="2.9" rx="1.2" fill="#b48fd9"/></svg></span>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <span style="font:500 16px 'Space Grotesk',sans-serif;color:#f3ead9">Chess.com</span>
+              <span class="patch-tag">LIFE</span>
+            </div>
+            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62);margin-top:3px">@Pristine99</div>
+          </div>
+          <span class="patch-led" aria-hidden="true"></span>
+          <span class="patch-track" aria-hidden="true"><span class="patch-knob"></span></span>
+          <span class="patch-jack" aria-hidden="true"><span class="patch-jack-dot"></span></span>
+        </a>
+
+        <a class="patch-row" href="https://my.getslopes.com/app/addFriend/vZlgZZRKw0" target="_blank" rel="noopener noreferrer" style="--acc:#b48fd9;--acc-rgb:180,143,217">
+          <span class="patch-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M1.5 20.5 L9 7 L13.5 14 L17 7.5 L22.5 20.5 Z" fill="#b48fd9"/></svg></span>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <span style="font:500 16px 'Space Grotesk',sans-serif;color:#f3ead9">Slopes</span>
+              <span class="patch-tag">LIFE</span>
+            </div>
+            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62);margin-top:3px">add me on Slopes</div>
+          </div>
+          <span class="patch-led" aria-hidden="true"></span>
+          <span class="patch-track" aria-hidden="true"><span class="patch-knob"></span></span>
+          <span class="patch-jack" aria-hidden="true"><span class="patch-jack-dot"></span></span>
+        </a>
+
+        <a id="carv-link" class="patch-row" href="https://getcarv.com/" target="_blank" rel="noopener noreferrer" style="--acc:#b48fd9;--acc-rgb:180,143,217">
+          <span class="patch-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><text x="12" y="18.5" text-anchor="middle" font-size="18" font-weight="700" fill="#b48fd9" font-family="Space Grotesk, sans-serif">C</text></svg></span>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <span style="font:500 16px 'Space Grotesk',sans-serif;color:#f3ead9">Carv</span>
+              <span class="patch-tag">LIFE</span>
+            </div>
+            <div style="font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62);margin-top:3px">George Brothers</div>
+          </div>
+          <span class="patch-led" aria-hidden="true"></span>
+          <span class="patch-track" aria-hidden="true"><span class="patch-knob"></span></span>
+          <span class="patch-jack" aria-hidden="true"><span class="patch-jack-dot"></span></span>
+        </a>
+      </div>
+
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(243,234,217,.12);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap">
+        <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.6)">06 CHANNELS · WORK <span style="color:#efa85c">●</span> LIFE <span style="color:#b48fd9">●</span></span>
+        
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="gb-footer">
+  <span class="gb-copyright">© 2026 GEORGE BROTHERS — NASHVILLE, TN</span>
+  <div class="gb-footer-links">
+    <a href="/work#ideas" class="hv-pill hv-pill-glow">Got an idea? ↗</a>
+    
+  </div>
+</footer>
+
+</body>
+</html>

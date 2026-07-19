@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — George Brothers</title>
+<meta name="description" content="Accounting and entrepreneurship student who'd rather build the system than do the same work twice. Plus chess, Mandarin, the GMAT, and time in the mountains.">
+<link rel="canonical" href="https://georgeellisbrothers.com/about">
+<meta property="og:title" content="About — George Brothers">
+<meta property="og:description" content="Accounting and entrepreneurship student who'd rather build the system than do the same work twice. Plus chess, Mandarin, the GMAT, and time in the mountains.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://georgeellisbrothers.com/about">
+<meta property="og:image" content="https://georgeellisbrothers.com/assets/og-card.v1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About — George Brothers">
+<meta name="twitter:description" content="Accounting and entrepreneurship student who'd rather build the system than do the same work twice. Plus chess, Mandarin, the GMAT, and time in the mountains.">
+<meta name="twitter:image" content="https://georgeellisbrothers.com/assets/og-card.v1.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23171009'/%3E%3Ctext x='16' y='23' font-size='17' text-anchor='middle' fill='%23efa85c'%3E%E2%97%86%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/instrument-serif-400.v1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/space-grotesk-var.v1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ibm-plex-mono-400.v1.woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<style>
+@keyframes hskpulse{0%,100%{box-shadow:0 0 0 0 rgba(180,143,217,.5)}50%{box-shadow:0 0 0 7px rgba(180,143,217,0)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
+/* ===== layout ===== */
+.r-root>main>div{max-width:1200px;margin-left:auto;margin-right:auto}
+@media (max-width:900px){
+  .r-passes,.r-photos{justify-content:center}
+}
+@media (max-width:560px){
+  .r-passes{gap:12px}
+  .r-passes>*{width:calc(50% - 6px) !important;margin-right:0 !important}
+  .r-photos{gap:28px}
+  .r-photos>div{margin-top:0 !important}
+  .r-photos>div>.proof-img{width:min(76vw,300px) !important;height:auto !important;aspect-ratio:250/210}
+}
+@media (max-width:900px){
+  .r-root>main>div{padding-left:clamp(18px,4.5vw,64px) !important;padding-right:clamp(18px,4.5vw,64px) !important}
+  .r-work{grid-template-columns:minmax(0,1fr) !important;gap:32px !important}
+  .r-work .r-rail{position:static !important}
+}
+@media (max-width:768px){
+  .r-chess,.r-cn,.r-gmat{grid-template-columns:minmax(0,1fr) !important}
+}
+@media (max-width:430px){
+  .r-board{transform:scale(.82);transform-origin:top left}
+}
+
+/* ===== Work / Elsewhere toggle ===== */
+.view-toggle-btn{position:relative;color:rgba(243,234,217,.6)}
+.view-toggle-btn.active{color:#f3ead9}
+.view-bar{position:absolute;left:0;right:0;bottom:0;height:2.5px;border-radius:2px;transform:scaleX(0);transform-origin:right center;transition:transform .45s cubic-bezier(.6,0,.2,1)}
+.view-bar.on{transform:scaleX(1);transform-origin:left center}
+
+/* ===== hover classes (converted from the source runtime's hover payloads, kept verbatim) ===== */
+.hv-worklink:hover,.hv-worklink:focus-visible{color:#efa85c !important;border-color:#efa85c !important}
+.hv-chesspill:hover,.hv-chesspill:focus-visible{background:#b48fd9 !important;color:#171009 !important}
+.hv-backtal:hover,.hv-backtal:focus-visible{background:#efa85c !important;color:#171009 !important}
+
+/* ===== chess line pills ===== */
+.chess-pill.active{color:#171009;background:#b48fd9}
+
+/* ===== chess board pieces (positioned via JS, transform-based) ===== */
+.chess-piece{position:absolute;top:0;left:0;display:flex;align-items:center;justify-content:center;font:400 24px serif;pointer-events:none;transition:transform .5s cubic-bezier(.5,0,.3,1),opacity .4s ease .15s,transform .1s;will-change:transform}
+
+/* ===== gmat skill chips (materialized from chipStyle/popStyle) ===== */
+.gmat-chip{position:relative;font:500 12px 'Space Grotesk',sans-serif;border:1px solid rgba(180,143,217,.5);color:#b48fd9;background:transparent;border-radius:999px;padding:8px 14px;cursor:default;transition:background .3s,color .3s,border-color .3s}
+.gmat-chip:hover,.gmat-chip:focus-visible{border-color:#b48fd9;color:#171009;background:#b48fd9}
+.gmat-pop{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(7px) scale(.92);opacity:0;pointer-events:none;background:#241a30;border:1px solid rgba(180,143,217,.5);border-radius:10px;padding:9px 13px;white-space:nowrap;box-shadow:0 12px 30px rgba(0,0,0,.5);transform-origin:bottom center;transition:opacity .28s ease,transform .28s cubic-bezier(.34,1.4,.6,1)}
+.gmat-chip:hover .gmat-pop,.gmat-chip:focus-visible .gmat-pop{transform:translateX(-50%) translateY(0) scale(1);opacity:1}
+
+/* ===== resort pass stubs (hover lift from hoveredPass state) ===== */
+.pass-stub{transition:transform .35s cubic-bezier(.34,1.4,.5,1),box-shadow .35s ease}
+.pass-stub:hover{transform:rotate(0deg) translateY(-14px) !important;box-shadow:0 22px 44px rgba(0,0,0,.55) !important;z-index:20}
+
+/* ===== Last Chair trigger (quiet easter-egg affordance) ===== */
+.lc-trigger{display:inline-flex;align-items:center;gap:16px;margin-top:2px;padding:15px 22px;background:linear-gradient(180deg,rgba(180,143,217,.08),rgba(180,143,217,.03));border:1px solid rgba(180,143,217,.32);border-radius:14px;cursor:pointer;text-align:left;transition:border-color .35s ease,background .35s ease,transform .35s cubic-bezier(.34,1.4,.5,1)}
+.lc-trigger:hover,.lc-trigger:focus-visible{border-color:rgba(180,143,217,.7);background:linear-gradient(180deg,rgba(180,143,217,.15),rgba(180,143,217,.05));transform:translateY(-2px)}
+.lc-trigger:focus-visible{outline:2px solid #b48fd9;outline-offset:4px}
+.lc-mark{font:400 15px 'IBM Plex Mono',monospace;color:#b48fd9;line-height:1}
+.lc-text{display:flex;flex-direction:column;gap:3px}
+.lc-label{font:400 12px 'IBM Plex Mono',monospace;letter-spacing:.22em;color:#e0d5ee}
+.lc-sub{font:300 13px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.6)}
+.lc-arrow{font:400 16px 'Space Grotesk',sans-serif;color:#b48fd9;transition:transform .35s ease}
+.lc-trigger:hover .lc-arrow,.lc-trigger:focus-visible .lc-arrow{transform:translate(2px,-2px)}
+
+/* ===== Last Chair dialog (framed centered panel) ===== */
+dialog#ski-dialog{position:fixed;inset:0;margin:0;width:100%;height:100%;max-width:none;max-height:none;border:none;padding:24px;box-sizing:border-box;background:transparent;display:none;align-items:center;justify-content:center}
+dialog#ski-dialog[open]{display:flex}
+dialog#ski-dialog::backdrop{background:rgba(10,7,18,.68)}
+.lc-card{position:relative;width:min(940px,94vw);box-sizing:border-box;background:#181022;border:1px solid rgba(180,143,217,.34);border-radius:22px;overflow:hidden;box-shadow:0 0 0 rgba(0,0,0,0);opacity:0;transform:translateY(16px) scale(.985);transition:transform .5s cubic-bezier(.3,1.2,.5,1),opacity .34s ease,box-shadow .5s ease}
+.lc-card.on{opacity:1;transform:none;box-shadow:0 40px 110px rgba(0,0,0,.66)}
+.lc-close{position:absolute;top:11px;right:15px;z-index:6;background:transparent;border:none;font:400 24px 'Space Grotesk',sans-serif;line-height:1;color:rgba(243,234,217,.55);cursor:pointer;transition:color .3s;padding:6px}
+.lc-close:hover,.lc-close:focus-visible{color:#f3ead9;outline:none}
+.lc-close:focus-visible{outline:2px solid #b48fd9;outline-offset:2px;border-radius:6px}
+.lc-head{display:flex;align-items:baseline;gap:14px;padding:20px 56px 15px 24px;flex-wrap:wrap}
+.lc-head-label{font:400 12px 'IBM Plex Mono',monospace;letter-spacing:.22em;color:#b48fd9}
+.lc-head-sub{font:300 13px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.58)}
+.lc-stage{position:relative;width:100%;aspect-ratio:1000/620;max-height:76vh;background:#181022;border-top:1px solid rgba(180,143,217,.14)}
+.lc-stage svg{position:absolute;inset:0;display:block}
+@media (max-width:560px){
+  .lc-trigger{width:100%}
+  .lc-head-sub{display:none}
+}
+</style>
+<script src="/js/site.js" defer></script>
+<script src="/js/about.js" defer></script>
+</head>
+<body class="r-root" style="min-height:100vh">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ NAV ============ -->
+<nav class="gb-nav" aria-label="Primary">
+  <a href="/" class="gb-wordmark">GEORGE&nbsp;BROTHERS</a>
+  <div class="nav-links">
+    <a href="/work" class="hv-nav">WORK</a>
+    <a href="/about" aria-current="page">ABOUT</a>
+    <a href="/now" class="hv-nav">NOW</a>
+    <a href="/connect" class="hv-nav">CONNECT</a>
+  </div>
+  <div class="gb-nav-right">
+    <button type="button" class="nav-burger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="mobile-menu" hidden>
+  <button type="button" class="mobile-menu-close" aria-label="Close menu">&times;</button>
+  <a href="/">Home</a>
+  <a href="/work">Work</a>
+  <a href="/about" aria-current="page">About</a>
+  <a href="/now">Now</a>
+  <a href="/connect">Connect</a>
+</div>
+
+<main id="main">
+
+  <!-- ============ HEADER + SWITCH ============ -->
+  <div style="padding:72px 64px 0;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:28px">
+    <h1 style="margin:0;font:400 clamp(34px,7vw,64px)/1 'Instrument Serif',serif">About<span id="about-accent" style="color:#efa85c">.</span></h1>
+    <div role="tablist" aria-label="About sections" style="display:flex;gap:36px;align-items:baseline">
+      <button type="button" id="btn-work" class="view-toggle-btn active" role="tab" aria-selected="true" aria-controls="view-work" style="padding:10px 0;font:400 italic clamp(20px,2.6vw,26px) 'Instrument Serif',serif;transition:color .4s">Work
+        <span class="view-bar on" id="bar-work" style="background:#efa85c"></span>
+      </button>
+      <span aria-hidden="true" style="font:400 16px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62)">/</span>
+      <button type="button" id="btn-else" class="view-toggle-btn" role="tab" aria-selected="false" aria-controls="view-else" style="padding:10px 0;font:400 italic clamp(20px,2.6vw,26px) 'Instrument Serif',serif;transition:color .4s">Elsewhere
+        <span class="view-bar" id="bar-else" style="background:#b48fd9"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== WORK VIEW ==================== -->
+  <div id="view-work" class="r-work" role="tabpanel" aria-labelledby="btn-work" tabindex="0" style="padding:56px 64px 90px;display:grid;grid-template-columns:360px 1fr;gap:64px;align-items:start;animation:fadeup .5s ease">
+
+    <!-- sticky intro -->
+    <div class="r-rail" style="position:sticky;top:36px;display:flex;flex-direction:column;gap:24px">
+      <p style="margin:0;font:400 29px/1.4 'Instrument Serif',serif;color:rgba(243,234,217,.94)">I build <span style="font-style:italic;color:#efa85c">practical AI and automation</span> for the everyday work of running a business.</p>
+      <p style="margin:0;font:400 15px/1.65 'Space Grotesk',sans-serif;color:rgba(243,234,217,.72)">I’ve run the operations and learned the numbers. Now I spend most of my time building the tools that make that kind of work faster, cleaner, and harder to screw up.</p>
+      <div style="font:400 11px/2 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.62)">
+        NASHVILLE, TN<br>B.B.A. · GRADUATING DEC 2026<br>GPA 3.9
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+          
+          <a href="/work" class="hv-worklink" style="font:500 13px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.7);border-bottom:1px solid rgba(243,234,217,.3);padding-bottom:2px;transition:color .3s,border-color .3s">What I’m building ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- scrolling right column -->
+    <div style="display:flex;flex-direction:column;gap:0">
+
+      <!-- education -->
+      <div style="border-top:1px solid rgba(243,234,217,.16);padding:30px 0 40px">
+        <h2 style="margin:0 0 26px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:#efa85c">01 — EDUCATION</h2>
+        <div style="display:flex;flex-direction:column;gap:26px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:18px;align-items:baseline">
+            <div>
+              <h3 style="margin:0;font:400 23px 'Instrument Serif',serif">Belmont University</h3>
+              <div style="font:400 14.5px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.72);margin-top:5px">B.B.A. in Accounting and Entrepreneurship · GPA 3.9 · Nashville, TN</div>
+              <div style="font:400 14.5px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.72);margin-top:7px">Won <span style="color:#efa85c">Belmont’s Outstanding Achievement in Entrepreneurship award</span>, and scored in the 98th percentile on the ETS Major Field Test in Business.</div>
+            </div>
+            <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:rgba(243,234,217,.62)">→ DEC 2026</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:18px;align-items:baseline">
+            <div>
+              <h3 style="margin:0;font:400 23px 'Instrument Serif',serif">Massachusetts Institute of Technology</h3>
+              <div style="font:400 14.5px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.72);margin-top:5px">Certificate in Data Science &amp; Machine Learning: Making Data-Driven Decisions</div>
+            </div>
+            <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:rgba(243,234,217,.62)">MAR 2025</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- experience -->
+      <div style="border-top:1px solid rgba(243,234,217,.16);padding:30px 0 40px">
+        <h2 style="margin:0 0 26px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:#efa85c">02 — EXPERIENCE</h2>
+        <div style="display:flex;flex-direction:column;gap:38px">
+          <div style="display:grid;grid-template-columns:14px 1fr;gap:22px">
+            <div style="display:flex;flex-direction:column;align-items:center"><span style="width:10px;height:10px;border-radius:50%;background:#efa85c;margin-top:8px;animation:hskpulse 2.2s ease-out infinite"></span><span style="width:1.5px;flex:1;background:rgba(243,234,217,.18);margin-top:6px"></span></div>
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap">
+                <h3 style="margin:0;font:400 23px 'Instrument Serif',serif">Corporate Partnerships Intern — Nashville Predators</h3>
+                <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#efa85c">JUN — AUG 2026</span>
+              </div>
+              <div style="font:400 12px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62);margin-top:3px">Nashville, TN</div>
+              <ul style="margin:12px 0 0;padding-left:18px;font:400 14.5px/1.75 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);display:flex;flex-direction:column;gap:7px">
+                <li>Support the corporate partnerships sales and service team with research, presentations, spreadsheets, and day-to-day account work.</li>
+                <li>Help build pitch materials for prospective and existing partners, including activation ideas, formatting, and supporting analysis.</li>
+                <li>Asked for a few partner-activation ideas, I built a full, formatted proposal with AI-generated mockups. It was polished enough that my manager sent it straight to the partner, <span style="color:#efa85c">Regions</span>.</li>
+              </ul>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:14px 1fr;gap:22px">
+            <div style="display:flex;flex-direction:column;align-items:center"><span style="width:10px;height:10px;border-radius:50%;background:#efa85c;margin-top:8px"></span><span style="width:1.5px;flex:1;background:rgba(243,234,217,.18);margin-top:6px"></span></div>
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap">
+                <h3 style="margin:0;font:400 23px 'Instrument Serif',serif">Property Management — Family Rental Portfolio</h3>
+                <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:rgba(243,234,217,.62)">2019 — JUL 2025</span>
+              </div>
+              <ul style="margin:12px 0 0;padding-left:18px;font:400 14.5px/1.75 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);display:flex;flex-direction:column;gap:7px">
+                <li>Ran day-to-day operations for a five-unit portfolio, covering leasing coordination, tenant communication, and issue resolution.</li>
+                <li>Set up tenant management software and billing workflows that sped up rent collection, cleaned up the accounting, and cut manual admin.</li>
+                <li>Built and refined operating procedures for accounting, listing, background checks, leasing, repairs, and turns, so nothing slipped between steps. Vacancy lead time dropped from two months to under one.</li>
+                <li>Handled unit turnovers: scoped repairs, compared bids, scheduled contractors, and confirmed move-in readiness.</li>
+                <li>Operated one unit as an Airbnb, handling furnishing, guest messaging, and turnovers, at a 4.91 guest rating and Superhost status.</li>
+              </ul>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:14px 1fr;gap:22px">
+            <div style="display:flex;flex-direction:column;align-items:center"><span style="width:10px;height:10px;border-radius:50%;border:1.5px solid #efa85c;margin-top:8px"></span><span style="width:1.5px;flex:1;background:rgba(243,234,217,.18);margin-top:6px"></span></div>
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap">
+                <h3 style="margin:0;font:400 23px 'Instrument Serif',serif">Founder &amp; Operator — Honky Tonk CBD</h3>
+                <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:rgba(243,234,217,.62)">JAN — DEC 2024</span>
+              </div>
+              <div style="font:400 12px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.62);margin-top:3px">age-verified CBD vending venture</div>
+              <ul style="margin:12px 0 0;padding-left:18px;font:400 14.5px/1.75 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);display:flex;flex-direction:column;gap:7px">
+                <li>Founded a CBD vending business and put roughly $20K into machine buildout, setup, and launch.</li>
+                <li>Ran it end to end: concept, administrative setup, banking, licensing, compliance, and daily operations.</li>
+                <li>Worked with outside partners to design and produce a custom vending machine from scratch.</li>
+                <li>Pitched bars directly and placed machines in two Nashville locations.</li>
+                <li>Managed sourcing, purchasing, pricing, inventory, and supplier relationships, backed by Excel tracking for sales and reorders.</li>
+                <li>Worked through licensing issues with the state of Tennessee and made the call to shut down once regulatory changes killed the model.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- skills -->
+      <div style="border-top:1px solid rgba(243,234,217,.16);padding:30px 0 10px">
+        <h2 style="margin:0 0 24px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:#efa85c">03 — SKILLS &amp; TOOLS</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:11px">
+          <span style="font:500 13.5px 'Space Grotesk',sans-serif;border:1px solid rgba(239,168,92,.55);color:#efa85c;border-radius:999px;padding:10px 18px">Excel</span>
+          <span style="font:500 13.5px 'Space Grotesk',sans-serif;border:1px solid rgba(243,234,217,.3);border-radius:999px;padding:10px 18px">NetSuite</span>
+          <span style="font:500 13.5px 'Space Grotesk',sans-serif;border:1px solid rgba(243,234,217,.3);border-radius:999px;padding:10px 18px">Data Analysis &amp; Reporting</span>
+          <span style="font:500 13.5px 'Space Grotesk',sans-serif;border:1px solid rgba(243,234,217,.3);border-radius:999px;padding:10px 18px">Claude Code</span>
+          <span style="font:500 13.5px 'Space Grotesk',sans-serif;border:1px solid rgba(243,234,217,.3);border-radius:999px;padding:10px 18px">OpenAI Codex</span>
+          <span style="font:500 13.5px 'Space Grotesk',sans-serif;border:1px solid rgba(243,234,217,.3);border-radius:999px;padding:10px 18px">Ollama</span>
+          <span style="font:500 13.5px 'Space Grotesk',sans-serif;border:1px solid rgba(243,234,217,.3);border-radius:999px;padding:10px 18px">Obsidian</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== ELSEWHERE VIEW ==================== -->
+  <div id="view-else" role="tabpanel" aria-labelledby="btn-else" tabindex="0" hidden style="padding:56px 64px 90px;animation:fadeup .5s ease both">
+
+    <p style="margin:0;max-width:760px;font:400 clamp(24px,3.6vw,34px)/1.4 'Instrument Serif',serif">The version of me that isn’t on my&nbsp;<span style="font-style: italic; background-image: linear-gradient(rgba(180, 143, 217, 0.9), rgba(180, 143, 217, 0.9)); background-repeat: no-repeat; background-size: 100% 3px; background-position: 0px 92%; padding: 0px 3px;">resume</span>.</p>
+
+    <!-- chess -->
+    <div class="r-chess" style="margin-top:64px;border-top:1px solid rgba(180,143,217,.3);padding-top:30px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start">
+      <div>
+        <h2 style="margin:0 0 22px;font:400 16px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:#b48fd9">♞ CHESS</h2>
+        <p style="margin:0;font:400 16px/1.75 'Space Grotesk',sans-serif;color:rgba(243,234,217,.82);max-width:520px">I got serious about chess this year while recovering from a spine injury, and it turned into a real study habit: puzzles, opening work, and a lot of rapid games, then bullet once I was hooked.<br><br>I like it for the same reason I like the work: reading the pattern a few moves before it arrives.<br></p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 24px">
+          <button type="button" data-line="italian" class="chess-pill hv-chesspill" style="font:500 13px 'Space Grotesk',sans-serif;border:1px solid rgba(180,143,217,.55);color:#b48fd9;background:transparent;border-radius:999px;padding:9px 16px;transition:background .3s,color .3s;display:inline-block">The Italian ▸</button>
+          <button type="button" data-line="scotch" class="chess-pill hv-chesspill" style="font:500 13px 'Space Grotesk',sans-serif;border:1px solid rgba(180,143,217,.55);color:#b48fd9;background:transparent;border-radius:999px;padding:9px 16px;transition:background .3s,color .3s;display:inline-block">The Scotch ▸</button>
+          <button type="button" data-line="caro" class="chess-pill hv-chesspill" style="font:500 13px 'Space Grotesk',sans-serif;border:1px solid rgba(180,143,217,.55);color:#b48fd9;background:transparent;border-radius:999px;padding:9px 16px;transition:background .3s,color .3s;display:inline-block">The Caro-Kann ▸</button>
+        </div>
+        <p style="margin:0;font:400 17px/1.6 'Instrument Serif',serif;font-style:italic;color:rgba(243,234,217,.85)">Favorite thing in the game: defending against Scholar’s Mate attempts &amp;&nbsp;<button type="button" data-line="scholar" title="play it out →" style="color:#efa85c;cursor:pointer;border-bottom:1px dashed rgba(239,168,92,.55);font:inherit">punishing</button>.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;animation:bob 5s ease-in-out infinite">
+        <div class="r-board" id="chess-board" aria-hidden="true" style="position:relative;width:264px;height:264px;border:1px solid rgba(180,143,217,.4);border-radius:10px;overflow:hidden;background-image:repeating-conic-gradient(#2a2033 0 25%,#1e1726 0 50%);background-size:66px 66px"></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;width:264px;gap:10px">
+          <span id="chess-caption" style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.62);white-space:nowrap">TAL v. HECHT — VARNA 1962</span>
+          <span id="chess-move" style="font:500 12px 'IBM Plex Mono',monospace;color:#b48fd9;white-space:nowrap">…</span>
+        </div>
+        <button type="button" id="chess-back-tal" data-line="tal" class="hv-backtal" hidden style="width:264px;box-sizing:border-box;text-align:center;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#efa85c;border:1px solid rgba(239,168,92,.5);border-radius:999px;padding:8px 0;transition:background .3s,color .3s;display:block">↩ BACK TO TAL v. HECHT</button>
+      </div>
+    </div>
+
+    <!-- chinese -->
+    <div style="margin-top:56px;border-top:1px solid rgba(180,143,217,.3);padding-top:30px">
+      <h2 style="margin:0 0 22px;font:400 16px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:#b48fd9">学 CHINESE</h2>
+      <div class="r-cn" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+        <p style="margin:0;font:400 16px/1.75 'Space Grotesk',sans-serif;color:rgba(243,234,217,.82)">I’m studying Chinese as a long-term bet, not a class requirement. Ahead of a semester there in spring 2027, I keep a steady system: a tutor in China three times a week, Pleco, textbooks, and an AI workflow that keeps me honest. The goal is to arrive already speaking.</p>
+        <div>
+          <div style="position:relative;height:6px;background:rgba(243,234,217,.14);border-radius:99px">
+            <div style="position:absolute;left:0;top:0;bottom:0;width:22%;background:linear-gradient(90deg,#efa85c,#b48fd9);border-radius:99px"></div>
+            <div style="position:absolute;left:22%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#b48fd9;animation:hskpulse 2.2s ease-out infinite"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62);margin-top:12px">
+            <span style="color:#b48fd9">HSK 1 — NOW</span><span>HSK 2</span><span>HSK 3 — MARCH 2027 ✈</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- gmat -->
+    <div style="margin-top:56px;border-top:1px solid rgba(180,143,217,.3);padding-top:30px">
+      <h2 style="margin:0 0 22px;font:400 16px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:#b48fd9">Σ THE GMAT</h2>
+      <div class="r-gmat" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+        <div>
+          <p style="margin:0;font:400 16px/1.75 'Space Grotesk',sans-serif;color:rgba(243,234,217,.82)">The newest project on the pile. I recently started studying for the GMAT and built it into the weekly routine: <span style="color:#efa85c">~90 minutes a day</span> whenever I can make it happen. I run everything through Target Test Prep (not an ad, just what’s working so far). No test date locked in yet. The plan is to put up a <span style="color:#b48fd9;font-weight:500">97th-percentile</span> score and keep compounding on another serious long-term bet.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:9px;margin-top:20px">
+            <span class="gmat-chip" tabindex="0">Quant
+              <span class="gmat-pop">
+                <span style="display:block;font:400 9px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#b48fd9;margin-bottom:3px">Quant SCORE</span>
+                <span style="font:400 italic 15px 'Instrument Serif',serif;color:#f3ead9">No score yet</span>
+              </span>
+            </span>
+            <span class="gmat-chip" tabindex="0">Verbal
+              <span class="gmat-pop">
+                <span style="display:block;font:400 9px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#b48fd9;margin-bottom:3px">Verbal SCORE</span>
+                <span style="font:400 italic 15px 'Instrument Serif',serif;color:#f3ead9">No score yet</span>
+              </span>
+            </span>
+            <span class="gmat-chip" tabindex="0">Data Insights
+              <span class="gmat-pop">
+                <span style="display:block;font:400 9px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#b48fd9;margin-bottom:3px">Data Insights SCORE</span>
+                <span style="font:400 italic 15px 'Instrument Serif',serif;color:#f3ead9">No score yet</span>
+              </span>
+            </span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+          <svg viewBox="0 0 210 128" width="230" height="140" style="overflow:visible">
+            <defs>
+              <linearGradient id="gmatArc" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#efa85c"></stop>
+                <stop offset="1" stop-color="#b48fd9"></stop>
+              </linearGradient>
+            </defs>
+            <path d="M22,112 A83,83 0 0 1 188,112" fill="none" stroke="rgba(243,234,217,.14)" stroke-width="9" stroke-linecap="round"></path>
+            <path d="M22,112 A83,83 0 0 1 188,112" fill="none" stroke="url(#gmatArc)" stroke-width="9" stroke-linecap="round" stroke-dasharray="252 40"></path>
+            <circle cx="187" cy="103" r="6" fill="#b48fd9" stroke="#171009" stroke-width="2"></circle>
+            <text x="105" y="86" text-anchor="middle" font-family="'Instrument Serif',serif" font-size="40" fill="#f3ead9">97<tspan font-size="20" dy="-14">th</tspan></text>
+            <text x="105" y="106" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="2.5" fill="rgba(243,234,217,.55)">PERCENTILE</text>
+          </svg>
+          <div style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.62);text-align:center">TARGET ≈ 705 · GMAT FOCUS EDITION<br><span style="color:#efa85c">TARGET TEST PREP</span> · ~90 MIN/DAY</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- outdoors / animated mountain -->
+    <div style="margin-top:56px;border-top:1px solid rgba(180,143,217,.3);padding-top:30px">
+      <h2 style="margin:0 0 22px;font:400 16px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:#b48fd9">◆ THE MOUNTAINS</h2>
+      <p style="margin:0 0 26px;max-width:600px;font:400 16px/1.75 'Space Grotesk',sans-serif;color:rgba(243,234,217,.82)">Hiking, camping, and especially skiing. I picked it up a few years ago; a childhood in hockey did most of the onboarding. Honestly a solid intermediate pushing advanced, and every trip ends the same way, scrolling ski-town Zillow on the drive home. The rest of the time I’m just outside: trail running, backpacking, kayaking. I grew up in Boy Scouts, and being out in the woods is still a big part of my life.</p>
+
+      <!-- LAST CHAIR — quiet trigger; opens the top-down resort scene in a modal -->
+      <button type="button" id="lastchair-open" class="lc-trigger">
+        <span class="lc-mark" aria-hidden="true">◆</span>
+        <span class="lc-text">
+          <span class="lc-label">LAST CHAIR</span>
+          <span class="lc-sub">The dream mountain, open for a run.</span>
+        </span>
+        <span class="lc-arrow" aria-hidden="true">↗</span>
+      </button>
+      <!-- resort pass stubs -->
+      <div style="margin-top:34px">
+        <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:18px;flex-wrap:wrap">
+          <div style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:rgba(243,234,217,.62)">THE PASS DRAWER</div>
+          <div style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:rgba(243,234,217,.6)">● great day&nbsp;&nbsp;■ could live here&nbsp;&nbsp;◆ never want to leave</div>
+        </div>
+        <div class="r-passes" style="display:flex;flex-wrap:wrap;gap:6px;padding-top:10px">
+
+          <div class="pass-stub" style="position:relative;width:158px;min-height:218px;margin-right:-14px;display:flex;flex-direction:column;background:#f5efe4;border-radius:8px;overflow:hidden;transform:rotate(-4deg);box-shadow:0 8px 20px rgba(0,0,0,.32)">
+            <div style="height:34px;background:#efa85c;display:flex;align-items:center;justify-content:space-between;padding:0 12px">
+              <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#241a2e">DAY PASS</span>
+              <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#241a2e">#1</span>
+            </div>
+            <div style="position:absolute;top:20px;left:50%;margin-left:-8px;width:16px;height:16px;border-radius:50%;background:#171009;border:1px solid rgba(0,0,0,.25)"></div>
+            <div style="padding:26px 14px 0;flex:1;display:flex;flex-direction:column">
+              <div style="font:400 22px/1.05 'Instrument Serif',serif;color:#241a2e">Alta</div>
+              <div style="font:400 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#6b5f57;margin-top:4px">UTAH · ◆</div>
+              <div style="font:400 italic 13px/1.4 'Instrument Serif',serif;color:#5a4f5f;margin-top:12px">The one. Deep, steep, skiers only.</div>
+              <div style="flex:1"></div>
+              <div style="border-top:1.5px dashed rgba(36,26,46,.25);margin-top:14px;padding-top:8px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font:600 8px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#6b5f57">ADMIT ONE</span>
+                <span style="display:flex;gap:1.5px"><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pass-stub" style="position:relative;width:158px;min-height:218px;margin-right:-14px;display:flex;flex-direction:column;background:#f5efe4;border-radius:8px;overflow:hidden;transform:rotate(3deg);box-shadow:0 8px 20px rgba(0,0,0,.32)">
+            <div style="height:34px;background:#efa85c;display:flex;align-items:center;justify-content:space-between;padding:0 12px">
+              <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#241a2e">DAY PASS</span>
+              <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#241a2e">◆</span>
+            </div>
+            <div style="position:absolute;top:20px;left:50%;margin-left:-8px;width:16px;height:16px;border-radius:50%;background:#171009;border:1px solid rgba(0,0,0,.25)"></div>
+            <div style="padding:26px 14px 0;flex:1;display:flex;flex-direction:column">
+              <div style="font:400 22px/1.05 'Instrument Serif',serif;color:#241a2e">Jackson Hole</div>
+              <div style="font:400 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#6b5f57;margin-top:4px">WYOMING · ◆</div>
+              <div style="font:400 italic 13px/1.4 'Instrument Serif',serif;color:#5a4f5f;margin-top:12px">Big, mean, unforgettable.</div>
+              <div style="flex:1"></div>
+              <div style="border-top:1.5px dashed rgba(36,26,46,.25);margin-top:14px;padding-top:8px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font:600 8px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#6b5f57">ADMIT ONE</span>
+                <span style="display:flex;gap:1.5px"><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pass-stub" style="position:relative;width:158px;min-height:218px;margin-right:-14px;display:flex;flex-direction:column;background:#f5efe4;border-radius:8px;overflow:hidden;transform:rotate(-2.5deg);box-shadow:0 8px 20px rgba(0,0,0,.32)">
+            <div style="height:34px;background:#b48fd9;display:flex;align-items:center;justify-content:space-between;padding:0 12px">
+              <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#241a2e">DAY PASS</span>
+              <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#241a2e">■</span>
+            </div>
+            <div style="position:absolute;top:20px;left:50%;margin-left:-8px;width:16px;height:16px;border-radius:50%;background:#171009;border:1px solid rgba(0,0,0,.25)"></div>
+            <div style="padding:26px 14px 0;flex:1;display:flex;flex-direction:column">
+              <div style="font:400 22px/1.05 'Instrument Serif',serif;color:#241a2e">Big Sky</div>
+              <div style="font:400 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#6b5f57;margin-top:4px">MONTANA · ■</div>
+              <div style="font:400 italic 13px/1.4 'Instrument Serif',serif;color:#5a4f5f;margin-top:12px">Endless terrain, room to grow into.</div>
+              <div style="flex:1"></div>
+              <div style="border-top:1.5px dashed rgba(36,26,46,.25);margin-top:14px;padding-top:8px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font:600 8px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#6b5f57">ADMIT ONE</span>
+                <span style="display:flex;gap:1.5px"><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pass-stub" style="position:relative;width:158px;min-height:218px;margin-right:-14px;display:flex;flex-direction:column;background:#f5efe4;border-radius:8px;overflow:hidden;transform:rotate(4deg);box-shadow:0 8px 20px rgba(0,0,0,.32)">
+            <div style="height:34px;background:#7fb0d9;display:flex;align-items:center;justify-content:space-between;padding:0 12px">
+              <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#241a2e">DAY PASS</span>
+              <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#241a2e">●</span>
+            </div>
+            <div style="position:absolute;top:20px;left:50%;margin-left:-8px;width:16px;height:16px;border-radius:50%;background:#171009;border:1px solid rgba(0,0,0,.25)"></div>
+            <div style="padding:26px 14px 0;flex:1;display:flex;flex-direction:column">
+              <div style="font:400 22px/1.05 'Instrument Serif',serif;color:#241a2e">Snowbird</div>
+              <div style="font:400 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#6b5f57;margin-top:4px">UTAH · ●</div>
+              <div style="font:400 italic 13px/1.4 'Instrument Serif',serif;color:#5a4f5f;margin-top:12px">Serious and steep. Alta’s next-door twin.</div>
+              <div style="flex:1"></div>
+              <div style="border-top:1.5px dashed rgba(36,26,46,.25);margin-top:14px;padding-top:8px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font:600 8px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#6b5f57">ADMIT ONE</span>
+                <span style="display:flex;gap:1.5px"><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pass-stub" style="position:relative;width:158px;min-height:218px;margin-right:-14px;display:flex;flex-direction:column;background:#f5efe4;border-radius:8px;overflow:hidden;transform:rotate(-3.5deg);box-shadow:0 8px 20px rgba(0,0,0,.32)">
+            <div style="height:34px;background:#7fb0d9;display:flex;align-items:center;justify-content:space-between;padding:0 12px">
+              <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#241a2e">DAY PASS</span>
+              <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#241a2e">●</span>
+            </div>
+            <div style="position:absolute;top:20px;left:50%;margin-left:-8px;width:16px;height:16px;border-radius:50%;background:#171009;border:1px solid rgba(0,0,0,.25)"></div>
+            <div style="padding:26px 14px 0;flex:1;display:flex;flex-direction:column">
+              <div style="font:400 22px/1.05 'Instrument Serif',serif;color:#241a2e">Brighton</div>
+              <div style="font:400 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#6b5f57;margin-top:4px">UTAH · ●</div>
+              <div style="font:400 italic 13px/1.4 'Instrument Serif',serif;color:#5a4f5f;margin-top:12px">Local night laps, no fuss.</div>
+              <div style="flex:1"></div>
+              <div style="border-top:1.5px dashed rgba(36,26,46,.25);margin-top:14px;padding-top:8px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font:600 8px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#6b5f57">ADMIT ONE</span>
+                <span style="display:flex;gap:1.5px"><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pass-stub" style="position:relative;width:158px;min-height:218px;margin-right:-14px;display:flex;flex-direction:column;background:#f5efe4;border-radius:8px;overflow:hidden;transform:rotate(2deg);box-shadow:0 8px 20px rgba(0,0,0,.32)">
+            <div style="height:34px;background:#7fb0d9;display:flex;align-items:center;justify-content:space-between;padding:0 12px">
+              <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#241a2e">DAY PASS</span>
+              <span style="font:600 9px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#241a2e">●</span>
+            </div>
+            <div style="position:absolute;top:20px;left:50%;margin-left:-8px;width:16px;height:16px;border-radius:50%;background:#171009;border:1px solid rgba(0,0,0,.25)"></div>
+            <div style="padding:26px 14px 0;flex:1;display:flex;flex-direction:column">
+              <div style="font:400 22px/1.05 'Instrument Serif',serif;color:#241a2e">Deer Valley</div>
+              <div style="font:400 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#6b5f57;margin-top:4px">UTAH · ●</div>
+              <div style="font:400 italic 13px/1.4 'Instrument Serif',serif;color:#5a4f5f;margin-top:12px">Groomers and luxury. No snowboards.</div>
+              <div style="flex:1"></div>
+              <div style="border-top:1.5px dashed rgba(36,26,46,.25);margin-top:14px;padding-top:8px;display:flex;align-items:center;justify-content:space-between">
+                <span style="font:600 8px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#6b5f57">ADMIT ONE</span>
+                <span style="display:flex;gap:1.5px"><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:2px;height:11px;background:#241a2e;display:inline-block"></span><span style="width:1px;height:11px;background:#241a2e;display:inline-block"></span></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- photos -->
+    <div style="margin-top:56px;border-top:1px solid rgba(180,143,217,.3);padding-top:30px">
+      <h2 style="margin:0 0 26px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:#b48fd9">⌘ PROOF</h2>
+      <div class="r-photos" style="display:flex;gap:34px;align-items:flex-start;flex-wrap:wrap">
+        <div style="transform:rotate(-2deg);background:#f5efe4;padding:10px 10px 34px;border-radius:4px;box-shadow:0 10px 30px rgba(0,0,0,.4)">
+          <img class="proof-img" src="/assets/proof-steep.v1.webp" alt="Snow-buried pines on a steep glade, ski tip just in frame" width="250" height="210" loading="lazy" style="width:250px;height:210px;object-fit:cover;display:block">
+          <div style="font:400 11px 'IBM Plex Mono',monospace;color:#171009;margin-top:12px;text-align:center">somewhere steep</div>
+        </div>
+        <div style="transform:rotate(1.6deg);background:#f5efe4;padding:10px 10px 34px;border-radius:4px;box-shadow:0 10px 30px rgba(0,0,0,.4);margin-top:22px">
+          <img class="proof-img" src="/assets/proof-woods.v1.webp" alt="Sitting on a rocky summit swallowed by fog, one small pine visible" width="250" height="210" loading="lazy" style="width:250px;height:210px;object-fit:cover;display:block">
+          <div style="font:400 11px 'IBM Plex Mono',monospace;color:#171009;margin-top:12px;text-align:center">the woods, probably</div>
+        </div>
+        <div style="transform:rotate(-1.2deg);background:#f5efe4;padding:10px 10px 34px;border-radius:4px;box-shadow:0 10px 30px rgba(0,0,0,.4);margin-top:8px">
+          <img class="proof-img" src="/assets/proof-hobbies.v1.webp" alt="Standing beside the Godangbong summit stone, 801.5 m, in Busan, South Korea" width="250" height="210" loading="lazy" style="width:250px;height:210px;object-fit:cover;display:block">
+          <div style="font:400 11px 'IBM Plex Mono',monospace;color:#171009;margin-top:12px;text-align:center">proof of hobbies</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer class="gb-footer">
+  <span class="gb-copyright">© 2026 GEORGE BROTHERS — NASHVILLE, TN</span>
+  <div class="gb-footer-links">
+    <a href="/work#ideas" class="hv-pill hv-pill-glow">Got an idea? ↗</a>
+    
+  </div>
+</footer>
+
+<!-- ============ LAST CHAIR SCENE DIALOG ============ -->
+<dialog id="ski-dialog" aria-labelledby="lc-dialog-title">
+  <div class="lc-card" id="lc-card">
+    <button type="button" class="lc-close" id="lc-close" aria-label="Close the mountain">&times;</button>
+    <div class="lc-head">
+      <span class="lc-head-label" id="lc-dialog-title">◆ LAST CHAIR</span>
+      <span class="lc-head-sub">A dream mountain, somewhere out west.</span>
+    </div>
+    <div class="lc-stage">
+      <svg id="ski-svg" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="lcSnow" cx="47%" cy="24%" r="80%">
+            <stop offset="0%" stop-color="#f4eefb"></stop>
+            <stop offset="38%" stop-color="#e2d7f0"></stop>
+            <stop offset="72%" stop-color="#c6b6de"></stop>
+            <stop offset="100%" stop-color="#9e8fbe"></stop>
+          </radialGradient>
+          <radialGradient id="lcBowl" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fbf8ff" stop-opacity=".9"></stop>
+            <stop offset="58%" stop-color="#f0e9fb" stop-opacity=".32"></stop>
+            <stop offset="100%" stop-color="#f0e9fb" stop-opacity="0"></stop>
+          </radialGradient>
+          <radialGradient id="lcWarm" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#f6d9a8" stop-opacity=".55"></stop>
+            <stop offset="55%" stop-color="#efc07f" stop-opacity=".2"></stop>
+            <stop offset="100%" stop-color="#efc07f" stop-opacity="0"></stop>
+          </radialGradient>
+          <radialGradient id="lcVignette" cx="50%" cy="42%" r="72%">
+            <stop offset="62%" stop-color="#181022" stop-opacity="0"></stop>
+            <stop offset="100%" stop-color="#100a1a" stop-opacity=".6"></stop>
+          </radialGradient>
+          <!-- alpenglow: warm dusk light pooling on the upper bowl -->
+          <radialGradient id="lcAlpen" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#f7cf9e" stop-opacity=".5"></stop>
+            <stop offset="52%" stop-color="#e9a9b0" stop-opacity=".22"></stop>
+            <stop offset="100%" stop-color="#c98fb8" stop-opacity="0"></stop>
+          </radialGradient>
+          <!-- run / travel paths (also drive the skiers) -->
+          <path id="pRunL" fill="none" d="M360,140 C300,230 452,270 382,352 C322,432 470,500 496,580"></path>
+          <path id="pRunC" fill="none" d="M500,110 C560,200 430,262 520,346 C600,426 470,506 506,582"></path>
+          <path id="pRunR" fill="none" d="M662,158 C724,238 620,300 680,360 C724,416 582,512 514,582"></path>
+          <path id="pPark" fill="none" d="M704,150 C748,228 690,284 700,330 C705,360 693,392 702,422 C716,486 586,522 514,584"></path>
+          <!-- chairlift cable loop -->
+          <path id="pCable" fill="none" d="M300,150 L628,548 L644,540 L316,142 Z"></path>
+          <!-- cat-track traverse (drives the night groomer) -->
+          <path id="pCat" fill="none" d="M232,452 C330,410 430,438 520,404 C610,372 700,398 786,360"></path>
+        </defs>
+
+        <!-- deep dusk ground -->
+        <rect x="0" y="0" width="1000" height="620" fill="#181022"></rect>
+
+        <!-- mountain snow footprint (top-down) -->
+        <path fill="url(#lcSnow)" d="M182,548 C120,442 150,296 252,178 C332,86 432,66 502,68 C592,70 694,96 764,192 C846,306 872,436 812,548 C762,606 560,606 500,606 C420,606 242,606 182,548 Z"></path>
+        <!-- lower shadow wrap -->
+        <path fill="#5a4680" opacity=".16" d="M172,470 C170,496 172,522 182,548 C242,606 420,606 500,606 C560,606 762,606 812,548 C820,522 824,494 822,470 C700,540 320,540 172,470 Z"></path>
+        <!-- alpenglow band: warm dusk light on the upper bowl (breathes via JS) -->
+        <ellipse id="lc-alpen" cx="492" cy="128" rx="214" ry="96" fill="url(#lcAlpen)" opacity=".7" pointer-events="none"></ellipse>
+        <!-- upper bowl glow + rim -->
+        <ellipse cx="492" cy="150" rx="196" ry="86" fill="url(#lcBowl)"></ellipse>
+        <ellipse cx="492" cy="150" rx="176" ry="72" fill="none" stroke="#cdbfe6" stroke-opacity=".26" stroke-width="1.2"></ellipse>
+
+        <!-- cat-track traverse: a thin groomed line crossing the pitch -->
+        <use href="#pCat" fill="none" stroke="#f6f0fd" stroke-opacity=".26" stroke-width="9" stroke-linecap="round"></use>
+        <use href="#pCat" fill="none" stroke="#b7a6d6" stroke-opacity=".3" stroke-width="1" stroke-dasharray="2 7" stroke-linecap="round"></use>
+
+        <!-- trees (populated by about.js; sits on snow, under runs/skiers) -->
+        <g id="ski-trees"></g>
+
+        <!-- groomed runs: soft ribbons + seams -->
+        <g stroke-linecap="round" fill="none">
+          <use href="#pRunL" stroke="#f6f0fd" stroke-opacity=".5" stroke-width="30"></use>
+          <use href="#pRunC" stroke="#f6f0fd" stroke-opacity=".5" stroke-width="32"></use>
+          <use href="#pRunR" stroke="#f6f0fd" stroke-opacity=".5" stroke-width="28"></use>
+          <use href="#pPark" stroke="#f6f0fd" stroke-opacity=".4" stroke-width="24"></use>
+        </g>
+        <g fill="none">
+          <use href="#pRunL" stroke="#b7a6d6" stroke-opacity=".42" stroke-width="1.3"></use>
+          <use href="#pRunC" stroke="#b7a6d6" stroke-opacity=".42" stroke-width="1.3"></use>
+          <use href="#pRunR" stroke="#b7a6d6" stroke-opacity=".42" stroke-width="1.3"></use>
+        </g>
+
+        <!-- mogul field on the steep upper pitch (bumps built by about.js) -->
+        <g id="ski-terrain"></g>
+
+        <!-- terrain park -->
+        <g>
+          <rect x="628" y="300" width="150" height="140" rx="16" fill="#efe7fa" fill-opacity=".14" stroke="#b48fd9" stroke-opacity=".26" stroke-width="1.2" stroke-dasharray="5 6"></rect>
+          <!-- tabletop jump: bright takeoff lip, table, landing shadow -->
+          <path d="M672,360 L724,360 L714,372 L682,372 Z" fill="#ffffff" fill-opacity=".68"></path>
+          <rect x="678" y="372" width="40" height="20" rx="4" fill="#d9ccee" fill-opacity=".6"></rect>
+          <path d="M678,392 L718,392 L710,404 L686,404 Z" fill="#8f7fb2" fill-opacity=".32"></path>
+          <!-- jib rail on posts -->
+          <g>
+            <rect x="648" y="326" width="46" height="7" rx="3.5" transform="rotate(10 671 329)" fill="#e7ddf5"></rect>
+            <line x1="652" y1="333" x2="652" y2="343" stroke="#3a2d52" stroke-width="2.2"></line>
+            <line x1="690" y1="340" x2="690" y2="350" stroke="#3a2d52" stroke-width="2.2"></line>
+          </g>
+        </g>
+
+        <!-- long soft dusk shadows cast from lift towers (light from upper-left) -->
+        <g fill="#100a1a" opacity=".2">
+          <ellipse cx="392" cy="253" rx="15" ry="4.6" transform="rotate(28 392 253)"></ellipse>
+          <ellipse cx="474" cy="352" rx="15" ry="4.6" transform="rotate(28 474 352)"></ellipse>
+          <ellipse cx="556" cy="452" rx="15" ry="4.6" transform="rotate(28 556 452)"></ellipse>
+          <ellipse cx="312" cy="160" rx="22" ry="6.5" transform="rotate(28 312 160)"></ellipse>
+        </g>
+
+        <!-- chairlift: cable strands + towers + top station -->
+        <line x1="300" y1="150" x2="628" y2="548" stroke="#2a1f3d" stroke-width="2.2"></line>
+        <line x1="316" y1="142" x2="644" y2="540" stroke="#2a1f3d" stroke-width="1.6" opacity=".7"></line>
+        <g fill="#2a1f3d">
+          <circle cx="382" cy="249" r="2.6"></circle>
+          <circle cx="464" cy="348" r="2.6"></circle>
+          <circle cx="546" cy="448" r="2.6"></circle>
+        </g>
+        <g>
+          <rect x="276" y="132" width="42" height="30" rx="5" fill="#3a2d52" stroke="#b48fd9" stroke-opacity=".5" stroke-width="1"></rect>
+          <circle cx="297" cy="147" r="6.5" fill="#241a30" stroke="#cdbfe6" stroke-width="1.4"></circle>
+        </g>
+
+        <!-- base lodge + warm glow -->
+        <ellipse cx="558" cy="556" rx="152" ry="72" fill="url(#lcWarm)"></ellipse>
+        <g>
+          <!-- lift base terminal -->
+          <rect x="606" y="524" width="52" height="34" rx="5" fill="#3a2d52" stroke="#b48fd9" stroke-opacity=".5" stroke-width="1"></rect>
+          <circle cx="632" cy="541" r="7.5" fill="#241a30" stroke="#cdbfe6" stroke-width="1.4"></circle>
+          <!-- lodge buildings + warm windows -->
+          <rect x="452" y="536" width="46" height="34" rx="4" fill="#4a3a5e"></rect>
+          <rect x="500" y="544" width="40" height="30" rx="4" fill="#3f3151"></rect>
+          <rect x="430" y="548" width="26" height="24" rx="3" fill="#574468"></rect>
+          <!-- chimney (smoke drifts up from here, spawned by about.js) -->
+          <rect x="486" y="528" width="6" height="10" rx="1.5" fill="#2f2440"></rect>
+          <rect class="lc-win" x="460" y="546" width="7" height="8" rx="1.2" fill="#f6d29a"></rect>
+          <rect class="lc-win" x="474" y="546" width="7" height="8" rx="1.2" fill="#f6d29a"></rect>
+          <rect class="lc-win" x="508" y="552" width="6.5" height="7" rx="1.2" fill="#f6d29a"></rect>
+          <rect class="lc-win" x="521" y="552" width="6.5" height="7" rx="1.2" fill="#efc07f"></rect>
+        </g>
+
+        <!-- depth vignette (breathes via JS; under moving elements) -->
+        <rect id="lc-vignette" x="0" y="0" width="1000" height="620" fill="url(#lcVignette)" pointer-events="none"></rect>
+
+        <!-- dynamic layers (populated + driven by about.js) -->
+        <g id="ski-cat"></g>
+        <g id="ski-trails"></g>
+        <g id="ski-chairs"></g>
+        <g id="ski-skiers"></g>
+        <g id="ski-fx"></g>
+        <!-- drifting snow sits above the scene as soft atmosphere -->
+        <g id="ski-snow" pointer-events="none"></g>
+      </svg>
+    </div>
+  </div>
+</dialog>
+
+</body>
+</html>

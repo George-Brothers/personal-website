@@ -1,0 +1,9 @@
+# .vercelignore replaces .gitignore for upload exclusion — keep both in sync.
+# With framework:null every uploaded file is publicly served, so exclude
+# anything that isn't site output.
+.env*
+node_modules
+.DS_Store
+photos-originals/
+.playwright-mcp/
+docs/

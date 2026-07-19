@@ -1,0 +1,101 @@
+/* ============================================================
+   George Brothers — site.css
+   Shared chrome + resets for all pages. Page-specific styles
+   (art, keyframes, layout) stay in each page's own <style> block.
+   ============================================================ */
+
+/* ===== self-hosted fonts (latin subsets; CJK glyphs fall through to system fonts) ===== */
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/instrument-serif-400.v1.woff2') format('woff2')}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url('/assets/fonts/instrument-serif-italic.v1.woff2') format('woff2')}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:300 700;font-display:swap;src:url('/assets/fonts/space-grotesk-var.v1.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/ibm-plex-mono-400.v1.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url('/assets/fonts/ibm-plex-mono-500.v1.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:italic;font-weight:400;font-display:swap;src:url('/assets/fonts/ibm-plex-mono-italic.v1.woff2') format('woff2')}
+
+html{color-scheme:dark}
+body{margin:0;background:#171009;font-family:'Space Grotesk',sans-serif}
+/* clip (not hidden): kills stray horizontal overflow on mobile without
+   creating a scroll container, so position:sticky keeps working */
+html,body{overflow-x:clip}
+/* Inline display styles (style="display:flex" etc.) beat the UA's
+   [hidden]{display:none} rule — enforce it so hidden always wins. */
+[hidden]{display:none !important}
+a{color:inherit;text-decoration:none}
+a:hover{color:inherit}
+
+/* Button reset — converted <a onClick> -> <button> keeps looking identical */
+button{font:inherit;color:inherit;background:none;border:none;padding:0;text-align:inherit;cursor:pointer}
+
+/* Focus visibility */
+:focus-visible{outline:2px solid #efa85c;outline-offset:3px}
+:focus:not(:focus-visible){outline:none}
+
+/* Skip link — visually hidden until focused */
+.skip-link{position:absolute;left:16px;top:-52px;z-index:100;background:#f3ead9;color:#171009;font:500 13px 'Space Grotesk',sans-serif;padding:10px 18px;border-radius:0 0 10px 10px;transition:top .2s}
+.skip-link:focus{top:0}
+
+/* ===== shared keyframes ===== */
+@keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
+@keyframes fadeup{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:translateY(0)}}
+
+/* ============================================================
+   Canonical nav (.gb-nav) — donor: Work.dc.html
+   ============================================================ */
+.gb-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:22px 64px;position:relative;z-index:3}
+
+.gb-wordmark{font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.18em;border:1px solid rgba(243,234,217,.45);padding:5px 10px;border-radius:3px;cursor:pointer}
+
+.nav-links{display:flex;gap:10px;font:500 12px 'Space Grotesk',sans-serif;letter-spacing:.22em;color:rgba(243,234,217,.72)}
+.nav-links a{padding:8px 18px;border:1px solid transparent;border-radius:999px;transition:color .3s,border-color .3s;cursor:pointer}
+.nav-links a[aria-current="page"]{border-color:rgba(243,234,217,.55);color:#f3ead9;cursor:default}
+
+.gb-nav-right{display:flex;align-items:center;gap:14px}
+
+.nav-burger{display:none;place-items:center;gap:4px;width:44px;height:44px;border:1px solid rgba(243,234,217,.4);border-radius:10px;cursor:pointer;grid-template-rows:repeat(3,2px);align-content:center}
+.nav-burger span{width:16px;height:2px;background:#f3ead9;border-radius:2px;display:block}
+
+@media (max-width:900px){
+  .nav-links{display:none}
+  .nav-burger{display:grid}
+  .gb-nav,.gb-footer{padding-left:clamp(18px,4.5vw,64px);padding-right:clamp(18px,4.5vw,64px)}
+}
+
+/* ============================================================
+   Mobile menu (#mobile-menu) — full-screen overlay
+   JS toggles: remove [hidden] then add .open (next frame) to open;
+   remove .open then set [hidden] after the fade to close.
+   ============================================================ */
+#mobile-menu{position:fixed;inset:0;z-index:80;background:rgba(23,16,9,.97);flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+#mobile-menu[hidden]{display:none}
+#mobile-menu:not([hidden]){display:flex}
+#mobile-menu.open{opacity:1;pointer-events:auto}
+.mobile-menu-close{position:absolute;top:16px;right:16px;padding:10px;line-height:1;font:400 26px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.7);cursor:pointer;transition:color .3s}
+.mobile-menu-close:hover,.mobile-menu-close:focus-visible{color:#f3ead9}
+#mobile-menu a{font:400 34px 'Instrument Serif',serif;color:#f3ead9}
+#mobile-menu a[aria-current="page"]{color:#efa85c}
+
+/* ============================================================
+   Canonical footer (.gb-footer) — donor: Connect/Now shape
+   ============================================================ */
+.gb-footer{border-top:1px solid rgba(243,234,217,.14);padding:34px 64px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.gb-copyright{font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)}
+.gb-footer-links{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.gb-footer-links a{font:500 13px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);border:1px solid rgba(243,234,217,.3);border-radius:999px;padding:10px 20px;cursor:pointer;transition:border-color .3s,color .3s,box-shadow .3s}
+
+/* ============================================================
+   Shared hover classes (style-hover conversion targets)
+   Payloads kept verbatim (incl. !important) per the source
+   runtime's createPseudoSheet semantics — see spec §2.3.
+   ============================================================ */
+.hv-nav:hover,.hv-nav:focus-visible{color:#f3ead9 !important;border-color:rgba(243,234,217,.55) !important}
+.hv-pill:hover,.hv-pill:focus-visible{border-color:#efa85c !important;color:#efa85c !important}
+.hv-pill-glow:hover,.hv-pill-glow:focus-visible{box-shadow:0 0 18px rgba(239,168,92,.38) !important}
+.hv-cta:hover,.hv-cta:focus-visible{background:#efa85c !important}
+
+/* ============================================================
+   Reduced motion — duration-clamp (not animation:none) so
+   fill-mode end states still apply.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition:none !important}
+}

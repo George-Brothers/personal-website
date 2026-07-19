@@ -1,0 +1,284 @@
+/* ============================================================
+   George Brothers — scenes.css
+   Living-diorama card illustrations, shared by index + work.
+   Each scene is an inline SVG injected by /js/scenes.js into a
+   [data-scene] host. Grammar:
+     idle     — ambient-only motion (always running)
+     .play    — narrative loop (hover/focus; permanent on touch)
+     .dtl     — background detail, hidden when data-variant="mini"
+   All motion is transform/opacity (plus a few tiny fill fades).
+   Narrative anims share one clock (--scnT) and 0% == 100% ==
+   rest pose, so adding/removing .play never snaps.
+   NOTE: rules like `.gd-d2{animation-delay:…}` must stay AFTER
+   the rule that sets the animation shorthand (shorthand resets
+   delay to 0; the later rule re-applies it).
+   ============================================================ */
+
+.scn-host{--scnT:4.4s;position:relative}
+.scn-host[data-variant="mini"]{--scnT:3.4s}
+.scn-host[data-variant="mini"] .dtl{display:none}
+.scn-host[data-variant="mini"] .ws-page{transform:translate(24px,0)}
+.scn-host svg{width:100%;height:100%;display:block}
+.wf-art.scn-host svg{width:200px;height:160px}
+.scn-host svg *{transform-box:fill-box}
+.scn-host text{font-family:'IBM Plex Mono',monospace;font-weight:500}
+.scn-host text.tserif{font-family:'Instrument Serif',serif;font-weight:400}
+
+/* warm hover wash — replaces the old rainbow/saturate hover */
+.scn-host .warm{opacity:0;transition:opacity .8s ease}
+.scn-host.play .warm{opacity:1}
+
+/* loop clock — lets JS end the loop only at an iteration boundary */
+.scn-host.play .scn-clock{animation:scn-clock var(--scnT) linear infinite}
+@keyframes scn-clock{0%{opacity:0}100%{opacity:.01}}
+
+/* ============================================================
+   1 · garden — Chief of Learning
+   ============================================================ */
+/* idle */
+.gd-rays{animation:gd-rays 60s linear infinite;transform-origin:center}
+@keyframes gd-rays{to{transform:rotate(360deg)}}
+.gd-cloud{animation:gd-cloud 26s ease-in-out infinite alternate}
+@keyframes gd-cloud{from{transform:translateX(0)}to{transform:translateX(18px)}}
+.gd-fly{animation:gd-fly 11s ease-in-out infinite}
+@keyframes gd-fly{0%,100%{transform:translate(0,0)}25%{transform:translate(-13px,-9px)}50%{transform:translate(-22px,1px)}75%{transform:translate(-9px,7px)}}
+.gd-wingL{animation:gd-flap .9s ease-in-out infinite alternate;transform-origin:right center}
+.gd-wingR{animation:gd-flap .9s ease-in-out infinite alternate;transform-origin:left center}
+@keyframes gd-flap{from{transform:scaleX(1)}to{transform:scaleX(.3)}}
+.gd-sw1{animation:gd-sway 3.6s ease-in-out infinite alternate;transform-origin:center bottom}
+.gd-sw2{animation:gd-sway 4.3s ease-in-out infinite alternate;transform-origin:center bottom}
+.gd-sw3{animation:gd-sway 3.9s ease-in-out infinite alternate;transform-origin:center bottom}
+@keyframes gd-sway{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}
+.gd-body{animation:gd-breathe 3.8s ease-in-out infinite alternate;transform-origin:center bottom}
+@keyframes gd-breathe{from{transform:scaleY(1)}to{transform:scaleY(1.014)}}
+/* narrative */
+.scn-host.play .gd-arm{animation:gd-arm var(--scnT) ease-in-out infinite;transform-origin:left center}
+@keyframes gd-arm{0%,8%{transform:rotate(0deg)}16%,72%{transform:rotate(-18deg)}84%,100%{transform:rotate(0deg)}}
+.scn-host.play .gd-can{animation:gd-can var(--scnT) ease-in-out infinite;transform-origin:left center}
+@keyframes gd-can{0%,16%{transform:rotate(0deg)}23%,58%{transform:rotate(34deg)}68%,100%{transform:rotate(0deg)}}
+.scn-host.play .gd-dropx{animation:gd-dropx var(--scnT) linear infinite}
+@keyframes gd-dropx{0%,26%{transform:translateX(0);opacity:0}27%{opacity:1}32%{transform:translateX(2.5px);opacity:1}32.6%{opacity:0}33%{transform:translateX(0)}34%{opacity:1}39%{transform:translateX(2.5px);opacity:1}39.6%{opacity:0}40%{transform:translateX(0)}41%{opacity:1}46%{transform:translateX(2.5px);opacity:1}46.6%{opacity:0}47%,100%{transform:translateX(0);opacity:0}}
+.scn-host.play .gd-dropy{animation:gd-dropy var(--scnT) linear infinite}
+@keyframes gd-dropy{0%,26%{transform:translateY(0);animation-timing-function:cubic-bezier(.5,0,1,1)}32%{transform:translateY(17px)}33%{transform:translateY(0);animation-timing-function:cubic-bezier(.5,0,1,1)}39%{transform:translateY(17px)}40%{transform:translateY(0);animation-timing-function:cubic-bezier(.5,0,1,1)}46%{transform:translateY(17px)}47%,100%{transform:translateY(0)}}
+.scn-host.play .gd-d2{animation-delay:calc(var(--scnT)*.04)}
+.scn-host.play .gd-d3{animation-delay:calc(var(--scnT)*.08)}
+.scn-host.play .gd-wet{animation:gd-wet var(--scnT) ease-in-out infinite}
+@keyframes gd-wet{0%,30%{opacity:0}40%,74%{opacity:.75}90%,100%{opacity:0}}
+.scn-host.play .gd-grow{animation:gd-grow var(--scnT) ease-in-out infinite;transform-origin:center bottom}
+@keyframes gd-grow{0%,30%{transform:scale(.28);animation-timing-function:cubic-bezier(.3,1.25,.5,1)}48%,84%{transform:scale(1)}96%,100%{transform:scale(.28)}}
+.scn-host.play .gd-bud{animation:gd-bud var(--scnT) ease-in-out infinite;transform-origin:center}
+@keyframes gd-bud{0%,50%{transform:scale(0);opacity:0}58%{transform:scale(1.15);opacity:1}62%,80%{transform:scale(1);opacity:1}90%,100%{transform:scale(0);opacity:0}}
+.scn-host.play .gd-gl1{animation:gd-glyph var(--scnT) ease-in-out infinite}
+.scn-host.play .gd-gl2{animation:gd-glyph var(--scnT) ease-in-out calc(var(--scnT)*.055) infinite}
+.scn-host.play .gd-gl3{animation:gd-glyph var(--scnT) ease-in-out calc(var(--scnT)*.11) infinite}
+.scn-host.play .gd-gl4{animation:gd-glyph var(--scnT) ease-in-out calc(var(--scnT)*.165) infinite}
+@keyframes gd-glyph{0%,44%{fill:rgba(243,234,217,.5)}50%,62%{fill:#efd98a}72%,100%{fill:rgba(243,234,217,.5)}}
+.scn-host.play .gd-dot1{animation:gd-dot var(--scnT) ease-in-out infinite}
+.scn-host.play .gd-dot2{animation:gd-dot var(--scnT) ease-in-out calc(var(--scnT)*.055) infinite}
+.scn-host.play .gd-dot3{animation:gd-dot var(--scnT) ease-in-out calc(var(--scnT)*.11) infinite}
+.scn-host.play .gd-dot4{animation:gd-dot var(--scnT) ease-in-out calc(var(--scnT)*.165) infinite}
+@keyframes gd-dot{0%,44%{opacity:0}50%,62%{opacity:.22}72%,100%{opacity:0}}
+.scn-host.play .gd-spark{animation:gd-spark var(--scnT) ease-in-out infinite;transform-origin:center}
+@keyframes gd-spark{0%,52%{transform:scale(0);opacity:0}58%{transform:scale(1.15);opacity:1}62%{transform:scale(1);opacity:1}70%,100%{transform:scale(.2);opacity:0}}
+
+/* ============================================================
+   2 · dashboard — Dashboard Pro Max
+   ============================================================ */
+/* idle */
+.db-bob{animation:db-bob 2.6s ease-in-out infinite alternate}
+@keyframes db-bob{from{transform:translateY(0)}to{transform:translateY(-3px)}}
+.db-halo{animation:db-halo 3s ease-in-out infinite alternate}
+@keyframes db-halo{from{opacity:.15}to{opacity:.32}}
+.db-steam{animation:db-steam 3.2s ease-in-out infinite}
+.db-steam.s2{animation-delay:-1.6s}
+@keyframes db-steam{0%{transform:translateY(0);opacity:0}25%{opacity:.5}100%{transform:translateY(-7px);opacity:0}}
+.db-led1{animation:db-led1 2.4s ease-in-out infinite alternate}
+@keyframes db-led1{from{opacity:.25}to{opacity:1}}
+.db-hand{animation:db-hand 30s linear infinite;transform-origin:center bottom}
+@keyframes db-hand{to{transform:rotate(360deg)}}
+/* narrative */
+.scn-host.play .db-orbmove{animation:db-orbmove var(--scnT) ease-in-out infinite}
+@keyframes db-orbmove{0%,4%{transform:translate(0,0)}14%,28%{transform:translate(72px,56px)}40%,46%{transform:translate(40px,16px)}52%{transform:translate(40px,11px)}57%{transform:translate(40px,16px)}72%,100%{transform:translate(0,0)}}
+.scn-host.play .db-scan{animation:db-scan var(--scnT) linear infinite}
+@keyframes db-scan{0%,8%{transform:translateX(0);opacity:0}10%{opacity:.5}22%{transform:translateX(118px);opacity:.5}24%{opacity:0}25%,100%{transform:translateX(0);opacity:0}}
+.scn-host.play .db-tileb{animation:db-tileb var(--scnT) ease-in-out infinite;transform-origin:center}
+@keyframes db-tileb{0%,20%{transform:translate(0,0) rotate(4deg) scale(1);opacity:1}26%,30%{transform:translate(0,-3px) rotate(0deg) scale(1.05);opacity:1}42%{transform:translate(-32px,-49px) rotate(0deg) scale(1.05)}46%,84%{transform:translate(-32px,-46px) rotate(0deg) scale(1);opacity:1}88%{transform:translate(-32px,-46px) rotate(0deg) scale(1);opacity:0}89%{transform:translate(0,0) rotate(4deg) scale(1);opacity:0}94%,100%{transform:translate(0,0) rotate(4deg) scale(1);opacity:1}}
+.scn-host.play .db-plus{animation:db-plus var(--scnT) linear infinite}
+@keyframes db-plus{0%,26%{opacity:.25}34%,90%{opacity:0}96%,100%{opacity:.25}}
+.scn-host.play .db-flash{animation:db-flash var(--scnT) ease-in-out infinite}
+@keyframes db-flash{0%,40%{opacity:0}46%{opacity:.9}60%,100%{opacity:0}}
+.scn-host.play .db-bar1{animation:db-bar1 var(--scnT) ease-in-out infinite;transform-origin:center bottom}
+@keyframes db-bar1{0%,44%{transform:scaleY(.45)}52%{transform:scaleY(1)}56%,86%{transform:scaleY(.92)}92%,100%{transform:scaleY(.45)}}
+.scn-host.play .db-bar2{animation:db-bar2 var(--scnT) ease-in-out infinite;transform-origin:center bottom}
+@keyframes db-bar2{0%,46%{transform:scaleY(.85)}56%,86%{transform:scaleY(.5)}92%,100%{transform:scaleY(.85)}}
+.scn-host.play .db-bar3{animation:db-bar3 var(--scnT) ease-in-out infinite;transform-origin:center bottom}
+@keyframes db-bar3{0%,48%{transform:scaleY(.6)}56%{transform:scaleY(1.1)}60%,86%{transform:scaleY(1.02)}92%,100%{transform:scaleY(.6)}}
+.scn-host.play .db-prog{animation:db-prog var(--scnT) ease-in-out infinite;transform-origin:left center}
+@keyframes db-prog{0%,46%{transform:scaleX(.3)}58%,86%{transform:scaleX(.82)}92%,100%{transform:scaleX(.3)}}
+.scn-host.play .db-led2{animation:db-led2 var(--scnT) linear infinite}
+@keyframes db-led2{0%,48%{fill:rgba(243,234,217,.18)}52%,86%{fill:#8fbf7f}92%,100%{fill:rgba(243,234,217,.18)}}
+.scn-host.play .db-ping{animation:db-ping var(--scnT) ease-out infinite;transform-origin:center}
+@keyframes db-ping{0%,50%{transform:scale(.4);opacity:0}52%{opacity:.7}64%,100%{transform:scale(2.6);opacity:0}}
+.scn-host.play .db-pulse{animation:db-pulse var(--scnT) ease-out infinite}
+@keyframes db-pulse{0%,58%{transform:translateY(0);opacity:0}62%{opacity:1}68%,100%{transform:translateY(-8px);opacity:0}}
+.scn-host.play .db-veil{animation:db-veil var(--scnT) ease-in-out infinite}
+@keyframes db-veil{0%,82%{opacity:0}88%,94%{opacity:.55}100%{opacity:0}}
+
+/* ============================================================
+   3 · guidebook — AI for Beginners
+   ============================================================ */
+/* idle */
+.bk-cone{animation:bk-flicker 4s ease-in-out infinite alternate}
+@keyframes bk-flicker{from{opacity:.5}to{opacity:.6}}
+.bk-mote1{animation:bk-mote 5.5s linear infinite}
+.bk-mote2{animation:bk-mote 7s linear infinite;animation-delay:-3s}
+@keyframes bk-mote{0%{transform:translateY(0);opacity:0}20%{opacity:.55}80%{opacity:.4}100%{transform:translateY(-16px);opacity:0}}
+.bk-led{animation:bk-breathe 2.8s ease-in-out infinite alternate}
+@keyframes bk-breathe{from{opacity:.45}to{opacity:1}}
+.bk-leg1{animation:bk-swing 2.6s ease-in-out infinite alternate;transform-origin:center top}
+.bk-leg2{animation:bk-swing 2.6s ease-in-out infinite alternate;animation-delay:-1.3s;transform-origin:center top}
+@keyframes bk-swing{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+.bk-corner{animation:bk-corner 3.2s ease-in-out infinite alternate;transform-origin:left bottom}
+@keyframes bk-corner{from{transform:rotate(0deg)}to{transform:rotate(-8deg)}}
+/* narrative */
+.scn-host.play .bk-lean{animation:bk-lean var(--scnT) ease-in-out infinite;transform-origin:center bottom}
+@keyframes bk-lean{0%,4%{transform:rotate(0deg)}12%,62%{transform:rotate(3.5deg)}74%,100%{transform:rotate(0deg)}}
+.scn-host.play .bk-arm{animation:bk-arm var(--scnT) ease-in-out infinite;transform-origin:left center}
+@keyframes bk-arm{0%,4%{transform:rotate(0deg)}12%,24%{transform:rotate(-9deg)}34%,100%{transform:rotate(0deg)}}
+.scn-host.play .bk-flip{animation:bk-flip var(--scnT) ease-in-out infinite;transform-origin:left center}
+@keyframes bk-flip{0%,10%{transform:scaleX(1);opacity:0}11%,12%{transform:scaleX(1);opacity:1}26%,84%{transform:scaleX(-.94);opacity:1}90%{transform:scaleX(-.94);opacity:0}91%,100%{transform:scaleX(1);opacity:0}}
+.scn-host.play .bk-diag{animation:bk-diag var(--scnT) ease-in-out infinite}
+@keyframes bk-diag{0%,24%{opacity:0}30%,80%{opacity:1}88%,100%{opacity:0}}
+.scn-host.play .bk-ideax{animation:bk-ideax var(--scnT) linear infinite}
+@keyframes bk-ideax{0%,32%{transform:translateX(0);opacity:0}34%{opacity:1}52%{transform:translateX(36px);opacity:1}54%,100%{transform:translateX(36px);opacity:0}}
+.scn-host.play .bk-ideay{animation:bk-ideay var(--scnT) linear infinite}
+@keyframes bk-ideay{0%,32%{transform:translateY(0);animation-timing-function:cubic-bezier(.2,.7,.4,1)}40%{transform:translateY(-24px);animation-timing-function:cubic-bezier(.5,0,.8,.4)}52%,54%{transform:translateY(-10px)}55%,100%{transform:translateY(0)}}
+.scn-host.play .bk-hop{animation:bk-hop var(--scnT) ease-in-out infinite;transform-origin:center bottom}
+@keyframes bk-hop{0%,52%{transform:translateY(0) scale(1)}55%{transform:translateY(-4px) scale(1)}58%{transform:translateY(0) scale(1.07,.93)}61%,100%{transform:translateY(0) scale(1)}}
+.scn-host.play .bk-led{animation:bk-led var(--scnT) linear infinite}
+@keyframes bk-led{0%,52%{fill:rgba(243,234,217,.25)}56%,74%{fill:#efd98a}82%,100%{fill:rgba(243,234,217,.25)}}
+.scn-host.play .bk-ledhalo{animation:bk-ledhalo var(--scnT) ease-in-out infinite}
+@keyframes bk-ledhalo{0%,52%{opacity:0}56%,74%{opacity:.6}82%,100%{opacity:0}}
+.scn-host.play .bk-chest{animation:bk-ledhalo var(--scnT) ease-in-out infinite}
+.scn-host.play .bk-bang{animation:bk-bang var(--scnT) ease-in-out infinite;transform-origin:center bottom}
+@keyframes bk-bang{0%,54%{transform:scale(.4);opacity:0}58%{transform:scale(1.15);opacity:1}62%,76%{transform:scale(1);opacity:1}84%,100%{transform:scale(.4);opacity:0}}
+.scn-host.play .bk-cone{animation:bk-cone var(--scnT) ease-in-out infinite}
+@keyframes bk-cone{0%,54%{opacity:.5}62%,78%{opacity:.85}90%,100%{opacity:.5}}
+
+/* ============================================================
+   4 · website — This Site
+   ============================================================ */
+/* idle */
+.ws-ccaret{animation:ws-caret 1s steps(1) infinite}
+@keyframes ws-caret{0%,49%{opacity:1}50%,100%{opacity:0}}
+.ws-type{animation:ws-typing 3.6s ease-out infinite;transform-origin:left center}
+@keyframes ws-typing{0%{transform:scaleX(.15)}30%{transform:scaleX(.55)}45%{transform:scaleX(.55)}75%,88%{transform:scaleX(1)}100%{transform:scaleX(.15)}}
+.ws-chipbob{animation:ws-chipbob 3s ease-in-out infinite alternate}
+.scn-host.play .ws-chipbob{animation:none}
+@keyframes ws-chipbob{from{transform:translateY(0)}to{transform:translateY(-1.2px)}}
+/* narrative */
+.scn-host.play .ws-cur{animation:ws-cur var(--scnT) ease-in-out infinite}
+@keyframes ws-cur{0%,6%{transform:translate(0,0) scale(1)}16%,19%{transform:translate(-95px,-12px) scale(1)}21%{transform:translate(-95px,-12px) scale(.85)}24%{transform:translate(-95px,-12px) scale(1)}26%{transform:translate(-95px,-12px) scale(1)}40%,50%{transform:translate(-71px,-57px) scale(1)}62%,78%{transform:translate(0,0) scale(1)}100%{transform:translate(0,0) scale(1)}}
+.scn-host.play .ws-ring{animation:ws-ring var(--scnT) ease-out infinite;transform-origin:center}
+@keyframes ws-ring{0%,18%{transform:scale(.4);opacity:0}21%{transform:scale(1);opacity:.8}28%,100%{transform:scale(1.9);opacity:0}}
+.scn-host.play .ws-chip{animation:ws-chip var(--scnT) ease-in-out infinite;transform-origin:top left}
+@keyframes ws-chip{0%,18%{transform:translate(0,0) scale(.5) rotate(0deg);opacity:1}24%,26%{transform:translate(0,-4px) scale(.55) rotate(0deg);opacity:1}34%{transform:translate(6px,-32px) scale(.8) rotate(-2.5deg)}40%{transform:translate(17px,-53px) scale(1) rotate(0deg)}45%,84%{transform:translate(17px,-51px) scale(1) rotate(0deg);opacity:1}88%{transform:translate(17px,-51px) scale(1) rotate(0deg);opacity:0}89%{transform:translate(0,0) scale(.5) rotate(0deg);opacity:0}94%,100%{transform:translate(0,0) scale(.5) rotate(0deg);opacity:1}}
+.scn-host.play .ws-slot{animation:ws-slot var(--scnT) linear infinite}
+@keyframes ws-slot{0%,40%{opacity:1}46%,88%{opacity:0}94%,100%{opacity:1}}
+.scn-host.play .ws-plus{animation:ws-plus var(--scnT) linear infinite}
+@keyframes ws-plus{0%,36%{opacity:.25}42%,90%{opacity:0}96%,100%{opacity:.25}}
+.scn-host.play .ws-flash{animation:ws-flash var(--scnT) ease-in-out infinite}
+@keyframes ws-flash{0%,40%{opacity:0}46%{opacity:.9}62%,100%{opacity:0}}
+.scn-host.play .ws-led{animation:ws-led var(--scnT) linear infinite}
+@keyframes ws-led{0%,46%{fill:rgba(243,234,217,.2)}50%,84%{fill:#8fbf7f}92%,100%{fill:rgba(243,234,217,.2)}}
+.scn-host.play .ws-ping{animation:ws-ping var(--scnT) ease-out infinite;transform-origin:center}
+@keyframes ws-ping{0%,50%{transform:scale(.5);opacity:0}52%{opacity:.8}62%,100%{transform:scale(2.4);opacity:0}}
+.scn-host.play .ws-cl1{animation:ws-cl var(--scnT) ease-out infinite;transform-origin:left center}
+.scn-host.play .ws-cl2{animation:ws-cl var(--scnT) ease-out calc(var(--scnT)*.03) infinite;transform-origin:left center}
+@keyframes ws-cl{0%,44%{transform:scaleX(0)}50%,84%{transform:scaleX(1)}90%,100%{transform:scaleX(0)}}
+.scn-host.play .ws-pill{animation:ws-pill var(--scnT) ease-in-out infinite;transform-origin:center}
+@keyframes ws-pill{0%,48%{transform:scale(.6);opacity:0}54%{transform:scale(1.1);opacity:1}58%,80%{transform:scale(1);opacity:1}88%,100%{transform:scale(.6);opacity:0}}
+.scn-host.play .ws-prog{animation:ws-prog var(--scnT) linear infinite;transform-origin:left center}
+@keyframes ws-prog{0%,82%{transform:scaleX(0);opacity:0}84%{opacity:1}92%{transform:scaleX(1);opacity:1}94%,100%{transform:scaleX(1);opacity:0}}
+.scn-host.play .ws-veil{animation:ws-veil var(--scnT) ease-in-out infinite}
+@keyframes ws-veil{0%,82%{opacity:0}88%,94%{opacity:.5}100%{opacity:0}}
+
+/* ============================================================
+   5 · lab — Coming Soon
+   ============================================================ */
+/* idle */
+.lb-steam1{animation:lb-steam 3.4s linear infinite}
+.lb-steam2{animation:lb-steam 3.4s linear infinite;animation-delay:-1.7s}
+@keyframes lb-steam{0%{transform:translateY(0);opacity:0}25%{opacity:.45}100%{transform:translateY(-10px);opacity:0}}
+.lb-vial{animation:lb-vial 3.6s ease-in-out infinite alternate}
+@keyframes lb-vial{from{opacity:.35}to{opacity:.7}}
+.lb-lamp{animation:lb-lampsway 5.5s ease-in-out infinite alternate;transform-origin:center top}
+@keyframes lb-lampsway{from{transform:rotate(-1.2deg)}to{transform:rotate(1.2deg)}}
+.lb-shim{animation:lb-shim 3s ease-in-out infinite alternate;transform-origin:center}
+@keyframes lb-shim{from{transform:scaleX(1)}to{transform:scaleX(1.06)}}
+.lb-body{animation:gd-breathe 3.4s ease-in-out infinite alternate;transform-origin:center bottom}
+.lb-cone{animation:bk-flicker 4.5s ease-in-out infinite alternate}
+/* narrative */
+.scn-host.play .lb-hold{animation:lb-hold var(--scnT) ease-in-out infinite}
+@keyframes lb-hold{0%,4%{transform:translate(0,0)}5.5%{transform:translate(-.8px,0)}7%{transform:translate(.8px,0)}8.5%{transform:translate(-.5px,0)}10%,100%{transform:translate(0,0)}}
+.scn-host.play .lb-arm2{animation:lb-arm2 var(--scnT) ease-in-out infinite;transform-origin:left center}
+@keyframes lb-arm2{0%,4%{transform:rotate(0deg)}10%,62%{transform:rotate(6deg)}72%,100%{transform:rotate(0deg)}}
+.scn-host.play .lb-bulb{animation:lb-bulb var(--scnT) ease-in-out infinite;transform-origin:center top}
+@keyframes lb-bulb{0%,12%{transform:scaleY(1)}14%,17%{transform:scaleY(.72)}20%,100%{transform:scaleY(1)}}
+.scn-host.play .lb-drip{animation:lb-drip var(--scnT) linear infinite;transform-origin:center}
+@keyframes lb-drip{0%,14%{transform:translateY(0) scale(.3);opacity:0}16%{transform:translateY(0) scale(.6);opacity:1}19%{transform:translateY(0) scale(1);opacity:1;animation-timing-function:cubic-bezier(.5,0,1,1)}25%{transform:translateY(18px) scale(1);opacity:1}26%,100%{transform:translateY(0) scale(.3);opacity:0}}
+.scn-host.play .lb-splash{animation:lb-splash var(--scnT) ease-out infinite;transform-origin:center}
+@keyframes lb-splash{0%,25%{transform:scale(.4);opacity:0}27%{transform:scale(1);opacity:.8}31%,100%{transform:scale(1.6);opacity:0}}
+.scn-host.play .lb-liqA{animation:lb-liqA var(--scnT) ease-in-out infinite}
+@keyframes lb-liqA{0%,27%{opacity:0}36%,62%{opacity:.85}82%,100%{opacity:0}}
+.scn-host.play .lb-glow{animation:lb-glow var(--scnT) ease-in-out infinite}
+@keyframes lb-glow{0%,28%{opacity:0}38%{opacity:.5}60%{opacity:.4}80%,100%{opacity:0}}
+.scn-host.play .lb-rise{animation:lb-rise var(--scnT) ease-in-out infinite;transform-origin:center bottom}
+@keyframes lb-rise{0%,26%{transform:scaleY(1)}36%,70%{transform:scaleY(1.25)}86%,100%{transform:scaleY(1)}}
+.scn-host.play .lb-bub1{animation:lb-bub var(--scnT) ease-out infinite}
+.scn-host.play .lb-bub2{animation:lb-bub var(--scnT) ease-out calc(var(--scnT)*.04) infinite}
+.scn-host.play .lb-bub3{animation:lb-bub var(--scnT) ease-out calc(var(--scnT)*.08) infinite}
+@keyframes lb-bub{0%,30%{transform:translateY(0);opacity:0}34%{opacity:.9}42%,100%{transform:translateY(-7px);opacity:0}}
+.scn-host.play .lb-spark{animation:lb-spark var(--scnT) ease-in-out infinite;transform-origin:center}
+@keyframes lb-spark{0%,44%{transform:scale(0);opacity:0}50%{transform:scale(1.15);opacity:1}54%{transform:scale(1);opacity:1}60%,100%{transform:scale(.3);opacity:0}}
+.scn-host.play .lb-nod{animation:lb-nod var(--scnT) ease-in-out infinite;transform-origin:center bottom}
+@keyframes lb-nod{0%,46%{transform:rotate(0deg)}52%,58%{transform:rotate(-5deg)}64%,100%{transform:rotate(0deg)}}
+.scn-host.play .lb-glint{animation:lb-glint var(--scnT) linear infinite}
+@keyframes lb-glint{0%,48%{transform:translateX(0);opacity:0}51%{opacity:.8}56%,100%{transform:translateX(7px);opacity:0}}
+.scn-host.play .lb-cone{animation:lb-cone var(--scnT) ease-in-out infinite}
+@keyframes lb-cone{0%,40%{opacity:.5}52%,72%{opacity:.85}86%,100%{opacity:.5}}
+
+/* ============================================================
+   6 · library — Context Engine
+   ============================================================ */
+/* idle */
+.lib-bob{animation:db-bob 2.8s ease-in-out infinite alternate}
+.lib-halo{animation:db-halo 3.2s ease-in-out infinite alternate}
+.lib-pool{animation:bk-flicker 4.5s ease-in-out infinite alternate}
+.lib-mote1{animation:bk-mote 6s linear infinite}
+.lib-mote2{animation:bk-mote 7.5s linear infinite;animation-delay:-3.5s}
+/* narrative */
+.scn-host.play .lib-move{animation:lib-move var(--scnT) ease-in-out infinite}
+@keyframes lib-move{0%,4%{transform:translate(0,0)}14%{transform:translate(-102px,-68px);animation-timing-function:linear}28%,34%{transform:translate(-69px,-68px)}44%{transform:translate(-32px,-32px)}52%,58%{transform:translate(-4px,4px)}62%{transform:translate(-4px,0)}66%{transform:translate(-4px,4px)}78%,100%{transform:translate(0,0)}}
+.scn-host.play .lib-q{animation:lib-q var(--scnT) ease-in-out infinite;transform-origin:center bottom}
+@keyframes lib-q{0%,2%{transform:translateY(4px) scale(.7);opacity:0}8%{transform:translateY(0) scale(1.05);opacity:1}11%,54%{transform:translateY(0) scale(1);opacity:1}58%,100%{transform:translateY(0) scale(1);opacity:0}}
+.scn-host.play .lib-q2{animation:lib-q2 var(--scnT) ease-in-out infinite;transform-origin:center bottom}
+@keyframes lib-q2{0%,56%{transform:scale(.6);opacity:0}61%{transform:scale(1.1);opacity:1}64%,82%{transform:scale(1);opacity:1}88%,100%{transform:scale(.6);opacity:0}}
+.scn-host.play .lib-s1{animation:lib-scan var(--scnT) linear infinite}
+.scn-host.play .lib-s2{animation:lib-scan var(--scnT) linear calc(var(--scnT)*.04) infinite}
+.scn-host.play .lib-s3{animation:lib-scan var(--scnT) linear calc(var(--scnT)*.08) infinite}
+.scn-host.play .lib-s4{animation:lib-scan var(--scnT) linear calc(var(--scnT)*.12) infinite}
+@keyframes lib-scan{0%,12%{opacity:0}15%{opacity:.3}18%,100%{opacity:0}}
+.scn-host.play .lib-s5{animation:lib-s5 var(--scnT) linear infinite}
+@keyframes lib-s5{0%,26%{opacity:0}30%,36%{opacity:.45}42%,100%{opacity:0}}
+.scn-host.play .lib-book{animation:lib-book var(--scnT) ease-in-out infinite;transform-origin:center bottom}
+@keyframes lib-book{0%,30%{transform:translate(0,0) rotate(0deg);opacity:1}36%,38%{transform:translate(2px,7px) rotate(-10deg);opacity:1}46%{transform:translate(38px,32px) rotate(-45deg)}54%{transform:translate(79px,73px) rotate(-90deg)}57%,80%{transform:translate(79px,70px) rotate(-90deg);opacity:1}84%{transform:translate(79px,70px) rotate(-90deg);opacity:1}89%{transform:translate(79px,70px) rotate(-90deg);opacity:0}90%{transform:translate(0,0) rotate(0deg);opacity:0}96%,100%{transform:translate(0,0) rotate(0deg);opacity:1}}
+.scn-host.play .lib-pg1{animation:lib-pg var(--scnT) ease-out infinite;transform-origin:right center}
+.scn-host.play .lib-pg2{animation:lib-pg var(--scnT) ease-out calc(var(--scnT)*.02) infinite;transform-origin:left center}
+@keyframes lib-pg{0%,58%{transform:scaleX(0);opacity:0}59%{opacity:1}64%,80%{transform:scaleX(1);opacity:1}86%,100%{transform:scaleX(0);opacity:0}}
+.scn-host.play .lib-c1{animation:lib-cite var(--scnT) ease-out infinite;transform-origin:left center}
+.scn-host.play .lib-c2{animation:lib-cite var(--scnT) ease-out calc(var(--scnT)*.03) infinite;transform-origin:left center}
+.scn-host.play .lib-c3{animation:lib-cite var(--scnT) ease-out calc(var(--scnT)*.06) infinite;transform-origin:left center}
+@keyframes lib-cite{0%,62%{transform:scaleX(0);opacity:0}63%{opacity:1}68%,78%{transform:scaleX(1);opacity:1}84%,100%{transform:scaleX(0);opacity:0}}
+.scn-host.play .lib-pool{animation:lib-pool var(--scnT) ease-in-out infinite}
+@keyframes lib-pool{0%,56%{opacity:.5}64%,80%{opacity:.95}92%,100%{opacity:.5}}
