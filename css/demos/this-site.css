@@ -1,0 +1,67 @@
+/* ============================================================
+   George Brothers — css/demos/this-site.css
+   TRY IT panel for /work/this-site. A live inspector over the real
+   design tokens the page itself is built from: the five palette
+   swatches, the three typefaces, and the site's actual reduced-motion
+   contract. Colors, fonts, and the pulsing-dot idiom below are copied
+   from css/site.css (and its real /now "ACTIVE" indicator), not
+   invented. The sitewide reduced-motion clamp in css/site.css already
+   covers real OS preference for every animation here; the
+   [data-motion="reduced"] rule below only mirrors that same clamp,
+   scoped to the demo, so the in-panel toggle can demonstrate it on
+   demand.
+   ============================================================ */
+
+.tsd{display:flex;flex-direction:column;gap:20px}
+
+/* ===== tabs ===== */
+.tsd-tabs{display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid rgba(243,234,217,.14);padding-bottom:12px}
+.tsd-tab{font:500 12.5px 'IBM Plex Mono',monospace;letter-spacing:.06em;color:rgba(243,234,217,.55);border:1px solid rgba(243,234,217,.18);border-radius:999px;padding:9px 16px;cursor:pointer;transition:color .3s,border-color .3s,background .3s}
+.tsd-tab:hover{color:rgba(243,234,217,.85);border-color:rgba(243,234,217,.35)}
+.tsd-tab.is-active{color:#171009;background:#efa85c;border-color:#efa85c}
+
+.tsd-panel{display:flex;flex-direction:column;gap:16px}
+
+/* ===== palette panel ===== */
+.tsd-swatches{display:flex;gap:10px;flex-wrap:wrap}
+.tsd-swatch{width:64px;height:64px;border-radius:12px;border:2px solid rgba(243,234,217,.16);display:flex;align-items:flex-end;padding:8px;box-sizing:border-box;cursor:pointer;transition:border-color .3s,transform .3s}
+.tsd-swatch:hover{transform:translateY(-2px)}
+.tsd-swatch.is-active{border-color:#f3ead9}
+.tsd-swatch-label{font:500 9.5px 'IBM Plex Mono',monospace;letter-spacing:.04em;color:#f3ead9;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.tsd-swatch-dark .tsd-swatch-label{color:#f3ead9}
+
+.tsd-detail{min-height:64px}
+.tsd-detail-name{font:500 15px 'IBM Plex Mono',monospace;letter-spacing:.03em;color:#f3ead9;margin-bottom:6px}
+.tsd-detail-role{margin:0;font:400 14.5px/1.7 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75)}
+
+/* ===== type panel ===== */
+.tsd-typebtns{display:flex;gap:8px;flex-wrap:wrap}
+.tsd-typebtn{font:500 12.5px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.7);border:1px solid rgba(243,234,217,.22);border-radius:999px;padding:9px 16px;cursor:pointer;transition:color .3s,border-color .3s,background .3s}
+.tsd-typebtn:hover{color:#f3ead9;border-color:rgba(243,234,217,.4)}
+.tsd-typebtn.is-active{color:#171009;background:#f3ead9;border-color:#f3ead9}
+.tsd-type-sample{min-height:56px;display:flex;align-items:center;word-break:break-word}
+.tsd-type-detail{margin:0}
+
+/* ===== motion panel ===== */
+.tsd-motion-row{display:flex;align-items:center;gap:12px}
+.tsd-toggle{width:44px;height:26px;border-radius:99px;border:1px solid rgba(243,234,217,.3);background:rgba(243,234,217,.06);position:relative;cursor:pointer;flex:none;transition:border-color .3s,background .3s}
+.tsd-toggle::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#f3ead9;transition:transform .3s}
+.tsd-toggle.is-on{background:#efa85c;border-color:#efa85c}
+.tsd-toggle.is-on::after{transform:translateX(18px);background:#171009}
+.tsd-toggle:disabled{cursor:not-allowed;opacity:.6}
+.tsd-toggle-label{font:500 13px 'Space Grotesk',sans-serif;color:#f3ead9}
+.tsd-motion-note{margin:0;font:400 13.5px/1.65 'Space Grotesk',sans-serif;color:rgba(243,234,217,.6)}
+
+.tsd-motion-demo{display:flex;align-items:center;gap:8px;border:1px solid rgba(243,234,217,.14);border-radius:12px;padding:14px 18px;width:fit-content}
+.tsd-dots{display:flex;gap:6px}
+.tsd-dot{width:6px;height:6px;border-radius:50%;background:#8fb573;animation:pdot 1.5s ease-in-out infinite}
+.tsd-dots-caption{font:400 9.5px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#8fb573}
+
+/* Mirrors the exact clamp in css/site.css's own reduced-motion media
+   query, scoped to the demo so the in-panel toggle can trigger it
+   without waiting on the real OS setting. */
+.tsd[data-motion="reduced"] .tsd-motion-demo *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition:none !important}
+
+@media (max-width:640px){
+  .tsd-swatch{width:56px;height:56px}
+}

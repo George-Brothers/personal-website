@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Context Drop — George Brothers</title>
+<meta name="description" content="Context Drop is the service that hands any AI assistant the few notes it actually needs: ranked by relevance, fit to a token budget, with restricted pages held back and named in a manifest. A case study on building a private retrieval broker.">
+<link rel="canonical" href="https://georgeellisbrothers.com/work/context-drop">
+<meta property="og:title" content="Context Drop — George Brothers">
+<meta property="og:description" content="Context Drop is the service that hands any AI assistant the few notes it actually needs, ranked by relevance, fit to a token budget, with restricted pages held back and named in a manifest.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://georgeellisbrothers.com/work/context-drop">
+<meta property="og:image" content="https://georgeellisbrothers.com/assets/og-card.v1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Context Drop — George Brothers">
+<meta name="twitter:description" content="Context Drop is the service that hands any AI assistant the few notes it actually needs, ranked by relevance, fit to a token budget, with restricted pages held back and named in a manifest.">
+<meta name="twitter:image" content="https://georgeellisbrothers.com/assets/og-card.v1.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23171009'/%3E%3Ctext x='16' y='23' font-size='17' text-anchor='middle' fill='%23efa85c'%3E%E2%97%86%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/instrument-serif-400.v1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/space-grotesk-var.v1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ibm-plex-mono-400.v1.woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/scenes.css">
+<link rel="stylesheet" href="/css/case.css">
+<link rel="stylesheet" href="/css/demos/context-drop.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Work", "item": "https://georgeellisbrothers.com/work" },
+        { "@type": "ListItem", "position": 2, "name": "Context Drop", "item": "https://georgeellisbrothers.com/work/context-drop" }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Context Drop",
+      "description": "A private retrieval broker that hands any AI assistant the few notes it actually needs, ranked by relevance, fit to a token budget, with restricted pages held back and named in a manifest.",
+      "url": "https://georgeellisbrothers.com/work/context-drop",
+      "author": { "@type": "Person", "name": "George Brothers" },
+      "codeRepository": "https://github.com/George-Brothers/context-drop",
+      "keywords": ["MCP", "retrieval broker", "hybrid search", "RRF", "access control", "OAuth 2.1"]
+    }
+  ]
+}
+</script>
+<script src="/js/site.js" defer></script>
+<script src="/js/scenes.js" defer></script>
+<script src="/js/demos/context-drop.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="gb-nav" aria-label="Primary">
+  <a href="/" class="gb-wordmark">GEORGE&nbsp;BROTHERS</a>
+  <div class="nav-links">
+    <a href="/work" aria-current="page">WORK</a>
+    <a href="/about" class="hv-nav">ABOUT</a>
+    <a href="/now" class="hv-nav">NOW</a>
+    <a href="/connect" class="hv-nav">CONNECT</a>
+  </div>
+  <div class="gb-nav-right">
+    <button type="button" class="nav-burger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="mobile-menu" hidden>
+  <button type="button" class="mobile-menu-close" aria-label="Close menu">&times;</button>
+  <a href="/">Home</a>
+  <a href="/work" aria-current="page">Work</a>
+  <a href="/about">About</a>
+  <a href="/now">Now</a>
+  <a href="/connect">Connect</a>
+</div>
+
+<main id="main">
+<div class="cs-root">
+
+  <div class="cs-hero">
+    <a class="cs-back" href="/work">← Selected work</a>
+
+    <div class="cs-eyebrow">
+      <span class="cs-num">01 · PRIVATE CONTEXT</span>
+      <span class="cs-badge" style="background:#b48fd9">PROTOTYPE</span>
+    </div>
+
+    <h1 class="cs-title">Context Drop<span class="cs-dot">.</span></h1>
+
+    <p class="cs-blurb">AI assistants are only as useful as the information they get. Context Drop picks the few notes that matter for a request, keeps restricted material out, and shows what context was actually passed to the model.</p>
+
+    <div class="cs-meta">
+      <span>AI SYSTEM</span><span>·</span><span>UPD JUN 2026</span>
+    </div>
+
+    <div class="cs-art" aria-hidden="true">
+      <div class="scn" data-scene="library" data-variant="full"></div>
+    </div>
+
+    <div class="cs-cta-row">
+      <a class="cs-repo-btn hv-cta" href="https://github.com/George-Brothers/context-drop" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>View the repo</a>
+      <a class="cs-cta" href="/connect">Ask for a walkthrough</a>
+    </div>
+  </div>
+
+  <section class="cs-sections" aria-label="Case study">
+
+    <div class="cs-section">
+      <div class="cs-label">HOW A REQUEST FLOWS</div>
+      <figure class="cs-figure">
+        <img class="cs-img" src="/assets/context-drop-flow.v1.svg" width="520" height="528" loading="lazy" decoding="async" alt="Flow diagram. A request enters, then the broker retrieves candidate pages from the private vault, ranks them by relevance with embeddings, keywords, and curated load order fused with RRF, filters out restricted pages, fits the top pages to a token budget, and returns a context package plus a manifest of what was held back.">
+        <figcaption class="cs-figcaption">A request in, a right-sized context package out: retrieve candidates, rank by relevance, hold restricted pages back, then fit the token budget.</figcaption>
+      </figure>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-label">01 · THE PROBLEM</div>
+      <p class="cs-text">Most AI tools fail for a boring reason. They get too much context, the wrong context, or information they were never meant to see. Pasting the same notes into every tool by hand got old fast, and dumping a whole vault into a prompt is slow, expensive, and unsafe. I wanted one broker any AI tool could ask for the right few pages, on a budget, with the private ones held back by default.</p>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-label">02 · HOW IT WORKS</div>
+      <p class="cs-text">It speaks MCP, the protocol AI tools use to reach outside data, and sits in front of a private wiki of tagged Markdown pages. The wiki already declares the rules: named packs that say, per task, which pages to load in what order and which private pages that task is allowed to touch. Context Drop is the broker that honors that contract on a token budget, then hands back the pages plus a manifest of everything it held back so the tool can ask for more. It is plain Python with no third-party dependencies, small enough to read end to end and audit.</p>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-label">03 · ENGINEERING DECISIONS</div>
+      <div class="cs-points">
+        <div class="cs-point">
+          <span class="cs-point-k">Curated first, ranked only when needed</span>
+          <p class="cs-point-t">When a task maps to a named pack, the broker loads that curated order and does not guess. When a paraphrased question matches no pack, a hybrid ranker takes over: dense embeddings for meaning, BM25 for exact words, fused with reciprocal rank fusion over the same curated prior. If the embedder is offline it drops to keyword ranking and still answers.</p>
+        </div>
+        <div class="cs-point">
+          <span class="cs-point-k">Retrieval that is measured, not asserted</span>
+          <p class="cs-point-t">A gold set of nineteen queries, drawn from the vault's own pack definitions, scores the ranker on precision and recall. Moving from dense-only to the hybrid ranker took precision-at-5 from 0.24 to 0.85 and recall-at-10 to 0.89, clearing the bar I set of 0.80 and 0.85. On a curated vault this small that is a tuning result, not a benchmark, and the eval says so plainly.</p>
+        </div>
+        <div class="cs-point">
+          <span class="cs-point-k">Privacy picked the architecture</span>
+          <p class="cs-point-t">Private pages are held back by default and return only when the task explicitly grants them. A withheld page still appears in the manifest, so the tool knows it exists but never sees the content. Because those pages must never leave the machine, every embedding is computed locally. The security rule chose the design, not the other way around.</p>
+        </div>
+        <div class="cs-point">
+          <span class="cs-point-k">Fail-closed on the wire</span>
+          <p class="cs-point-t">The HTTP transport refuses to start in any publicly reachable setup without auth, checks every request's Host and Origin against an allowlist to block DNS rebinding, compares tokens in constant time, and never leaks a stack trace or the vault's path. The claude.ai connector runs full OAuth 2.1 with PKCE behind a password-gated consent screen, tested end to end from discovery through token exchange.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-label">04 · WHERE IT STANDS</div>
+      <p class="cs-text">The server is built and tested, standard library only, with the claude.ai connector verified end to end. It runs privately for me, as infrastructure for my own tools rather than a product with users, small and auditable on purpose. The result I care about is the retrieval jump, and the fact that a private page has to be asked for by name before it will ever surface. Next up is proving the same OAuth flow against ChatGPT's connectors and adding Gmail, Calendar, and Drive behind the same budget and privacy rules.</p>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-label">05 · STACK</div>
+      <div class="cs-stack">
+        <span class="cs-tok">Python (stdlib only)</span>
+        <span class="cs-tok">MCP over JSON-RPC 2.0</span>
+        <span class="cs-tok">SQLite vector store</span>
+        <span class="cs-tok">local embeddings (Ollama)</span>
+        <span class="cs-tok">BM25 + RRF ranking</span>
+        <span class="cs-tok">OAuth 2.1 / PKCE</span>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="demo" class="case-demo" aria-labelledby="demo-heading">
+    <div class="cs-label" id="demo-heading">TRY IT — WHAT GETS HANDED TO THE MODEL</div>
+    <p class="cs-demo-intro">A tiny stand-in vault: six notes, one of them marked restricted. Ask a question below and see exactly which notes Context Drop would hand to the assistant, and which one it holds back on purpose.</p>
+
+    <div data-demo="context-drop">
+      <div data-demo-fallback>
+        <p class="cs-text"><strong>Sample question:</strong> "What are the current compensation bands?"</p>
+        <p class="cs-text"><strong>Context package (sent to the assistant):</strong> no other vault page discusses compensation, so the package returned would be empty for this request.</p>
+        <p class="cs-text"><strong>Manifest (held back):</strong> "Compensation Bands (Q3)" — marked restricted. It matched the request, so it exists in the manifest, but its content was never sent.</p>
+        <p class="cs-text" style="color:rgba(243,234,217,.55);font-size:13px">Turn on JavaScript to ask your own question and see the live context package and manifest.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-footer-cta">
+    <a class="cs-back" href="/work">← Back to selected work</a>
+  </div>
+
+</div>
+</main>
+
+<footer class="gb-footer">
+  <span class="gb-copyright">© 2026 GEORGE BROTHERS — NASHVILLE, TN</span>
+  <div class="gb-footer-links">
+    <a href="/work#ideas" class="hv-pill hv-pill-glow">Got an idea? ↗</a>
+    <a href="/assets/george-brothers-resume.pdf" download class="hv-pill">Résumé ↓</a>
+  </div>
+</footer>
+
+</body>
+</html>

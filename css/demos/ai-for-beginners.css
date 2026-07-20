@@ -1,0 +1,29 @@
+/* ============================================================
+   George Brothers — css/demos/ai-for-beginners.css
+   TRY IT panel for /work/ai-for-beginners. A jargon decoder: a
+   realistic sentence with seven loaded AI terms highlighted, each
+   one a real definition away — the exact job the guidebook does.
+   Motion is a plain opacity/transform transition — the sitewide
+   reduced-motion clamp in css/site.css already forces it to land on
+   its final frame with no animation, so no extra media query here.
+   Also styles the no-JS fallback's static glossary (.jd-fallback-*),
+   which lives only in work/ai-for-beginners.html.
+   ============================================================ */
+
+.jd{display:flex;flex-direction:column;gap:22px}
+.jd-para{margin:0;font:400 16.5px/1.85 'Space Grotesk',sans-serif;color:rgba(243,234,217,.85)}
+
+.jd-term{display:inline;font:inherit;color:#171009;background:#efa85c;border:none;border-radius:5px;padding:1px 5px;margin:0 1px;cursor:pointer;transition:background .25s,color .25s}
+.jd-term:hover{background:#f3ead9}
+.jd-term:focus-visible{outline:2px solid #f3ead9;outline-offset:2px}
+.jd-term.is-active{background:#f3ead9;color:#171009}
+
+.jd-panel{border-top:1px solid rgba(243,234,217,.14);padding-top:18px;min-height:74px}
+.jd-panel-empty{margin:0;font:400 14px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.5)}
+.jd-panel-term{margin:0 0 8px;font:500 13.5px 'IBM Plex Mono',monospace;letter-spacing:.04em;color:#efa85c}
+.jd-panel-def{margin:0;font:400 14.5px/1.7 'Space Grotesk',sans-serif;color:rgba(243,234,217,.82)}
+
+/* ===== no-JS fallback glossary (work/ai-for-beginners.html only) ===== */
+.jd-fallback-glossary{margin:20px 0 0;display:flex;flex-direction:column;gap:16px}
+.jd-fallback-glossary dt{font:500 13.5px 'IBM Plex Mono',monospace;letter-spacing:.02em;color:#f3ead9}
+.jd-fallback-glossary dd{margin:6px 0 0;font:400 15.5px/1.7 'Space Grotesk',sans-serif;color:rgba(243,234,217,.78)}

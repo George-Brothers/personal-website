@@ -1,0 +1,234 @@
+<!--
+  ============================================================
+  work/atlas.html — REFERENCE CASE-STUDY TEMPLATE
+  ============================================================
+  This is the template four more /work/<slug> pages copy. Keep the
+  shape obvious and reusable:
+
+  1. HEAD BLOCK — title / description / canonical / og:* / twitter:*
+     (og:image reuses /assets/og-card.v1.png until per-case OG art
+     exists) / favicon / three font preloads / site.css + case.css
+     + this page's own css/demos/<slug>.css. No <base> tag — every
+     href and asset path is root-relative on purpose, which is what
+     lets a page live at /work/<slug> at all.
+  2. NAV — copied verbatim from work.html, aria-current="page" stays
+     on WORK since a case study is part of the Work section.
+  3. SKIP LINK — copied verbatim.
+  4. HERO — back link, eyebrow (num + status badge), title, blurb,
+     meta line, repo/CTA buttons, optional diorama art reusing the
+     existing scene registry (no edits to js/scenes.js or
+     css/scenes.css — this page only *uses* the SVG.dashboard scene
+     already registered there).
+  5. SECTIONS — one .cs-section per idea, mirroring the retired
+     modal's text / points / steps / stack idioms so the content
+     promoted from PROJECTS[1] in js/work.js needed no re-authoring.
+  6. TRY IT DEMO — the mount contract every demo builder targets:
+       <div data-demo="<slug>"><div data-demo-fallback>…</div></div>
+     The fallback must be a complete, meaningful, static reading of
+     the demo with JS disabled. js/demos/<slug>.js replaces the
+     fallback node at runtime and must never edit this file.
+  7. FOOTER — copied verbatim from work.html.
+  8. JSON-LD — BreadcrumbList (Work → this page) + CreativeWork.
+
+  Do not add a build step, an include mechanism, or a shared nav
+  partial — nav and footer are copy-pasted by design; that is a
+  documented, deliberate choice (see docs/MIRROR.md context / the
+  case-study decomposition plan), not an oversight to "fix."
+  ============================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>atlas — George Brothers</title>
+<meta name="description" content="atlas is a learning platform that will not pass you until you've earned it: strict AI grading, real mastery gates, and a tutor that only teaches what it was actually taught. A case study on building an honest learning loop.">
+<link rel="canonical" href="https://georgeellisbrothers.com/work/atlas">
+<meta property="og:title" content="atlas — George Brothers">
+<meta property="og:description" content="atlas is a learning platform that will not pass you until you've earned it: strict AI grading, real mastery gates, and a tutor that only teaches what it was actually taught.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://georgeellisbrothers.com/work/atlas">
+<meta property="og:image" content="https://georgeellisbrothers.com/assets/og-card.v1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="atlas — George Brothers">
+<meta name="twitter:description" content="atlas is a learning platform that will not pass you until you've earned it: strict AI grading, real mastery gates, and a tutor that only teaches what it was actually taught.">
+<meta name="twitter:image" content="https://georgeellisbrothers.com/assets/og-card.v1.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23171009'/%3E%3Ctext x='16' y='23' font-size='17' text-anchor='middle' fill='%23efa85c'%3E%E2%97%86%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/instrument-serif-400.v1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/space-grotesk-var.v1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ibm-plex-mono-400.v1.woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/scenes.css">
+<link rel="stylesheet" href="/css/case.css">
+<link rel="stylesheet" href="/css/demos/atlas.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Work", "item": "https://georgeellisbrothers.com/work" },
+        { "@type": "ListItem", "position": 2, "name": "atlas", "item": "https://georgeellisbrothers.com/work/atlas" }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "atlas",
+      "description": "A learning platform that will not pass you until you have earned it. Strict grading, real mastery gates, and a tutor that only teaches what it was actually taught.",
+      "url": "https://georgeellisbrothers.com/work/atlas",
+      "author": { "@type": "Person", "name": "George Brothers" },
+      "codeRepository": "https://github.com/George-Brothers/Atlas",
+      "keywords": ["LLM education", "mastery learning", "AI grading", "spaced repetition"]
+    }
+  ]
+}
+</script>
+<script src="/js/site.js" defer></script>
+<script src="/js/scenes.js" defer></script>
+<script src="/js/demos/atlas.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="gb-nav" aria-label="Primary">
+  <a href="/" class="gb-wordmark">GEORGE&nbsp;BROTHERS</a>
+  <div class="nav-links">
+    <a href="/work" aria-current="page">WORK</a>
+    <a href="/about" class="hv-nav">ABOUT</a>
+    <a href="/now" class="hv-nav">NOW</a>
+    <a href="/connect" class="hv-nav">CONNECT</a>
+  </div>
+  <div class="gb-nav-right">
+    <button type="button" class="nav-burger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="mobile-menu" hidden>
+  <button type="button" class="mobile-menu-close" aria-label="Close menu">&times;</button>
+  <a href="/">Home</a>
+  <a href="/work" aria-current="page">Work</a>
+  <a href="/about">About</a>
+  <a href="/now">Now</a>
+  <a href="/connect">Connect</a>
+</div>
+
+<main id="main">
+<div class="cs-root">
+
+  <div class="cs-hero">
+    <a class="cs-back" href="/work">← Selected work</a>
+
+    <div class="cs-eyebrow">
+      <span class="cs-num">03 · ATLAS</span>
+      <span class="cs-badge" style="background:#b48fd9">BUILD-READY</span>
+    </div>
+
+    <h1 class="cs-title">atlas<span class="cs-dot">.</span></h1>
+
+    <p class="cs-blurb">A learning platform that will not pass you until you have earned it. Strict grading, real mastery gates, and a tutor that only teaches what it was actually taught.</p>
+
+    <div class="cs-meta">
+      <span>AI SYSTEM</span><span>·</span><span>UPD JUL 2026</span>
+    </div>
+
+    <div class="cs-art" aria-hidden="true">
+      <div class="scn" data-scene="dashboard" data-variant="full"></div>
+    </div>
+
+    <div class="cs-cta-row">
+      <a class="cs-repo-btn hv-cta" href="https://github.com/George-Brothers/Atlas" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>View the repo</a>
+      <a class="cs-cta" href="/connect">Ask for a walkthrough</a>
+    </div>
+  </div>
+
+  <section class="cs-sections" aria-label="Case study">
+
+    <div class="cs-section">
+      <div class="cs-label">01 · THE PROBLEM</div>
+      <p class="cs-text">Most self-teaching tools reward motion. You watch, you click next, you feel productive, and nothing checks whether the idea actually stuck. I wanted the opposite: a loop that will not let me move on until I can prove I learned the thing, and a tutor that will not bluff an answer it was never taught.</p>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-label">02 · HOW IT WORKS</div>
+      <p class="cs-text">atlas teaches one subject, how large language models actually work, as a ten-topic spine that runs from tokens and embeddings up to retrieval. Each topic is a lesson, a quiz, and a mastery gate, and the topics open in order. Multiple-choice is graded by plain code; your written answer goes to a strict AI grader that scores it against a rubric. The model never decides whether you passed. Score 80 percent or better and deterministic code opens the next topic and schedules the material for review. Miss it and the topic stays shut.</p>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-label">03 · ENGINEERING DECISIONS</div>
+      <div class="cs-points">
+        <div class="cs-point">
+          <span class="cs-point-k">An identity-blind grader</span>
+          <p class="cs-point-t">The grader sees the question, the rubric, and your answer, and nothing about who you are, your streak, or your history. It is a pure function with exactly that one shape, so it cannot soften to be nice because it never learns whose work it is. Its scores are clamped in code as a second line of defense, so a misbehaving model can never over-credit.</p>
+        </div>
+        <div class="cs-point">
+          <span class="cs-point-k">A cheap grader, held to a hard line</span>
+          <p class="cs-point-t">atlas grades on a cheap model, not a frontier one, and the risk in that trade is a cheap model that over-credits a vague but plausible answer. So a golden set of twelve labeled answers, spanning clearly correct, partial, vague traps, wrong, off-topic, and empty, runs against the real model, and the eval fails if it gives credit to anything it should have denied. That eval is the gate for ever swapping the grading model. Strictness is tested, not hoped for.</p>
+        </div>
+        <div class="cs-point">
+          <span class="cs-point-k">The machinery is plain code</span>
+          <p class="cs-point-t">Multiple-choice grading, the mastery math, the rules that open the next topic, the spaced-repetition schedule, and placement are all pure functions with no model in them, unit tested with no database and no key. The model is called only where real judgment is needed: grading written answers and answering tutor questions. Everything mechanical stays mechanical, and testable.</p>
+        </div>
+        <div class="cs-point">
+          <span class="cs-point-k">A tutor that can say "not covered"</span>
+          <p class="cs-point-t">Ask a follow-up and the tutor answers only from chunks of atlas's own lessons, pulled by vector search and cited. When nothing relevant comes back it says the course does not cover that, without ever calling the model, so an empty shelf can never turn into a confident guess. It reads its own teaching text and nothing else.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-label">04 · WHERE IT STANDS</div>
+      <p class="cs-text">The platform is built and ready to deploy, running on Next.js 16 with Neon Postgres behind it, wired for a single user by design. Seventy-nine tests cover the loop, the grader, and the retrieval, none of them needing a database or a key to run. The point was never a user count. It was proving a learning tool can hold a hard line: grade honestly, teach only what it was taught, and open the next lesson on real mastery instead of good intentions. What is not wired yet is a stronger grader behind the cheap one; the seam is built, the provider is not.</p>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-label">05 · STACK</div>
+      <div class="cs-stack">
+        <span class="cs-tok">Next.js 16</span>
+        <span class="cs-tok">Neon Postgres + pgvector</span>
+        <span class="cs-tok">Drizzle ORM</span>
+        <span class="cs-tok">DeepSeek + OpenAI (direct)</span>
+        <span class="cs-tok">FSRS-5 spaced repetition</span>
+        <span class="cs-tok">golden-set grader eval</span>
+        <span class="cs-tok">TypeScript</span>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="demo" class="case-demo" aria-labelledby="demo-heading">
+    <div class="cs-label" id="demo-heading">TRY IT — TOKENS &amp; EMBEDDINGS</div>
+    <p class="cs-demo-intro">atlas's first lesson teaches how an LLM turns text into numbers. Here's a real question from that lesson, graded the same strict way atlas grades everything: by plain code, not vibes.</p>
+
+    <div data-demo="atlas">
+      <div data-demo-fallback>
+        <p class="cs-text"><strong>Q1.</strong> A model's vocabulary has 50,000 entries. What best describes what one token actually is?</p>
+        <p class="cs-text">A. Always exactly one whole English word.<br>
+        B. A chunk of text, often a sub-word piece, mapped to one ID in the vocabulary.<br>
+        C. A slot of GPU memory reserved for one API call.<br>
+        D. A confidence score attached to the model's next guess.</p>
+        <p class="cs-text"><strong>Correct: B.</strong> Tokenizers split text into sub-word pieces so a fixed vocabulary can still cover almost any input — "strawberry" might cost 2–3 tokens instead of one. Each ID then looks up a learned embedding vector, which is the number the model actually computes on.</p>
+        <p class="cs-text" style="color:rgba(243,234,217,.55);font-size:13px">Turn on JavaScript to answer this one yourself and see atlas's real per-option feedback.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-footer-cta">
+    <a class="cs-back" href="/work">← Back to selected work</a>
+  </div>
+
+</div>
+</main>
+
+<footer class="gb-footer">
+  <span class="gb-copyright">© 2026 GEORGE BROTHERS — NASHVILLE, TN</span>
+  <div class="gb-footer-links">
+    <a href="/work#ideas" class="hv-pill hv-pill-glow">Got an idea? ↗</a>
+    <a href="/assets/george-brothers-resume.pdf" download class="hv-pill">Résumé ↓</a>
+  </div>
+</footer>
+
+</body>
+</html>

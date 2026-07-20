@@ -461,6 +461,51 @@
     + '<rect class="scn-clock" width="1" height="1" fill="none" opacity="0"/>'
     + '</svg>';
 
+  /* ---- 7 · redline — Copywriter --------------------------- */
+  SVG.redline = '<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">'
+    + '<defs><radialGradient id="rlW" cx="50%" cy="42%" r="70%"><stop offset="0" stop-color="rgba(239,217,138,.1)"/><stop offset="1" stop-color="rgba(239,217,138,0)"/></radialGradient></defs>'
+    /* desk, lamp, dust motes */
+    + '<g class="dtl">'
+    + '<rect x="14" y="140" width="172" height="4" rx="2" fill="rgba(243,234,217,.18)"/>'
+    + '<g transform="translate(174,18)"><g class="rl-lamp">'
+    + '<rect x="-0.7" width="1.4" height="16" fill="rgba(243,234,217,.3)"/>'
+    + '<path d="M-5,16 L5,16 L8,23 L-8,23 Z" fill="#5e6b7d"/><circle cy="24.5" r="2" fill="#efd98a"/>'
+    + '</g></g>'
+    + '<g transform="translate(38,30)"><circle class="rl-mote1" r="1" fill="rgba(239,217,138,.55)" opacity="0"/></g>'
+    + '<g transform="translate(150,116)"><circle class="rl-mote2" r="1" fill="rgba(239,217,138,.55)" opacity="0"/></g>'
+    + '</g>'
+    /* page shadow + sheet + headline */
+    + '<rect x="33" y="27" width="140" height="112" rx="8" fill="#1c130a" opacity=".35"/>'
+    + '<rect x="30" y="24" width="140" height="112" rx="8" fill="#f0e6d2"/>'
+    + '<rect x="42" y="34" width="46" height="4.5" rx="2" fill="#e8913f"/>'
+    /* paragraph, worst offenders first; two keeper lines stay sharp */
+    + '<rect class="rl-keep1" x="39" y="72" width="78" height="9" rx="3" fill="rgba(239,168,92,.28)" opacity="0"/>'
+    + '<rect class="rl-keep2" x="39" y="96" width="68" height="9" rx="3" fill="rgba(239,168,92,.28)" opacity="0"/>'
+    + '<rect class="rl-line1" x="42" y="50" width="108" height="4.5" rx="2" fill="rgba(23,16,9,.3)"/>'
+    + '<rect class="rl-line2" x="42" y="62" width="96" height="4.5" rx="2" fill="rgba(23,16,9,.3)"/>'
+    + '<rect x="42" y="74" width="70" height="4.5" rx="2" fill="rgba(23,16,9,.42)"/>'
+    + '<rect class="rl-line4" x="42" y="86" width="112" height="4.5" rx="2" fill="rgba(23,16,9,.3)"/>'
+    + '<rect x="42" y="98" width="60" height="4.5" rx="2" fill="rgba(23,16,9,.42)"/>'
+    + '<rect class="rl-line6" x="42" y="110" width="84" height="4.5" rx="2" fill="rgba(23,16,9,.3)"/>'
+    /* strike-throughs, drawn on by the pen */
+    + '<rect class="rl-strike1" x="42" y="51.7" width="108" height="2" rx="1" fill="#c0392b" opacity="0"/>'
+    + '<rect class="rl-strike2" x="42" y="63.7" width="96" height="2" rx="1" fill="#c0392b" opacity="0"/>'
+    + '<rect class="rl-strike4" x="42" y="87.7" width="112" height="2" rx="1" fill="#c0392b" opacity="0"/>'
+    + '<rect class="rl-strike6" x="42" y="111.7" width="84" height="2" rx="1" fill="#c0392b" opacity="0"/>'
+    /* the red pen, parked at rest; travels the margin during play */
+    + '<g transform="translate(158,34)"><g class="rl-pen"><g class="rl-nib">'
+    + '<rect x="-1.4" y="-16" width="2.8" height="16" rx="1.4" fill="#c0392b" transform="rotate(24)"/>'
+    + '<path d="M0,0 L-5,-11 L2,-9 Z" fill="#8f3f34" transform="rotate(24)"/>'
+    + '</g></g></g>'
+    /* the gate passing */
+    + '<g transform="translate(122,122)"><g class="rl-pill" opacity="0">'
+    + '<rect width="34" height="9.5" rx="4.75" fill="#8fbf7f"/><text x="17" y="6.6" font-size="5" text-anchor="middle" fill="#141824" font-weight="600">CLEAN</text>'
+    + '</g></g>'
+    + '<rect class="rl-veil" x="30" y="24" width="140" height="112" rx="8" fill="#f0e6d2" opacity="0"/>'
+    + '<rect class="warm" width="200" height="160" fill="url(#rlW)"/>'
+    + '<rect class="scn-clock" width="1" height="1" fill="none" opacity="0"/>'
+    + '</svg>';
+
   /* ---- injection + play/pause wiring ---------------------- */
   // Hover-capable devices additionally get the pointer/focus play; every
   // device gets the scroll-in play below.

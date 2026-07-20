@@ -1,0 +1,29 @@
+/* ============================================================
+   George Brothers — css/demos/copywriter.css
+   TRY IT panel for /work/copywriter. A live port of the suite's own
+   deterministic linter: edit the textarea, get flagged the same way
+   skills/_shared/lint.py would flag a draft, with the plain-English
+   "why" from forbidden.md next to each hit. Motion is a plain opacity
+   fade; the sitewide reduced-motion clamp in css/site.css already
+   forces it to land on its final frame, so no extra media query here.
+   ============================================================ */
+
+.cwd{display:flex;flex-direction:column;gap:14px}
+.cwd-label{font:400 13.5px/1.5 'Space Grotesk',sans-serif;color:rgba(243,234,217,.7)}
+.cwd-ta{width:100%;box-sizing:border-box;resize:vertical;min-height:96px;background:rgba(243,234,217,.03);border:1px solid rgba(243,234,217,.22);border-radius:12px;padding:14px 16px;font:400 15px/1.6 'Space Grotesk',sans-serif;color:#f3ead9;transition:border-color .3s}
+.cwd-ta:focus-visible{outline:none;border-color:#efa85c}
+.cwd-reset{align-self:flex-start;display:inline-flex;border:1px solid rgba(243,234,217,.3);color:#f3ead9;background:transparent;font:500 12.5px 'Space Grotesk',sans-serif;padding:9px 18px;border-radius:999px;cursor:pointer;transition:border-color .3s,color .3s}
+.cwd-reset:hover,.cwd-reset:focus-visible{border-color:#efa85c;color:#efa85c}
+
+.cwd-summary{margin:0;padding-top:14px;border-top:1px solid rgba(243,234,217,.14);font:500 13.5px 'IBM Plex Mono',monospace;letter-spacing:.03em}
+.cwd-summary.v-clean{color:#93b573}
+.cwd-summary.v-failed{color:#e0a394}
+
+.cwd-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.cwd-hit{background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.3);border-radius:10px;padding:12px 16px;opacity:0;transform:translateY(4px);animation:cwd-in .35s ease forwards}
+@keyframes cwd-in{to{opacity:1;transform:none}}
+.cwd-hit-head{margin:0 0 6px;display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;font:400 13px 'IBM Plex Mono',monospace}
+.cwd-hit-ln{color:rgba(243,234,217,.45)}
+.cwd-hit-lab{color:#e0a394;font-weight:500}
+.cwd-hit-frag{color:rgba(243,234,217,.7);font-style:italic}
+.cwd-hit-why{margin:0;font:400 14px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75)}

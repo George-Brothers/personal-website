@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI for Beginners — George Brothers</title>
+<meta name="description" content="AI for Beginners is a guidebook for people who keep hearing about AI and quietly have no idea where to start: what it is, what it is good at, where it lies to you, and ten things to try tonight. Currently being written.">
+<link rel="canonical" href="https://georgeellisbrothers.com/work/ai-for-beginners">
+<meta property="og:title" content="AI for Beginners — George Brothers">
+<meta property="og:description" content="A guidebook for people who keep hearing about AI and quietly have no idea where to start. Written in plain English. Currently being written.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://georgeellisbrothers.com/work/ai-for-beginners">
+<meta property="og:image" content="https://georgeellisbrothers.com/assets/og-card.v1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI for Beginners — George Brothers">
+<meta name="twitter:description" content="A guidebook for people who keep hearing about AI and quietly have no idea where to start. Written in plain English. Currently being written.">
+<meta name="twitter:image" content="https://georgeellisbrothers.com/assets/og-card.v1.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23171009'/%3E%3Ctext x='16' y='23' font-size='17' text-anchor='middle' fill='%23efa85c'%3E%E2%97%86%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/instrument-serif-400.v1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/space-grotesk-var.v1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ibm-plex-mono-400.v1.woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/scenes.css">
+<link rel="stylesheet" href="/css/case.css">
+<link rel="stylesheet" href="/css/demos/ai-for-beginners.css">
+<style>
+  /* ============================================================
+     Page-local deviation from case.css, same convention documented
+     at the top of css/case.css: that file is frozen after atlas
+     shipped, and a later page's own needs (here: a "steps" section,
+     which atlas never used) get their own <style> block instead of
+     a case.css edit. Sizing mirrors case.css's cs-point-t scale-up
+     of the modal's .m-step rhythm (work.html's .m-steps/.m-step-*).
+     ============================================================ */
+  .cs-steps{display:flex;flex-direction:column;gap:14px}
+  .cs-step{display:flex;gap:14px;align-items:baseline}
+  .cs-step-n{flex:none;font:500 12px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.6);width:20px}
+  .cs-step-t{margin:0;font:400 15.5px/1.7 'Space Grotesk',sans-serif;color:rgba(243,234,217,.78)}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Work", "item": "https://georgeellisbrothers.com/work" },
+        { "@type": "ListItem", "position": 2, "name": "AI for Beginners", "item": "https://georgeellisbrothers.com/work/ai-for-beginners" }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "AI for Beginners",
+      "description": "A guidebook for people who keep hearing about AI and quietly have no idea where to start. Written in plain English. Currently being written.",
+      "url": "https://georgeellisbrothers.com/work/ai-for-beginners",
+      "author": { "@type": "Person", "name": "George Brothers" },
+      "creativeWorkStatus": "WRITING",
+      "keywords": ["AI literacy", "plain-English guide", "beginner AI education"]
+    }
+  ]
+}
+</script>
+<script src="/js/site.js" defer></script>
+<script src="/js/scenes.js" defer></script>
+<script src="/js/demos/ai-for-beginners.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="gb-nav" aria-label="Primary">
+  <a href="/" class="gb-wordmark">GEORGE&nbsp;BROTHERS</a>
+  <div class="nav-links">
+    <a href="/work" aria-current="page">WORK</a>
+    <a href="/about" class="hv-nav">ABOUT</a>
+    <a href="/now" class="hv-nav">NOW</a>
+    <a href="/connect" class="hv-nav">CONNECT</a>
+  </div>
+  <div class="gb-nav-right">
+    <button type="button" class="nav-burger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="mobile-menu" hidden>
+  <button type="button" class="mobile-menu-close" aria-label="Close menu">&times;</button>
+  <a href="/">Home</a>
+  <a href="/work" aria-current="page">Work</a>
+  <a href="/about">About</a>
+  <a href="/now">Now</a>
+  <a href="/connect">Connect</a>
+</div>
+
+<main id="main">
+<div class="cs-root">
+
+  <div class="cs-hero">
+    <a class="cs-back" href="/work">← Selected work</a>
+
+    <div class="cs-eyebrow">
+      <span class="cs-num">04 · THE GUIDEBOOK</span>
+      <span class="cs-badge" style="background:#b48fd9">WRITING</span>
+    </div>
+
+    <h1 class="cs-title">AI for Beginners<span class="cs-dot">.</span></h1>
+
+    <p class="cs-blurb">A guidebook for people who keep hearing about AI and quietly have no idea where to start. Written in plain English.</p>
+
+    <div class="cs-meta">
+      <span>GUIDE</span><span>·</span><span>UPD JUL 2026</span>
+    </div>
+
+    <div class="cs-art" aria-hidden="true">
+      <div class="scn" data-scene="guidebook" data-variant="full"></div>
+    </div>
+
+    <div class="cs-cta-row">
+      <span class="cs-private">Still being written — no repo yet, nothing finished to link.</span>
+      <a class="cs-cta" href="/connect">Ask for a copy</a>
+    </div>
+  </div>
+
+  <section class="cs-sections" aria-label="Case study">
+
+    <div class="cs-section">
+      <div class="cs-label">01 · WHY IT EXISTS</div>
+      <p class="cs-text">Half the people I talk to think AI is either magic or a scam, and both camps are stuck at the same spot: they never got a calm first hour with it. Every guide online assumes you already know what a prompt is or wants to sell you a course. This is the missing first chapter. What it is, what it is good at, where it lies to you, and ten things to try tonight.</p>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-label">02 · WHO IT'S FOR</div>
+      <p class="cs-text">Your parents. Your boss. That friend who says they will get into AI eventually. Anyone smart but starting from zero who deserves better than hype threads.</p>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-label">03 · HOW TO USE IT</div>
+      <div class="cs-steps">
+        <div class="cs-step">
+          <span class="cs-step-n">01</span>
+          <p class="cs-step-t">Ask me for the current draft. It is a living document and I want margin notes.</p>
+        </div>
+        <div class="cs-step">
+          <span class="cs-step-n">02</span>
+          <p class="cs-step-t">Read chapter one with an AI chat open in the next tab. It is written to be tried, not skimmed.</p>
+        </div>
+        <div class="cs-step">
+          <span class="cs-step-n">03</span>
+          <p class="cs-step-t">Send me the part that confused you. That is the part I rewrite next.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-label">04 · STACK</div>
+      <div class="cs-stack">
+        <span class="cs-tok">plain English</span>
+        <span class="cs-tok">real examples</span>
+        <span class="cs-tok">field tested on my family</span>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="demo" class="case-demo" aria-labelledby="demo-heading">
+    <div class="cs-label" id="demo-heading">TRY IT — JARGON DECODER</div>
+    <p class="cs-demo-intro">This is exactly what the guidebook is for. Here's a sentence you might actually hear at work, loaded with the words everyone nods along to. Click any highlighted term for the plain-English explanation the book would give you.</p>
+
+    <div data-demo="ai-for-beginners">
+      <div data-demo-fallback>
+        <p class="cs-text">Marketing wants us to <strong>fine-tune</strong> a 70-billion-<strong>parameter</strong> model, but half our support tickets blow past the <strong>context window</strong> before it ever reaches the actual question. Legal is worried about <strong>hallucination</strong> in the summaries. Engineering thinks <strong>RAG</strong> would fix the accuracy problem, since it pulls in real documents by comparing <strong>embeddings</strong> instead of trusting the model's memory. Someone will explain what a <strong>token</strong> even is by Friday, hopefully.</p>
+        <dl class="jd-fallback-glossary">
+          <div><dt>Fine-tuning</dt><dd>Taking an already-trained model and training it further on a narrower set of examples so it gets better at one specific job — a support tone, a coding style, your own product names. It changes the model itself, which costs more and takes longer than just giving it instructions in the moment.</dd></div>
+          <div><dt>Parameters</dt><dd>The internal numbers a model learns during training — its adjustable dials, essentially. A "70-billion-parameter model" has 70 billion of them. More parameters usually means more capacity to capture patterns, and more compute needed to run it.</dd></div>
+          <div><dt>Context window</dt><dd>How much text, measured in tokens, a model can hold in view at once for a single conversation or request. Push past it and the oldest material gets dropped, the same way you would lose track of the start of a long meeting. It resets between separate conversations — it is a workspace, not a memory.</dd></div>
+          <div><dt>Hallucination</dt><dd>When a model states something false in the same confident voice it uses for something true. It is not lying on purpose — it is predicting text that sounds plausible, and plausible is not the same thing as true. It shows up most when the model does not actually know the answer but produces one anyway.</dd></div>
+          <div><dt>RAG (retrieval-augmented generation)</dt><dd>Instead of trusting only what the model memorized during training, RAG looks up real documents first and hands the model the relevant passages to read before it answers. It is how a model gets facts right about things that happened after its training ended, or documents it was never shown at all.</dd></div>
+          <div><dt>Embedding</dt><dd>A list of numbers that stands in for the meaning of a piece of text, arranged so that similar meanings land near each other in that number space. It is how a computer, which only handles numbers, gets to compare meaning at all — two sentences with different words but the same idea end up close together.</dd></div>
+          <div><dt>Token</dt><dd>The actual chunk of text a model reads and writes — often a piece of a word, not a whole one. "Strawberry" might cost two or three tokens. Everything sent to a model or generated by it is counted, priced, and limited in tokens, not words or characters.</dd></div>
+        </dl>
+        <p class="cs-text" style="color:rgba(243,234,217,.55);font-size:13px">Turn on JavaScript to click any bolded term and reveal its definition one at a time, the way the book actually walks you through it.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-footer-cta">
+    <a class="cs-back" href="/work">← Back to selected work</a>
+  </div>
+
+</div>
+</main>
+
+<footer class="gb-footer">
+  <span class="gb-copyright">© 2026 GEORGE BROTHERS — NASHVILLE, TN</span>
+  <div class="gb-footer-links">
+    <a href="/work#ideas" class="hv-pill hv-pill-glow">Got an idea? ↗</a>
+    <a href="/assets/george-brothers-resume.pdf" download class="hv-pill">Résumé ↓</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+/* ============================================================
+   George Brothers — css/demos/atlas.css
+   TRY IT panel for /work/atlas. A single real quiz question from
+   atlas's first curriculum topic (tokens & embeddings), graded the
+   same strict way atlas grades everything: right/wrong plus a real
+   explanation, never a vague "nice try." Motion is a plain opacity/
+   transform transition — the sitewide reduced-motion clamp in
+   css/site.css already forces it to land on its final frame with
+   no animation, so no extra media query is needed here.
+   ============================================================ */
+
+.atd{display:flex;flex-direction:column;gap:18px}
+.atd-q{margin:0;font:400 16.5px/1.6 'Space Grotesk',sans-serif;color:#f3ead9}
+.atd-options{display:flex;flex-direction:column;gap:10px}
+.atd-opt{display:flex;gap:12px;align-items:baseline;width:100%;box-sizing:border-box;text-align:left;background:rgba(243,234,217,.03);border:1px solid rgba(243,234,217,.18);border-radius:12px;padding:14px 18px;font:400 14.5px/1.55 'Space Grotesk',sans-serif;color:rgba(243,234,217,.85);cursor:pointer;transition:border-color .3s,background .3s}
+.atd-opt:hover:not(:disabled),.atd-opt:focus-visible{border-color:rgba(243,234,217,.4);background:rgba(243,234,217,.06)}
+.atd-opt:disabled{cursor:default}
+.atd-opt-k{flex:none;font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.03em;color:#efa85c}
+.atd-opt.is-correct{border-color:#93b573;background:rgba(147,181,115,.1)}
+.atd-opt.is-wrong{border-color:#c0392b;background:rgba(192,57,43,.1)}
+.atd-opt.is-muted:disabled{opacity:.5}
+
+.atd-feedback{border-top:1px solid rgba(243,234,217,.14);padding-top:18px;opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform .4s ease}
+.atd-feedback.on{opacity:1;transform:none}
+.atd-verdict{margin:0 0 8px;font:500 13.5px 'IBM Plex Mono',monospace;letter-spacing:.06em}
+.atd-verdict.v-pass{color:#93b573}
+.atd-verdict.v-fail{color:#e0a394}
+.atd-explain{margin:0;font:400 14.5px/1.7 'Space Grotesk',sans-serif;color:rgba(243,234,217,.78)}
+.atd-reset{margin-top:16px;display:inline-flex;align-self:flex-start;border:1px solid rgba(243,234,217,.3);color:#f3ead9;background:transparent;font:500 12.5px 'Space Grotesk',sans-serif;padding:9px 18px;border-radius:999px;cursor:pointer;transition:border-color .3s,color .3s}
+.atd-reset:hover,.atd-reset:focus-visible{border-color:#efa85c;color:#efa85c}

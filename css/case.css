@@ -1,0 +1,72 @@
+/* ============================================================
+   George Brothers — case.css
+   Shared styling for /work/<slug> case-study pages. One page per
+   project (atlas is the reference — work/atlas.html). Frozen after
+   the reference page ships; a later page's own deviations belong
+   in that page's own <style> block, same convention as every other
+   page on the site. Reuses the site palette (#171009 / #f3ead9 /
+   #efa85c) and the .m-* modal vocabulary's rhythm, renamed .cs-*
+   since the modal itself is being retired in a later slice.
+   ============================================================ */
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ===== shell ===== */
+.cs-root{max-width:760px;margin:0 auto;padding:0 64px 96px;box-sizing:border-box}
+@media (max-width:900px){
+  .cs-root{padding-left:clamp(18px,4.5vw,64px);padding-right:clamp(18px,4.5vw,64px)}
+}
+
+/* ===== back link ===== */
+.cs-back{display:inline-flex;align-items:center;gap:6px;font:400 12.5px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:rgba(243,234,217,.6);padding:8px 0;transition:color .3s}
+.cs-back:hover,.cs-back:focus-visible{color:#f3ead9}
+
+/* ===== hero ===== */
+.cs-hero{padding-top:44px}
+.cs-eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:26px}
+.cs-num{font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.18em;color:rgba(243,234,217,.6)}
+.cs-badge{font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;border-radius:99px;padding:3px 10px}
+.cs-badge.cs-badge-outline{background:transparent;color:#f3ead9;border:1px solid rgba(243,234,217,.35)}
+.cs-title{margin:14px 0 0;font:400 clamp(38px,6.4vw,64px) 'Instrument Serif',serif;letter-spacing:-.01em;color:#f3ead9}
+.cs-dot{font-style:italic;color:#efa85c}
+.cs-blurb{margin:18px 0 0;max-width:600px;font:300 17px/1.65 'Space Grotesk',sans-serif;color:rgba(243,234,217,.8)}
+.cs-meta{margin:18px 0 0;display:flex;gap:10px;flex-wrap:wrap;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.55)}
+
+/* ===== hero art (reuses the diorama scenes) ===== */
+.cs-art{margin-top:28px;width:100%;max-width:340px;aspect-ratio:5/4;border-radius:18px;background:rgba(243,234,217,.03);border:1px solid rgba(243,234,217,.1);display:grid;place-items:center;overflow:hidden}
+.cs-art .scn-host svg{transform:scale(1.05)}
+
+/* ===== cta row ===== */
+.cs-cta-row{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.cs-repo-btn{display:inline-flex;align-items:center;gap:9px;background:#f3ead9;color:#171009;font:500 13.5px 'Space Grotesk',sans-serif;padding:12px 22px;border-radius:999px;cursor:pointer;transition:background .3s}
+.cs-repo-btn:hover,.cs-repo-btn:focus-visible{background:#efa85c !important}
+.cs-cta{display:inline-flex;align-items:center;border:1.5px solid #efa85c;color:#efa85c;font:500 13.5px 'Space Grotesk',sans-serif;padding:11px 22px;border-radius:999px;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.cs-cta:hover,.cs-cta:focus-visible{background:#f3ead9 !important;color:#171009 !important;border-color:#f3ead9 !important}
+.cs-private{font:400 12px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:rgba(243,234,217,.5)}
+
+/* ===== sections ===== */
+.cs-sections{display:flex;flex-direction:column;gap:44px;margin-top:64px}
+.cs-section{max-width:640px}
+.cs-label{font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.18em;color:#efa85c;margin-bottom:14px}
+.cs-text{margin:0;font:400 16px/1.75 'Space Grotesk',sans-serif;color:rgba(243,234,217,.8)}
+.cs-points{display:flex;flex-direction:column;gap:22px}
+.cs-point{display:flex;flex-direction:column;gap:6px}
+.cs-point-k{font:500 13.5px 'IBM Plex Mono',monospace;letter-spacing:.02em;color:#f3ead9}
+.cs-point-t{margin:0;font:400 15.5px/1.7 'Space Grotesk',sans-serif;color:rgba(243,234,217,.78)}
+.cs-figure{margin:0}
+.cs-img{display:block;width:100%;height:auto;border:1px solid rgba(243,234,217,.14);border-radius:12px;background:#160f08}
+.cs-figcaption{margin:12px 0 0;font:400 13px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.55)}
+.cs-stack{display:flex;gap:8px;flex-wrap:wrap}
+.cs-tok{font:400 12.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.7);border:1px solid rgba(243,234,217,.22);border-radius:99px;padding:6px 13px}
+
+/* ===== TRY IT demo panel ===== */
+.case-demo{margin-top:64px;border:1px solid rgba(243,234,217,.16);border-radius:18px;padding:32px;box-sizing:border-box;background:rgba(243,234,217,.02)}
+.cs-demo-intro{margin:12px 0 0;max-width:560px;font:400 14.5px/1.7 'Space Grotesk',sans-serif;color:rgba(243,234,217,.7)}
+
+/* ===== bottom nav ===== */
+.cs-footer-cta{margin-top:80px}
+
+@media (max-width:640px){
+  .cs-hero{padding-top:30px}
+  .case-demo{padding:22px}
+}
