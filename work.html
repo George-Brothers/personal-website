@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Selected Work — George Brothers</title>
-<meta name="description" content="The AI systems George Brothers is building, from a Mandarin study coach to a learning platform to a context broker for AI tools. Each opens into a short case study: the problem, how it works, and the engineering decisions behind it.">
+<meta name="description" content="The AI systems George Brothers is building, from a private context broker for AI tools to a Mandarin study coach to a strict learning platform. Each opens into a short case study: the problem, how it works, and the engineering decisions behind it.">
 <link rel="canonical" href="https://georgeellisbrothers.com/work">
 <meta property="og:title" content="Selected Work — George Brothers">
-<meta property="og:description" content="The AI systems George Brothers is building, from a Mandarin study coach to a learning platform to a context broker for AI tools. Each opens into a short case study: the problem, how it works, and the engineering decisions behind it.">
+<meta property="og:description" content="The AI systems George Brothers is building, from a private context broker for AI tools to a Mandarin study coach to a strict learning platform. Each opens into a short case study: the problem, how it works, and the engineering decisions behind it.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://georgeellisbrothers.com/work">
 <meta property="og:image" content="https://georgeellisbrothers.com/assets/og-card.v1.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Selected Work — George Brothers">
-<meta name="twitter:description" content="The AI systems George Brothers is building, from a Mandarin study coach to a learning platform to a context broker for AI tools. Each opens into a short case study: the problem, how it works, and the engineering decisions behind it.">
+<meta name="twitter:description" content="The AI systems George Brothers is building, from a private context broker for AI tools to a Mandarin study coach to a strict learning platform. Each opens into a short case study: the problem, how it works, and the engineering decisions behind it.">
 <meta name="twitter:image" content="https://georgeellisbrothers.com/assets/og-card.v1.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23171009'/%3E%3Ctext x='16' y='23' font-size='17' text-anchor='middle' fill='%23efa85c'%3E%E2%97%86%3C/text%3E%3C/svg%3E">
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/instrument-serif-400.v1.woff2" crossorigin>
@@ -101,6 +101,9 @@ dialog#case-dialog::backdrop{background:rgba(10,7,14,.62)}
 .m-point{display:flex;flex-direction:column;gap:5px}
 .m-point-k{font:500 12px 'IBM Plex Mono',monospace;letter-spacing:.03em;color:#f3ead9}
 .m-point-t{margin:0;font:400 14px/1.65 'Space Grotesk',sans-serif;color:rgba(243,234,217,.76)}
+.m-figure{margin:0}
+.m-img{display:block;width:100%;height:auto;border:1px solid rgba(243,234,217,.14);border-radius:12px;background:#160f08}
+.m-figcaption{margin:10px 0 0;font:400 12.5px/1.55 'Space Grotesk',sans-serif;color:rgba(243,234,217,.55)}
 .m-stack{display:flex;gap:8px;flex-wrap:wrap}
 .m-tok{font:400 11.5px 'IBM Plex Mono',monospace;color:rgba(243,234,217,.7);border:1px solid rgba(243,234,217,.22);border-radius:99px;padding:5px 12px}
 .m-footer{margin-top:32px;padding-top:22px;border-top:1px solid rgba(243,234,217,.14);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -179,34 +182,34 @@ dialog#case-dialog::backdrop{background:rgba(10,7,14,.62)}
   <h2 id="w-grid-heading" class="sr-only">Projects</h2>
   <div class="w-grid" id="w-grid">
 
-    <!-- 01 Chief of Learning -->
-    <button type="button" class="wcard wc-f hv-wcard-green" data-idx="0" aria-label="Open case study: Chief of Learning" style="border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:flex;align-items:stretch;overflow:hidden;cursor:pointer">
+    <!-- 01 Context Drop -->
+    <button type="button" class="wcard wc-f hv-wcard-amber" data-idx="5" aria-label="Open case study: Context Drop" style="border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:flex;align-items:stretch;overflow:hidden;cursor:pointer">
       <div style="flex:1 1 52%;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:24px 8px 26px 26px;position:relative;z-index:2;min-width:0">
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-          <h3 style="margin:0;font:400 clamp(22px,2.2vw,30px) 'Instrument Serif',serif">Chief of Learning</h3>
-          <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#b48fd9;border-radius:99px;padding:3px 9px">BUILDING</span>
-        </div>
-        <p style="margin:0;font:400 13.5px/1.55 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);max-width:300px">An AI chief of staff for learning Mandarin. It plans, drills, and keeps score so I just show up.</p>
-        <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#93b573">OPEN CASE STUDY →</span>
-      </div>
-      <div class="wf-art scn" data-scene="garden" data-variant="full" aria-hidden="true" style="flex:0 0 220px;display:grid;place-items:center"></div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">01 · 语言花园</span>
-      <span style="position:absolute;top:14px;right:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">UPD MAY 26</span>
-    </button>
-
-    <!-- 02 Context Engine -->
-    <button type="button" class="wcard wc-f hv-wcard-amber" data-idx="5" aria-label="Open case study: Context Engine" style="border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:flex;align-items:stretch;overflow:hidden;cursor:pointer">
-      <div style="flex:1 1 52%;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:24px 8px 26px 26px;position:relative;z-index:2;min-width:0">
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-          <h3 style="margin:0;font:400 clamp(22px,2.2vw,30px) 'Instrument Serif',serif">Context Engine</h3>
+          <h3 style="margin:0;font:400 clamp(22px,2.2vw,30px) 'Instrument Serif',serif">Context Drop</h3>
           <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#b48fd9;border-radius:99px;padding:3px 9px">PROTOTYPE</span>
         </div>
-        <p style="margin:0;font:400 13.5px/1.55 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);max-width:300px">Hands an AI tool the right few pages from your notes, and only those. Ranked, kept to a budget, private pages held back.</p>
+        <p style="margin:0;font:400 13.5px/1.55 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);max-width:300px">Private context retrieval for AI tools. It hands an assistant the few notes a task needs, keeps restricted pages out, and shows exactly what the model was given.</p>
         <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#efa85c">OPEN CASE STUDY →</span>
       </div>
       <div class="wf-art scn" data-scene="library" data-variant="full" aria-hidden="true" style="flex:0 0 220px;display:grid;place-items:center"></div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">02 · CONTEXT ENGINE</span>
+      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">01 · PRIVATE CONTEXT</span>
       <span style="position:absolute;top:14px;right:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">UPD JUN 26</span>
+    </button>
+
+    <!-- 02 Lucy -->
+    <button type="button" class="wcard wc-f hv-wcard-green" data-idx="0" aria-label="Open case study: Lucy" style="border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:flex;align-items:stretch;overflow:hidden;cursor:pointer">
+      <div style="flex:1 1 52%;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:24px 8px 26px 26px;position:relative;z-index:2;min-width:0">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <h3 style="margin:0;font:400 clamp(22px,2.2vw,30px) 'Instrument Serif',serif">Lucy</h3>
+          <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#b48fd9;border-radius:99px;padding:3px 9px">BUILDING</span>
+        </div>
+        <p style="margin:0;font:400 13.5px/1.55 'Space Grotesk',sans-serif;color:rgba(243,234,217,.75);max-width:300px">An adaptive Mandarin coach. Lucy turns each tutoring session into a learning record, then rewrites tomorrow’s plan around what I actually missed.</p>
+        <span style="font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#93b573">OPEN CASE STUDY →</span>
+      </div>
+      <div class="wf-art scn" data-scene="garden" data-variant="full" aria-hidden="true" style="flex:0 0 220px;display:grid;place-items:center"></div>
+      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">02 · MANDARIN</span>
+      <span style="position:absolute;top:14px;right:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:rgba(243,234,217,.62)">UPD MAY 26</span>
     </button>
 
     <!-- 03 atlas -->
@@ -300,7 +303,7 @@ dialog#case-dialog::backdrop{background:rgba(10,7,14,.62)}
   <span class="gb-copyright">© 2026 GEORGE BROTHERS — NASHVILLE, TN</span>
   <div class="gb-footer-links">
     <a href="/work#ideas" class="hv-pill hv-pill-glow">Got an idea? ↗</a>
-    
+    <a href="/assets/george-brothers-resume.pdf" download class="hv-pill">Résumé ↓</a>
   </div>
 </footer>
 

@@ -45,10 +45,40 @@
 @media (max-width:900px){
   .gb-positioning,.gb-work,.gb-cta{padding-left:clamp(18px,4.5vw,64px) !important;padding-right:clamp(18px,4.5vw,64px) !important}
   .r-hero{height:auto !important;margin-top:-72px !important}
-  .r-hero img{position:absolute !important;left:0 !important;right:auto !important;top:0 !important;width:100% !important;height:clamp(400px,60vw,540px) !important;object-fit:cover;object-position:68% 22% !important}
-  .r-hero>div:nth-child(2){background:linear-gradient(180deg,rgba(23,16,9,.82) 0%,rgba(23,16,9,.3) 16%,rgba(23,16,9,0) 30%) !important;top:0 !important;left:0 !important;right:0 !important;bottom:auto !important;height:clamp(420px,62vw,560px) !important}
-  .r-hero>div:nth-child(3){top:0 !important;left:0 !important;right:0 !important;bottom:auto !important;height:clamp(420px,62vw,560px) !important;background:linear-gradient(0deg,#171009 32%,rgba(23,16,9,.55) 58%,rgba(23,16,9,.1) 78%,rgba(23,16,9,0) 92%) !important}
-  .r-hero>div:nth-child(4){max-width:none !important;padding:clamp(280px,45vw,400px) 24px 8px !important}
+  /* Mobile hero: show the WHOLE figure (head-to-keyboard, subject centered) like the
+     desktop composition. The image is landscape (1672x941, aspect 1.78) with ~25% empty
+     sky above the cap. A full-width crop makes the box narrower than the image, so cover
+     binds on HEIGHT (full vertical incl. all the sky, subject small, object-position-Y
+     inert). We make the box WIDER than the image (width:190vw) so cover binds on WIDTH:
+     vertical overflow appears and horizontal overflow is clipped by overflow:hidden.
+     Horizontal framing is set by this left offset (object-position-X is inert once the
+     crop binds on width). left:-76vw slides the crop window to source x ~0.40-0.93 so the
+     empty chair back on the left is cropped down to a sliver, the subject sits left-of-
+     centre, and the desk/monitor/mouse on the right come into frame (matching the desktop
+     composition). The box is deliberately tall (92vw) so most of the vertical figure is
+     revealed (cap ~16% from top, keyboard ~80%, desk edge ~97%) with only modest sky.
+     object-position 50% 80% keeps the small top-crop on the sky.
+     Overlays are pulled DOWN off the figure: the top scrim only darkens the nav/sky band,
+     and the bottom scrim is a short band anchored to the bottom (top edge at ~84%, below
+     the keyboard) so his torso/keyboard are no longer blacked out. The text block starts
+     at ~95% of the image (below the keyboard) and flows onto the page background, so it
+     sits under him rather than over his face. */
+  .r-hero img{position:absolute !important;left:-76vw !important;right:auto !important;top:0 !important;width:190vw !important;height:clamp(340px,92vw,580px) !important;object-fit:cover;object-position:50% 80% !important}
+  .r-hero>div:nth-child(2){background:linear-gradient(180deg,rgba(23,16,9,.85) 0%,rgba(23,16,9,.32) 42%,rgba(23,16,9,0) 100%) !important;top:0 !important;bottom:auto !important;left:0 !important;right:0 !important;height:clamp(100px,24vw,160px) !important}
+  .r-hero>div:nth-child(3){top:auto !important;bottom:0 !important;left:0 !important;right:0 !important;height:clamp(55px,15vw,110px) !important;background:linear-gradient(0deg,#171009 40%,rgba(23,16,9,0) 100%) !important}
+  .r-hero>div:nth-child(4){max-width:none !important;padding:clamp(320px,87vw,550px) 24px 8px !important}
+}
+@media (min-width:601px) and (max-width:900px){
+  /* Tablet band: the phone crop (190vw) over-zooms once the viewport is wide (height caps
+     while the image keeps enlarging), tightening the top and pulling the bottom scrim over
+     the keyboard. A gentler 145vw zoom, taller box, and shorter bottom scrim keep the same
+     whole-figure framing (hat ~8-15% from top, keyboard visible and clear of the scrim/text)
+     across 601-900px. left:-48vw applies the same rightward shift as the phone so the chair
+     is trimmed and the full desk/monitor/laptop show, subject left-of-centre. */
+  .r-hero img{left:-48vw !important;width:150vw !important;height:clamp(420px,62vw,600px) !important;object-position:50% 72% !important}
+  .r-hero>div:nth-child(2){height:clamp(130px,26vw,180px) !important}
+  .r-hero>div:nth-child(3){height:clamp(50px,9vw,90px) !important}
+  .r-hero>div:nth-child(4){padding-top:clamp(390px,58vw,560px) !important}
 }
 @media (max-width:560px){
   .r-cards{grid-template-columns:minmax(0,1fr) !important}
@@ -66,7 +96,7 @@
 /* ===== work card hover (saturate filter dropped — scenes brighten via their own .warm layer) ===== */
 .wcard{transition:transform .35s,box-shadow .35s,border-color .35s}
 .wcard:hover{transform:translateY(-6px) !important;box-shadow:0 18px 40px rgba(0,0,0,.5) !important}
-.card-lang:hover,.card-shelf:hover,.card-site:hover,.card-lab:hover{border-color:rgba(243,234,217,.28) !important}
+.card-lang:hover,.card-shelf:hover,.card-atlas:hover,.card-site:hover,.card-lab:hover{border-color:rgba(243,234,217,.28) !important}
 
 /* ===== CTA envelope hover ===== */
 .cta{display:inline-flex;align-items:center;border:1.5px solid #efa85c;color:#efa85c;font:500 17px 'Space Grotesk',sans-serif;padding:20px 58px;border-radius:999px;cursor:pointer;transition:background .35s,color .35s,border-color .35s}
@@ -126,6 +156,7 @@
     <p style="margin:0;max-width:470px;font:300 17px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.82)">Accounting + Entrepreneurship senior at Belmont. I’ve run rental operations, an Airbnb, and a self-funded vending venture. Now I’m building practical AI around how real work gets done.</p>
     <div style="display:flex;align-items:center;gap:16px;margin-top:6px;flex-wrap:wrap">
       <a href="/work" class="hv-cta" style="background:#f3ead9;color:#171009;font:500 14px 'Space Grotesk',sans-serif;padding:14px 26px;border-radius:999px;cursor:pointer;transition:background .3s">View selected work</a>
+      <a href="/assets/george-brothers-resume.pdf" download class="hv-pill" style="border:1px solid rgba(243,234,217,.4);font:500 14px 'Space Grotesk',sans-serif;padding:13px 24px;border-radius:999px;cursor:pointer;transition:border-color .3s,color .3s">Download resume</a>
       <a href="/connect" class="hv-connect-line" style="font:500 14px 'Space Grotesk',sans-serif;color:rgba(243,234,217,.8);border:1px solid transparent;padding:13px 22px;border-radius:999px;cursor:pointer;background-image:linear-gradient(rgba(243,234,217,.4),rgba(243,234,217,.4));background-repeat:no-repeat;background-size:calc(100% - 44px) 1px;background-position:22px calc(100% - 9px);transition:border-color .55s ease,color .55s ease,background-size .55s ease">Connect ↗</a>
     </div>
   </div>
@@ -158,34 +189,34 @@
   </div>
   <div class="r-cards" style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px">
 
-    <!-- card 1: language garden -->
-    <a href="/work#case-0" aria-label="Open case study: Chief of Learning" class="wcard card-lang" style="aspect-ratio:1;border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
-      <div class="r-scene scn" data-scene="garden" data-variant="mini" aria-hidden="true" style="position:relative;width:164px;height:150px;margin-top:28px"></div>
-      <div style="position:absolute;left:18px;right:18px;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:8px">
-        <span style="font:400 15px 'Instrument Serif',serif">Chief of Learning</span>
-        <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#b48fd9;border-radius:99px;padding:3px 8px">BUILDING</span>
-      </div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">语言花园</span>
-    </a>
-
-    <!-- card 2: the thinking shelf -->
-    <a href="/work#case-5" aria-label="Open case study: Context Engine" class="wcard card-shelf" style="aspect-ratio:1;border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
+    <!-- card 1: context drop -->
+    <a href="/work#case-5" aria-label="Open case study: Context Drop" class="wcard card-shelf" style="aspect-ratio:1;border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
       <div class="r-scene scn" data-scene="library" data-variant="mini" aria-hidden="true" style="position:relative;width:164px;height:150px;margin-top:28px"></div>
       <div style="position:absolute;left:18px;right:18px;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:8px">
-        <span style="font:400 15px 'Instrument Serif',serif">Context Engine</span>
+        <span style="font:400 15px 'Instrument Serif',serif">Context Drop</span>
         <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#b48fd9;border-radius:99px;padding:3px 8px">PROTOTYPE</span>
       </div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">THE SHELF</span>
+      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">PRIVATE CONTEXT</span>
     </a>
 
-    <!-- card 3: this website -->
-    <a href="/work#case-2" aria-label="Open case study: This site" class="wcard card-site" style="aspect-ratio:1;border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
-      <div class="r-scene scn" data-scene="website" data-variant="mini" aria-hidden="true" style="position:relative;width:164px;height:150px;margin-top:28px"></div>
+    <!-- card 2: lucy -->
+    <a href="/work#case-0" aria-label="Open case study: Lucy" class="wcard card-lang" style="aspect-ratio:1;border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
+      <div class="r-scene scn" data-scene="garden" data-variant="mini" aria-hidden="true" style="position:relative;width:164px;height:150px;margin-top:28px"></div>
       <div style="position:absolute;left:18px;right:18px;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:8px">
-        <span style="font:400 15px 'Instrument Serif',serif">This site</span>
-        <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#efa85c;border-radius:99px;padding:3px 8px">SHIPPED</span>
+        <span style="font:400 15px 'Instrument Serif',serif">Lucy</span>
+        <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#b48fd9;border-radius:99px;padding:3px 8px">BUILDING</span>
       </div>
-      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">GEB.COM</span>
+      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">MANDARIN</span>
+    </a>
+
+    <!-- card 3: atlas -->
+    <a href="/work#case-1" aria-label="Open case study: atlas" class="wcard card-atlas" style="aspect-ratio:1;border-radius:22px;background:#1c140c;border:1px solid rgba(243,234,217,.14);position:relative;display:grid;place-items:center;overflow:hidden;cursor:pointer">
+      <div class="r-scene scn" data-scene="dashboard" data-variant="mini" aria-hidden="true" style="position:relative;width:164px;height:150px;margin-top:28px"></div>
+      <div style="position:absolute;left:18px;right:18px;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <span style="font:400 15px 'Instrument Serif',serif">atlas</span>
+        <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#171009;background:#b48fd9;border-radius:99px;padding:3px 8px">BUILD-READY</span>
+      </div>
+      <span style="position:absolute;top:14px;left:18px;font:400 11px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:rgba(243,234,217,.6)">ATLAS</span>
     </a>
 
     <!-- card 4: the lab -->
@@ -217,6 +248,7 @@
   <span class="gb-copyright">© 2026 GEORGE BROTHERS — NASHVILLE, TN</span>
   <div class="gb-footer-links">
     <a href="/work#ideas" class="hv-pill hv-pill-glow">Got an idea? ↗</a>
+    <a href="/assets/george-brothers-resume.pdf" download class="hv-pill">Résumé ↓</a>
   </div>
 </footer>
 

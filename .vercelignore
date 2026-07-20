@@ -6,4 +6,6 @@ node_modules
 .DS_Store
 photos-originals/
 .playwright-mcp/
+.claude/
+CLAUDE.md
 docs/

@@ -16,7 +16,7 @@
 
   var SVG = {};
 
-  /* ---- 1 · garden — Chief of Learning -------------------- */
+  /* ---- 1 · garden — Lucy ---------------------------------- */
   SVG.garden = '<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">'
     + '<defs><radialGradient id="gdW" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="rgba(239,217,138,.12)"/><stop offset="1" stop-color="rgba(239,217,138,0)"/></radialGradient></defs>'
     /* sky details */
@@ -373,7 +373,7 @@
     + '<rect class="scn-clock" width="1" height="1" fill="none" opacity="0"/>'
     + '</svg>';
 
-  /* ---- 6 · library — Context Engine ----------------------- */
+  /* ---- 6 · library — Context Drop ------------------------- */
   SVG.library = '<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">'
     + '<defs>'
     + '<radialGradient id="libO" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#ffe9c4"/><stop offset=".72" stop-color="#efa85c"/><stop offset="1" stop-color="#e8913f"/></radialGradient>'

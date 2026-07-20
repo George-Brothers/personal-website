@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 528" role="img" aria-label="Context Drop request flow: a request enters, then the broker retrieves candidate pages from the private vault, ranks them by relevance, filters out restricted pages, fits the top pages to a token budget, and returns a context package with a manifest of what was held back.">
+  <defs>
+    <style>
+      .lbl{font-family:'IBM Plex Mono','SFMono-Regular',ui-monospace,monospace;font-size:12px;letter-spacing:.14em;fill:#efa85c}
+      .num{font-family:'IBM Plex Mono','SFMono-Regular',ui-monospace,monospace;font-size:11px;letter-spacing:.08em;fill:rgba(243,234,217,.5)}
+      .desc{font-family:'Space Grotesk','Helvetica Neue',system-ui,sans-serif;font-size:12.5px;fill:rgba(243,234,217,.78)}
+      .pill{font-family:'IBM Plex Mono','SFMono-Regular',ui-monospace,monospace;font-size:12px;letter-spacing:.12em}
+    </style>
+  </defs>
+
+  <!-- panel background -->
+  <rect x="0" y="0" width="520" height="528" rx="16" fill="#160f08"/>
+
+  <!-- entry pill: the request -->
+  <rect x="60" y="22" width="400" height="44" rx="10" fill="#221609" stroke="rgba(239,168,92,.4)"/>
+  <text x="260" y="49" text-anchor="middle" class="pill" fill="#efa85c">A REQUEST · an AI tool asks for context</text>
+
+  <!-- arrow 1 -->
+  <path d="M260 66 L260 82" stroke="rgba(243,234,217,.32)" stroke-width="1.5"/>
+  <path d="M254 80 L260 88 L266 80 Z" fill="rgba(243,234,217,.4)"/>
+
+  <!-- 01 RETRIEVE -->
+  <rect x="60" y="88" width="400" height="72" rx="12" fill="#1e150c" stroke="rgba(243,234,217,.14)"/>
+  <rect x="60" y="88" width="4" height="72" rx="2" fill="#efa85c"/>
+  <text x="84" y="114" class="lbl">RETRIEVE</text>
+  <text x="436" y="114" text-anchor="end" class="num">01</text>
+  <text x="84" y="136" class="desc">Pull candidate pages from the private vault.</text>
+
+  <!-- arrow 2 -->
+  <path d="M260 160 L260 176" stroke="rgba(243,234,217,.32)" stroke-width="1.5"/>
+  <path d="M254 174 L260 182 L266 174 Z" fill="rgba(243,234,217,.4)"/>
+
+  <!-- 02 RANK -->
+  <rect x="60" y="182" width="400" height="72" rx="12" fill="#1e150c" stroke="rgba(243,234,217,.14)"/>
+  <rect x="60" y="182" width="4" height="72" rx="2" fill="#efa85c"/>
+  <text x="84" y="208" class="lbl">RANK</text>
+  <text x="436" y="208" text-anchor="end" class="num">02</text>
+  <text x="84" y="230" class="desc">Score relevance: embeddings + keywords +</text>
+  <text x="84" y="247" class="desc">curated load order, fused with RRF.</text>
+
+  <!-- arrow 3 -->
+  <path d="M260 254 L260 270" stroke="rgba(243,234,217,.32)" stroke-width="1.5"/>
+  <path d="M254 268 L260 276 L266 268 Z" fill="rgba(243,234,217,.4)"/>
+
+  <!-- 03 FILTER -->
+  <rect x="60" y="276" width="400" height="72" rx="12" fill="#1e150c" stroke="rgba(243,234,217,.14)"/>
+  <rect x="60" y="276" width="4" height="72" rx="2" fill="#efa85c"/>
+  <text x="84" y="302" class="lbl">FILTER</text>
+  <text x="436" y="302" text-anchor="end" class="num">03</text>
+  <text x="84" y="324" class="desc">Hold restricted pages back unless the</text>
+  <text x="84" y="341" class="desc">request is explicitly cleared for them.</text>
+
+  <!-- arrow 4 -->
+  <path d="M260 348 L260 364" stroke="rgba(243,234,217,.32)" stroke-width="1.5"/>
+  <path d="M254 362 L260 370 L266 362 Z" fill="rgba(243,234,217,.4)"/>
+
+  <!-- 04 TOKEN BUDGET -->
+  <rect x="60" y="370" width="400" height="72" rx="12" fill="#1e150c" stroke="rgba(243,234,217,.14)"/>
+  <rect x="60" y="370" width="4" height="72" rx="2" fill="#efa85c"/>
+  <text x="84" y="396" class="lbl">TOKEN BUDGET</text>
+  <text x="436" y="396" text-anchor="end" class="num">04</text>
+  <text x="84" y="418" class="desc">Fit the top-ranked pages to the token</text>
+  <text x="84" y="435" class="desc">budget the tool asked for.</text>
+
+  <!-- arrow 5 -->
+  <path d="M260 442 L260 458" stroke="rgba(243,234,217,.32)" stroke-width="1.5"/>
+  <path d="M254 456 L260 464 L266 456 Z" fill="rgba(243,234,217,.4)"/>
+
+  <!-- result pill: the context package -->
+  <rect x="60" y="464" width="400" height="44" rx="10" fill="#efa85c"/>
+  <text x="260" y="491" text-anchor="middle" class="pill" fill="#171009">CONTEXT PACKAGE + held-back manifest</text>
+</svg>

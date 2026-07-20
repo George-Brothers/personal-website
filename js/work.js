@@ -11,29 +11,31 @@
 (function () {
   'use strict';
 
-  // github fields emptied 2026-07: repos are private. Restore URLs when public.
+  // github: link a project's public @George-Brothers repo where one exists;
+  // leave '' for projects with no public repo yet (atlas, AI for Beginners) and
+  // the open slot. Empty '' shows a PRIVATE REPO label and hides the repo button.
   var PROJECTS = [
     {
-      num: '01 · 语言花园', name: 'Chief of Learning', status: 'BUILDING', statusBg: '#b48fd9',
+      num: '02 · MANDARIN', name: 'Lucy', status: 'BUILDING', statusBg: '#b48fd9',
       bg: '#1d2415', border: 'rgba(147,181,115,.5)', type: 'ai system', dateRank: 2, updated: 'MAY 2026', statusRank: 1,
-      blurb: 'An AI chief of staff for learning Mandarin. It plans the sessions, runs the drills, and keeps the receipts, so the only job left is showing up.',
+      blurb: 'Lucy turns a long-term Mandarin goal into a daily plan, then uses tutoring feedback and study history to change the plan instead of repeating generic lessons.',
       sections: [
         { label: '01 · THE PROBLEM', type: 'text',
-          text: 'Language apps kept me on a streak, not in a conversation. None of them remembered what I studied yesterday or heard what I got wrong today, so every session started from zero and I was quietly doing two jobs: the student and the teacher. I wanted to keep the student job and hand the rest to something with a memory.' },
+          text: 'Language apps kept me on a streak, not in a conversation. None of them remembered what I studied yesterday or heard what I got wrong today, so every session started from zero and I was quietly doing two jobs, the student and the teacher. I wanted to keep the student job and hand the rest to something with a memory that changes the plan when I improve, miss a week, or keep making the same mistake.' },
         { label: '02 · HOW IT WORKS', type: 'text',
-          text: 'It is one study coach you reach three ways: a Telegram chat, a morning brief, and a private dashboard. All three run the same pipeline, so the coach behaves the same wherever you talk to it. Notion is its memory. Every lesson, correction, and plan lives in plain Notion documents I can read and edit by hand, and the code treats those as the source of truth. A separate program on my own machine records lessons, transcribes them locally, and files the notes back.' },
+          text: 'It is one study coach you reach three ways: a Telegram chat, a morning brief, and a private dashboard. All three share one reasoning pipeline that never forks, so the coach behaves the same wherever you talk to it and a fix reaches every surface at once. Notion is its memory. Every lesson, correction, and plan lives in plain Notion documents I can read and edit by hand, and the code treats those as the source of truth. A separate program on my own machine records lessons, transcribes them locally, and files the notes back.' },
         { label: '03 · ENGINEERING DECISIONS', type: 'points', points: [
-          { k: 'Model routing by role', t: 'Every task picks its own model by role: quick chat, heavier reasoning, classification, long context, and vision. Each role has a fallback, and the image reader falls back to a model that can actually see, so a text-only model never guesses at a photo. If no vision model is wired up, the bot says it could not read the image instead of failing.' },
-          { k: 'A search index that fails open', t: 'On top of Notion I keep a derived semantic index in Postgres with pgvector. It is built to fail open: if the index is missing or the database is unreachable, the coach falls back to Notion and answers anyway. Ranking is unit tested against an in-memory copy of the index, so the math is proven without a live database.' },
-          { k: 'Idempotent ingest, nothing dropped', t: 'Every transcript is identified by a hash of its contents, so the same lesson never lands twice. A push that fails is parked in a dead-letter folder and replayed later. A lesson is never dropped silently, which matters for a personal system with no backups.' },
-          { k: 'Audio stays local', t: 'Lesson audio never leaves my machine. It is transcribed locally and only the text is sent up. A recording is quarantined on failure, never deleted, because it is the only copy.' }
+          { k: 'Model routing by role', t: 'Every call is routed by role, quick chat, heavier reasoning, classification, long context, and vision, to the cheapest model that can do that job, with a fallback if the first one fails. Vision runs on Gemini and falls back to OpenAI when the Google key is absent, so a homework photo still gets read. Swapping a model or a whole provider is a one-line edit in a single file.' },
+          { k: 'A search index that fails open', t: 'On top of Notion sits a derived semantic index in Neon Postgres with pgvector, a one-way copy that Notion always overrules. It fails open: if the index is missing, empty, or unreachable, Lucy answers from Notion anyway. The ranking is unit tested against an in-memory copy of the index, so the math is proven without a live database.' },
+          { k: 'Built to never lose data', t: 'With no backups, every write path assumes a crash. A Notion update writes the new version before removing the old, so a failure mid-write cannot blank a document. Each lesson transcript is keyed by a hash of its contents, so the same lesson never lands twice, and a push that fails is parked and replayed instead of dropped. The card queue only gives up on work that can never succeed, so closing Anki just leaves the cards waiting.' },
+          { k: 'Audio stays local', t: 'Lesson audio never leaves my laptop. It is transcribed locally with whisper.cpp and only the text is sent up. A recording that fails to process is quarantined, never deleted, because it is the only copy.' }
         ]},
         { label: '04 · WHERE IT STANDS', type: 'text',
-          text: 'It runs as a working template for a single user, me, not a public product. There is no growth chart here, and that is the point. The hardest part of teaching yourself a language is building the plan and grading yourself every day, and that part now happens without me. The codebase carries 273 tests across 41 files, because a personal system with no backups has to be something you trust.' },
+          text: 'It runs as a working template for a single user, me, not a public product. There is no growth chart here, and that is the point. The hardest part of teaching yourself a language is building the plan and grading yourself every day, and that part now happens without me. The codebase carries 276 tests across 40 files, because a personal system with no backups has to be something you trust.' },
         { label: '05 · STACK', type: 'stack',
-          stack: ['Next.js on Vercel', 'Notion', 'Telegram', 'Postgres + pgvector', 'role-based LLM routing', 'local transcription (whisper.cpp)', 'TypeScript'] }
+          stack: ['Next.js on Vercel', 'Notion API', 'Telegram Bot API', 'Neon Postgres + pgvector', 'Vercel AI SDK (DeepSeek, Gemini, OpenAI)', 'local transcription (whisper.cpp)', 'TypeScript'] }
       ],
-      github: '', cta: 'Ask for a walkthrough'
+      github: 'https://github.com/George-Brothers/Chief-of-Learning', cta: 'Ask for a walkthrough'
     },
     {
       num: '03 · ATLAS', name: 'atlas', status: 'BUILD-READY', statusBg: '#b48fd9',
@@ -43,19 +45,19 @@
         { label: '01 · THE PROBLEM', type: 'text',
           text: 'Most self-teaching tools reward motion. You watch, you click next, you feel productive, and nothing checks whether the idea actually stuck. I wanted the opposite: a loop that will not let me move on until I can prove I learned the thing, and a tutor that will not bluff an answer it was never taught.' },
         { label: '02 · HOW IT WORKS', type: 'text',
-          text: 'atlas runs a fixed loop: intake, lesson, quiz, strict grade, mastery gate, and only then the next lesson opens. The lessons are hand-authored and sit behind a prerequisite map, so topics open in an order that makes sense. A language model reads your quiz answers and scores them against a rubric, but it never decides whether you passed. That decision is plain code doing arithmetic against a fixed bar, so the standard cannot drift lenient to be nice.' },
+          text: 'atlas teaches one subject, how large language models actually work, as a ten-topic spine that runs from tokens and embeddings up to retrieval. Each topic is a lesson, a quiz, and a mastery gate, and the topics open in order. Multiple-choice is graded by plain code; your written answer goes to a strict AI grader that scores it against a rubric. The model never decides whether you passed. Score 80 percent or better and deterministic code opens the next topic and schedules the material for review. Miss it and the topic stays shut.' },
         { label: '03 · ENGINEERING DECISIONS', type: 'points', points: [
-          { k: 'An identity-blind grader', t: 'The grader sees the question, the rubric, and your answer, and nothing about who you are, your streak, or your history. It cannot soften to protect your feelings because it never learns whose feelings they are. Its scores are clamped in code as a second line of defense against over-crediting.' },
-          { k: 'The grader is tested like code', t: 'It is held to a golden set of eleven hand-labeled answers, from clearly correct to vague traps to plainly wrong. The eval fails if the model gives credit to any answer that should have been denied. Strictness is tested, not hoped for.' },
-          { k: 'A tutor that can say “not covered”', t: 'The tutor answers only from lesson chunks pulled out of a pgvector search. When nothing relevant comes back it returns a plain “the course does not cover that” without ever calling the model, so an empty shelf can never turn into a confident guess.' },
-          { k: 'Spaced repetition built in', t: 'Passing a quiz schedules the material for review using FSRS-5, the spaced-repetition algorithm, so what you learn comes back on the day you are about to forget it.' }
+          { k: 'An identity-blind grader', t: 'The grader sees the question, the rubric, and your answer, and nothing about who you are, your streak, or your history. It is a pure function with exactly that one shape, so it cannot soften to be nice because it never learns whose work it is. Its scores are clamped in code as a second line of defense, so a misbehaving model can never over-credit.' },
+          { k: 'A cheap grader, held to a hard line', t: 'atlas grades on a cheap model, not a frontier one, and the risk in that trade is a cheap model that over-credits a vague but plausible answer. So a golden set of twelve labeled answers, spanning clearly correct, partial, vague traps, wrong, off-topic, and empty, runs against the real model, and the eval fails if it gives credit to anything it should have denied. That eval is the gate for ever swapping the grading model. Strictness is tested, not hoped for.' },
+          { k: 'The machinery is plain code', t: 'Multiple-choice grading, the mastery math, the rules that open the next topic, the spaced-repetition schedule, and placement are all pure functions with no model in them, unit tested with no database and no key. The model is called only where real judgment is needed: grading written answers and answering tutor questions. Everything mechanical stays mechanical, and testable.' },
+          { k: 'A tutor that can say “not covered”', t: 'Ask a follow-up and the tutor answers only from chunks of atlas’s own lessons, pulled by vector search and cited. When nothing relevant comes back it says the course does not cover that, without ever calling the model, so an empty shelf can never turn into a confident guess. It reads its own teaching text and nothing else.' }
         ]},
         { label: '04 · WHERE IT STANDS', type: 'text',
-          text: 'The platform is built and ready to deploy, running on Next.js 16 with Postgres behind it, and wired for a single user by design. The point was never a user count. It was proving that a learning tool can hold a hard line: grade honestly, teach only what it knows, and open the next lesson on real mastery instead of good intentions.' },
+          text: 'The platform is built and ready to deploy, running on Next.js 16 with Neon Postgres behind it, wired for a single user by design. Seventy-nine tests cover the loop, the grader, and the retrieval, none of them needing a database or a key to run. The point was never a user count. It was proving a learning tool can hold a hard line: grade honestly, teach only what it was taught, and open the next lesson on real mastery instead of good intentions. What is not wired yet is a stronger grader behind the cheap one; the seam is built, the provider is not.' },
         { label: '05 · STACK', type: 'stack',
-          stack: ['Next.js 16', 'Postgres + pgvector', 'Drizzle ORM', 'FSRS-5 spaced repetition', 'RAG grounded tutor', 'LLM grader + golden-set eval', 'TypeScript'] }
+          stack: ['Next.js 16', 'Neon Postgres + pgvector', 'Drizzle ORM', 'DeepSeek + OpenAI (direct)', 'FSRS-5 spaced repetition', 'golden-set grader eval', 'TypeScript'] }
       ],
-      github: '', cta: 'Ask for a walkthrough'
+      github: 'https://github.com/George-Brothers/Atlas', cta: 'Ask for a walkthrough'
     },
     {
       num: '05 · THIS SITE', name: 'This site', status: 'SHIPPED', statusBg: '#efa85c',
@@ -74,7 +76,7 @@
         { label: '04 · STACK', type: 'stack',
           stack: ['HTML/CSS', 'Claude', 'hand-tuned animations', 'stubbornness'] }
       ],
-      github: '', cta: 'Ask me how'
+      github: 'https://github.com/George-Brothers/personal-website', cta: 'Ask me how'
     },
     {
       num: '06 · SOON™', name: 'The next one', status: 'OPEN SLOT', statusBg: '#78beb4', statusOutline: true,
@@ -115,26 +117,30 @@
       github: '', cta: 'Ask for a copy'
     },
     {
-      num: '02 · CONTEXT ENGINE', name: 'Context Engine', status: 'PROTOTYPE', statusBg: '#b48fd9',
+      num: '01 · PRIVATE CONTEXT', name: 'Context Drop', status: 'PROTOTYPE', statusBg: '#b48fd9',
       bg: '#221609', border: 'rgba(239,168,92,.5)', type: 'ai system', dateRank: 5, updated: 'JUN 2026', statusRank: 5,
-      blurb: 'Gives an AI tool the right few pages from your notes, and only those. Ranked by relevance, kept to a token budget, private pages held back.',
+      blurb: 'AI assistants are only as useful as the information they get. Context Drop picks the few notes that matter for a request, keeps restricted material out, and shows what context was actually passed to the model.',
       sections: [
+        { label: 'HOW A REQUEST FLOWS', type: 'image',
+          src: '/assets/context-drop-flow.v1.svg', width: 520, height: 528,
+          alt: 'Flow diagram. A request enters, then the broker retrieves candidate pages from the private vault, ranks them by relevance with embeddings, keywords, and curated load order fused with RRF, filters out restricted pages, fits the top pages to a token budget, and returns a context package plus a manifest of what was held back.',
+          caption: 'A request in, a right-sized context package out: retrieve candidates, rank by relevance, hold restricted pages back, then fit the token budget.' },
         { label: '01 · THE PROBLEM', type: 'text',
-          text: 'AI tools are only as good as the context you hand them, and handing them everything is slow, expensive, and unsafe. Pasting the same notes into every tool by hand got old fast. I wanted one broker any AI front end could ask for the right few pages, on a budget, without ever exposing the private ones.' },
+          text: 'Most AI tools fail for a boring reason. They get too much context, the wrong context, or information they were never meant to see. Pasting the same notes into every tool by hand got old fast, and dumping a whole vault into a prompt is slow, expensive, and unsafe. I wanted one broker any AI tool could ask for the right few pages, on a budget, with the private ones held back by default.' },
         { label: '02 · HOW IT WORKS', type: 'text',
-          text: 'It speaks MCP, the protocol AI tools use to reach outside data, and serves a curated vault of pages. A tool asks for context on a task; the broker ranks the vault, packs what fits a token budget, and returns those pages plus a manifest of what it held back and why. The whole thing is plain Python with no third-party dependencies, which keeps it small enough to read end to end and audit.' },
+          text: 'It speaks MCP, the protocol AI tools use to reach outside data, and sits in front of a private wiki of tagged Markdown pages. The wiki already declares the rules: named packs that say, per task, which pages to load in what order and which private pages that task is allowed to touch. Context Drop is the broker that honors that contract on a token budget, then hands back the pages plus a manifest of everything it held back so the tool can ask for more. It is plain Python with no third-party dependencies, small enough to read end to end and audit.' },
         { label: '03 · ENGINEERING DECISIONS', type: 'points', points: [
-          { k: 'Hybrid ranking, three signals fused', t: 'Ranking blends dense embeddings for meaning, BM25 for exact words, and the curated load order I already keep for each task, fused with reciprocal rank fusion. If the embedder is offline it drops to keyword ranking and still answers.' },
-          { k: 'Retrieval that is measured, not asserted', t: 'An eval scores precision, recall, and MRR against a gold set drawn from my own curation. Moving to the hybrid ranker took precision-at-5 from 0.24 to 0.85 and cleared the target I set of 0.80. On a curated vault this size that is a tuning result, not a benchmark claim, and the eval says so plainly.' },
-          { k: 'Fail-closed, local embeddings', t: 'The server refuses to start exposed to the network without auth. Private pages are withheld unless a request is explicitly cleared for them, and every embedding is computed locally, so nothing about the vault leaves the machine to be indexed elsewhere.' },
-          { k: 'OAuth 2.1 for the connector', t: 'The claude.ai connector uses full OAuth 2.1 with PKCE and a password-gated consent screen, tested end to end from discovery through token exchange.' }
+          { k: 'Curated first, ranked only when needed', t: 'When a task maps to a named pack, the broker loads that curated order and does not guess. When a paraphrased question matches no pack, a hybrid ranker takes over: dense embeddings for meaning, BM25 for exact words, fused with reciprocal rank fusion over the same curated prior. If the embedder is offline it drops to keyword ranking and still answers.' },
+          { k: 'Retrieval that is measured, not asserted', t: 'A gold set of nineteen queries, drawn from the vault’s own pack definitions, scores the ranker on precision and recall. Moving from dense-only to the hybrid ranker took precision-at-5 from 0.24 to 0.85 and recall-at-10 to 0.89, clearing the bar I set of 0.80 and 0.85. On a curated vault this small that is a tuning result, not a benchmark, and the eval says so plainly.' },
+          { k: 'Privacy picked the architecture', t: 'Private pages are held back by default and return only when the task explicitly grants them. A withheld page still appears in the manifest, so the tool knows it exists but never sees the content. Because those pages must never leave the machine, every embedding is computed locally. The security rule chose the design, not the other way around.' },
+          { k: 'Fail-closed on the wire', t: 'The HTTP transport refuses to start in any publicly reachable setup without auth, checks every request’s Host and Origin against an allowlist to block DNS rebinding, compares tokens in constant time, and never leaks a stack trace or the vault’s path. The claude.ai connector runs full OAuth 2.1 with PKCE behind a password-gated consent screen, tested end to end from discovery through token exchange.' }
         ]},
         { label: '04 · WHERE IT STANDS', type: 'text',
-          text: 'The server is built and tested across four phases, with the claude.ai connector verified end to end. It runs privately for me, as infrastructure for my own tools rather than a product with users, small and auditable on purpose. The result I care about is the retrieval jump, and the fact that a private page has to be asked for by name before it will ever surface.' },
+          text: 'The server is built and tested, standard library only, with the claude.ai connector verified end to end. It runs privately for me, as infrastructure for my own tools rather than a product with users, small and auditable on purpose. The result I care about is the retrieval jump, and the fact that a private page has to be asked for by name before it will ever surface. Next up is proving the same OAuth flow against ChatGPT’s connectors and adding Gmail, Calendar, and Drive behind the same budget and privacy rules.' },
         { label: '05 · STACK', type: 'stack',
           stack: ['Python (stdlib only)', 'MCP over JSON-RPC 2.0', 'SQLite vector store', 'local embeddings (Ollama)', 'BM25 + RRF ranking', 'OAuth 2.1 / PKCE'] }
       ],
-      github: '', cta: 'Ask for a walkthrough'
+      github: 'https://github.com/George-Brothers/context-drop', cta: 'Ask for a walkthrough'
     }
   ];
 
@@ -205,6 +211,27 @@
     return wrap;
   }
 
+  function renderImage(sec) {
+    var fig = document.createElement('figure');
+    fig.className = 'm-figure';
+    var img = document.createElement('img');
+    img.className = 'm-img';
+    img.src = sec.src;
+    img.alt = sec.alt || '';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    if (sec.width) img.setAttribute('width', sec.width);
+    if (sec.height) img.setAttribute('height', sec.height);
+    fig.appendChild(img);
+    if (sec.caption) {
+      var cap = document.createElement('figcaption');
+      cap.className = 'm-figcaption';
+      cap.textContent = sec.caption;
+      fig.appendChild(cap);
+    }
+    return fig;
+  }
+
   function renderStack(sec) {
     var wrap = document.createElement('div');
     wrap.className = 'm-stack';
@@ -232,6 +259,7 @@
       if (sec.type === 'steps') body = renderSteps(sec);
       else if (sec.type === 'points') body = renderPoints(sec);
       else if (sec.type === 'stack') body = renderStack(sec);
+      else if (sec.type === 'image') body = renderImage(sec);
       else body = renderText(sec);
 
       block.appendChild(body);
@@ -332,9 +360,11 @@
     document.body.style.overflow = '';
 
     clearTimeout(closeTimer);
+    // match the .55s card transform transition (work.html:80) so the zoom-out
+    // is not clipped at the tail.
     closeTimer = setTimeout(function () {
       if (dialog.open) dialog.close();
-    }, 480);
+    }, 560);
   }
 
   // ---- card open triggers ----
@@ -354,6 +384,9 @@
     var target = grid.querySelector('.wcard[data-idx="' + idx + '"]');
     if (!target) return;
     target.scrollIntoView({ block: 'center' });
+    // Focus the matching card before showModal() so native <dialog> restores
+    // focus here on close, not to document.body (deep-link focus return).
+    target.focus({ preventScroll: true });
     openCard(idx, target);
   })();
 
