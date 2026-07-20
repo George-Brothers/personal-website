@@ -37,6 +37,61 @@
   var rowBox = monitor.querySelector('.hm-rows');
   if (!lineBox || !rowBox) return;
 
+  /* ---- weld the overlay to the lit panel ----
+     The panel in hero-center.v1.webp is a true projective quad: its left edge is
+     205px tall and its right edge only 152px, and the edge slopes disagree. No
+     combination of rotateY and skew reproduces that, which is why a hand-tuned
+     transform never sat flush. Instead we solve the unit-square -> quad homography
+     and hand it to matrix3d, which is exact by construction.
+
+     Corners measured off the asset as fractions of the 1122x1402 frame. .hero-stage
+     carries the same aspect ratio, so these fractions are stage-relative too. */
+  var PANEL = [[0.27986, 0.37803],   // top-left
+               [0.43761, 0.36448],   // top-right
+               [0.44296, 0.47575],   // bottom-right
+               [0.29055, 0.51926]];  // bottom-left
+  // .hero-monitor's CSS box == the quad's bounding box. Keep these in sync.
+  var BOX_L = 0.27986, BOX_T = 0.36448, BOX_W = 0.16310, BOX_H = 0.15478;
+
+  var stage = document.querySelector('.hero-stage');
+
+  function fit() {
+    if (!stage) return;
+    var W = stage.clientWidth, H = stage.clientHeight;
+    if (!W || !H) return;
+
+    // Target corners in px, relative to the element's own top-left.
+    var p = [], i;
+    for (i = 0; i < 4; i++) {
+      p.push([(PANEL[i][0] - BOX_L) * W, (PANEL[i][1] - BOX_T) * H]);
+    }
+    var x0 = p[0][0], y0 = p[0][1], x1 = p[1][0], y1 = p[1][1],
+        x2 = p[2][0], y2 = p[2][1], x3 = p[3][0], y3 = p[3][1];
+
+    var dx1 = x1 - x2, dx2 = x3 - x2, sx = x0 - x1 + x2 - x3,
+        dy1 = y1 - y2, dy2 = y3 - y2, sy = y0 - y1 + y2 - y3;
+    var den = dx1 * dy2 - dx2 * dy1;
+    if (!den) return;
+
+    // Perspective terms, then the affine part that lands each corner exactly.
+    var g = (sx * dy2 - dx2 * sy) / den,
+        k = (dx1 * sy - sx * dy1) / den;
+    // Divide by the element box so it maps its own coordinate space, not a unit square.
+    var w = BOX_W * W, h = BOX_H * H;
+
+    monitor.style.transform = 'matrix3d(' + [
+      (x1 - x0 + g * x1) / w, (y1 - y0 + g * y1) / w, 0, g / w,
+      (x3 - x0 + k * x3) / h, (y3 - y0 + k * y3) / h, 0, k / h,
+      0, 0, 1, 0,
+      x0, y0, 0, 1
+    ].join(',') + ')';
+    monitor.classList.add('is-fitted');
+  }
+
+  fit();
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(stage);
+  else window.addEventListener('resize', fit);
+
   var DIM = 'rgba(243,234,217,.6)';
   var SCRIPT = [
     { t: '> automate route sheet', c: '#f3ead9' },

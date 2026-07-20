@@ -42,27 +42,36 @@
 .hero-backdrop{position:absolute;inset:-8%;width:116%;height:116%;opacity:.95;background:url("data:image/webp;base64,UklGRmoBAABXRUJQVlA4IF4BAADwCACdASooADIAPpFAmkqlo6IpqBVaqTASCWQAx2RDBdCgCIwIO/1dEAv2rY9cjyHdvG9P4vkRFciT+/aP2PNIxay5jb0iL+J8nVpDZJGjgAD+/eJKL56tR82oR2GkpiW4j6j6MmZwFtaF9cPy4SAAZhDHoWtIeBXw8MJ7Wr/QijV0HfDLqAhNADHJIqYb1OvTa3JYEa1MIJdCh2BQXz5we1EWQsPJ1oYGO6Im7nWyRytEktqn11wW31q5rJg1N7isrFAwaSlJNi4Mn6wB1HYBpCR+IPNVXcP4DaYyfA34ryBT2J3c5tVFjzYjIdX5QSF6YJwyVWRFQyKswMa3//UL615Mhj6VqdcKaZ8EwrIzOfsuOAY1l81ZLEl5dKu4aSm7dILnTD/BqX4CvxM6q1zo+ILFV3gtYLfOEY8BzYI93bKwEK5hDBkrZ2ZBjswwdLu/6fN4nObu1dS9iCAAAA==") center/cover no-repeat}
 .hero-stage{position:absolute;z-index:0;left:50%;top:-21.67%;height:169%;aspect-ratio:1122/1402;transform:translateX(-50%);container-type:size}
 .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,#000 12%,#000 88%,transparent 100%)}
-.hero-fade-x{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(18,10,29,.82) 0%,rgba(18,10,29,.6) 20%,rgba(18,10,29,.18) 36%,rgba(18,10,29,0) 48%)}
+/* The copy column sits over the photo's hottest orange (measured rgb(163,46,61)), and
+   #efa85c on that is the same hue family, so it blends however high the ratio reads.
+   The scrim is deepened and pulled toward neutral so the amber lands on near-black. */
+.hero-fade-x{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(14,8,22,.92) 0%,rgba(14,8,22,.84) 24%,rgba(14,8,22,.64) 40%,rgba(14,8,22,.4) 54%,rgba(18,10,29,0) 70%)}
 .hero-fade-b{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(18,10,29,.55) 0%,rgba(18,10,29,0) 16%),linear-gradient(0deg,#171009 0%,rgba(23,16,9,.6) 8%,rgba(23,16,9,0) 22%)}
 .hero-copy{position:relative;z-index:2;max-width:640px;padding:202px 0 68px 64px;display:flex;flex-direction:column;gap:26px}
-.hero-h1{margin:0;font:400 clamp(32px,4.72vw,68px)/1.04 'Instrument Serif',serif;letter-spacing:-.01em;text-wrap:pretty}
+.hero-h1{margin:0;font:400 clamp(32px,4.72vw,68px)/1.04 'Instrument Serif',serif;letter-spacing:-.01em;text-wrap:pretty;text-shadow:0 1px 20px rgba(10,6,16,.55)}
 .hero-amber{font-style:italic;color:#efa85c}
-.hero-sub{margin:0;max-width:470px;font:300 17px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.85)}
+.hero-sub{margin:0;max-width:470px;font:300 17px/1.6 'Space Grotesk',sans-serif;color:rgba(243,234,217,.9);text-shadow:0 1px 14px rgba(10,6,16,.5)}
 .hero-actions{display:flex;align-items:center;gap:16px;margin-top:6px;flex-wrap:wrap}
 
 /* ===== hero monitor (composited onto the screen in the photo) =====
-   Positioned as a % of .hero-stage and typeset in cqh (1cqh = 1% of stage height),
-   so it stays welded to the screen at every viewport size. Content from home.js.
-   The transform is fitted to the lit panel's measured corners in the asset. */
-.hero-monitor{position:absolute;left:28.94%;top:38.61%;width:21.27%;height:13.82%;transform:perspective(30.1cqh) rotateY(24deg) skew(4.6deg,-14.15deg);transform-origin:left center;background:#0c0916;border-radius:.15cqh;overflow:hidden;box-shadow:0 0 1.67cqh rgba(150,110,255,.28);opacity:.94;display:flex;flex-direction:column}
+   The box is the lit panel's bounding box as a % of .hero-stage; home.js then
+   applies a matrix3d that maps that box onto the panel's four measured corners.
+   The panel is a true projective quad, which rotateY + skew cannot reproduce,
+   so the transform is solved rather than hand-tuned. Typeset in cqh (1cqh = 1%
+   of stage height) so it stays welded to the screen at every viewport size.
+   Hidden until home.js has fitted it, so a failed script shows nothing rather
+   than an unaligned rectangle. */
+.hero-monitor{position:absolute;left:27.986%;top:36.448%;width:16.31%;height:15.478%;transform-origin:0 0;background:#0c0916;border-radius:.15cqh;overflow:hidden;box-shadow:0 0 1.67cqh rgba(150,110,255,.28);opacity:0;transition:opacity .4s ease;display:flex;flex-direction:column}
+.hero-monitor.is-fitted{opacity:.94}
 .hm-term{flex:1.4;padding:.455cqh .531cqh;overflow:hidden;border-bottom:1px solid rgba(150,110,255,.18)}
 .hm-brand{margin:0 0 .228cqh;font:500 .493cqh 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#b79aff}
 .hm-line{font:400 .493cqh/1.7 'IBM Plex Mono',monospace;white-space:nowrap}
 .hm-caret{display:inline-block;width:.303cqh;height:.531cqh;background:#efa85c;animation:hmcaret 1.2s steps(2) infinite}
 @keyframes hmcaret{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
-/* Kept narrow: across the full panel the skew throws a row's value so far above its
-   key that the pair stops reading as one row. */
-.hm-ledger{flex:1;width:62%;padding:.379cqh .531cqh}
+/* Full width now that the panel uses a solved homography: it maps straight lines to
+   straight lines, so a row's key and value stay on the screen's own horizontal. The
+   old 62% clamp was a workaround for the skew tilting each row apart. */
+.hm-ledger{flex:1;width:100%;padding:.379cqh .531cqh}
 .hm-title{margin:0 0 .228cqh;font:500 .455cqh 'IBM Plex Mono',monospace;letter-spacing:.1em;color:rgba(243,234,217,.5)}
 .hm-row{display:flex;justify-content:space-between;font:400 .493cqh/1.75 'IBM Plex Mono',monospace;padding:0 .152cqh}
 
@@ -81,7 +90,7 @@
 @media (min-width:901px) and (max-width:1200px){
   .hero-h1{font-size:clamp(32px,5.2vw,58px)}
   .hero-copy{max-width:520px;padding:190px 0 60px clamp(24px,4vw,64px)}
-  .hero-fade-x{background:linear-gradient(90deg,rgba(18,10,29,.9) 0%,rgba(18,10,29,.78) 22%,rgba(18,10,29,.42) 42%,rgba(18,10,29,.1) 60%,rgba(18,10,29,0) 72%)}
+  .hero-fade-x{background:linear-gradient(90deg,rgba(14,8,22,.95) 0%,rgba(14,8,22,.9) 26%,rgba(14,8,22,.74) 46%,rgba(14,8,22,.46) 62%,rgba(18,10,29,0) 78%)}
 }
 @media (max-width:900px){
   .gb-positioning,.gb-work,.gb-cta{padding-left:clamp(18px,4.5vw,64px) !important;padding-right:clamp(18px,4.5vw,64px) !important}
